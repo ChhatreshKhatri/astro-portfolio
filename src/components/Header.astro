@@ -1,0 +1,85 @@
+---
+import ChhatreshKhatri from "../assets/ChhatreshKhatri.astro";
+import NavIcons from "./NavIcons.astro";
+---
+
+<header>
+  <nav id="navBar" class="w-full flex flex-col items-center px-3 xs:px-6 md:px-12 lg:px-20 fixed z-10 top-0 transition-navBar py-3">
+    <div class="flex flex-col lg:flex-row lg:justify-between w-full">
+      <div class="flex justify-between">
+        <a aria-label="Home Page" href="/" class="flex justify-center items-center">
+          <ChhatreshKhatri />
+        </a>
+
+        <button id="menuButton" aria-label="Toggle Menu" class="flex flex-col justify-center items-center lg:hidden">
+          <span id="topBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm"></span>
+          <span id="middleBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5"></span>
+          <span id="bottomBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm"></span>
+        </button>
+      </div>
+      <div id="navLinks" class="flex-col lg:flex-row items-center justify-center gap-x-8 text-xl font-semibold  lg:flex">
+        <a aria-label="Home Page" href="/" class="relative flex items-center justify-center group py-1">Home</a>
+        <a aria-label="About Page" href="/about" class="relative flex items-center justify-center group py-1">About</a>
+        <a aria-label="Projects Page" href="/projects" class="relative flex items-center justify-center group py-1">Projects</a>
+      </div>
+      <div id="navIcons" class="items-center justify-center whitespace-nowrap gap-5 my-2 lg:flex">
+        <NavIcons />
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  let navOpen = true;
+  function toggleNav() {
+    navOpen = !navOpen;
+    const topBar = document.getElementById("topBar");
+    const middleBar = document.getElementById("middleBar");
+    const bottomBar = document.getElementById("bottomBar");
+    const navIcons = document.getElementById("navIcons");
+    const navBar = document.getElementById("navBar");
+    const navLinks = document.getElementById("navLinks");
+
+    // Toggle classes on the topBar element
+    topBar?.classList.toggle("rotate-45", navOpen);
+    topBar?.classList.toggle("translate-y-1", navOpen);
+    topBar?.classList.toggle("-translate-y-1", !navOpen);
+
+    // Toggle classes on the middleBar element
+    middleBar?.classList.toggle("opacity-0", navOpen);
+    middleBar?.classList.toggle("opacity-100", !navOpen);
+
+    // Toggle classes on the bottomBar element
+    bottomBar?.classList.toggle("-rotate-45", navOpen);
+    bottomBar?.classList.toggle("-translate-y-1", navOpen);
+    bottomBar?.classList.toggle("translate-y-1", !navOpen);
+
+
+    // Toggle classes on the navLinks element
+    navLinks?.classList.toggle("hidden", !navOpen);
+    navLinks?.classList.toggle("flex", navOpen);
+
+    // Toggle classes on navIcons
+    navIcons?.classList.toggle("hidden", !navOpen);
+    navIcons?.classList.toggle("flex", navOpen);
+
+    if(navOpen)
+      navBar?.classList.add("bg-light", "dark:bg-darker", "shadow-md");
+
+  }
+
+
+  const menuButton = document.getElementById("menuButton");
+  menuButton?.addEventListener("click", toggleNav);
+
+  window.addEventListener("scroll", () => {
+    const navBar = document.getElementById("navBar");
+    if (window.scrollY > 0 || navOpen) {
+      navBar?.classList.add("bg-light", "dark:bg-darker", "shadow-md");
+    } else {
+      navBar?.classList.remove("bg-light", "dark:bg-darker", "shadow-md");
+    }
+  });
+  toggleNav();
+</script>
+

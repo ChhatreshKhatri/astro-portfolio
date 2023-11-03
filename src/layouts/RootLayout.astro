@@ -1,0 +1,65 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+const { title, description, keywords, url } = Astro.props;
+---
+
+<html lang="en" class="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Chhatresh Khatri" />
+    <link rel="shortcut icon" type="image/svg+xml" href="https://assets.chhatreshkhatri.com/assets/icon.svg" />
+    <link rel="icon" type="image/x-icon" href="https://assets.chhatreshkhatri.com/assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://assets.chhatreshkhatri.com/assets/apple-icon.png" />
+    <link rel="manifest" href="app.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={url} />
+    <meta property="og:url" content={url} />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content="Chhatresh Khatri Social Links. The webpage will feature links to various social media profiles and websites."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://assets.chhatreshkhatri.com/assets/opengraph-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@chhatreshkhatri" />
+    <meta name="twitter:site" content="@chhatreshkhatri" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://assets.chhatreshkhatri.com/assets/opengraph-image.png" />
+    <meta name="robots" content="index, follow" />
+    <meta name="allow-search" content="yes" />
+    <meta name="identifier-URL" content={url} />
+    <meta name="audience" content="All" />
+    <meta name="classification" content="Social Links, Web Developer" />
+    <meta name="language" content="english" />
+    <meta http-equiv="content-language" content="en-in" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="w-full min-h-screen flex flex-col bg-light text-darked dark:bg-dark dark:text-light font-display">
+    <Header />
+    <main class="w-full h-full flex items-center flex-col justify-center font-medium px-2 xxs:px-3 xs:px-6 md:px-12 lg:px-20 py-20 gap-y-8">
+      <slot /><!-- content is injected here -->
+    </main>
+    <Footer />
+  </body>
+</html>
+<script>
+  const favicon = document.querySelector('link[rel="icon"]');
+
+  const handleVisibilityChange = () => {
+    const hidden = document.hidden;
+    favicon?.setAttribute("href", `https://assets.chhatreshkhatri.com/assets/${hidden ? "icon-hidden.svg" : "favicon.ico"}`);
+  };
+
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+</script>

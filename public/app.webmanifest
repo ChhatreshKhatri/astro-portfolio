@@ -1,0 +1,27 @@
+{
+  "name": "Chhatresh Khatri | Social Links",
+  "short_name": "Social Links",
+  "description": "Chhatresh Khatri Social Links. The webpage will feature links to various social media profiles and websites.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "icons": [
+    {
+      "src": "https://assets.chhatreshkhatri.com/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://assets.chhatreshkhatri.com/assets/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://assets.chhatreshkhatri.com/assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
