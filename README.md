@@ -1,47 +1,101 @@
-# Astro Starter Kit: Minimal
+# Portfolio Website <a href="https://www.chhatreshkhatri.com/" target="_blank">Chhatresh Khatri | Portfolio</a>
 
-```sh
-npm create astro@latest -- --template minimal
-```
+This portfolio website, meticulously crafted using Astro, Tailwind CSS, and Typewriter-Effects, embodies a fusion of modern design and robust functionality. Its architecture comprises a Home Page, an About Page, and a Projects Page, each tailored to deliver a distinctive user experience.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+Consistency is ensured across the site with a well-structured navigation menu, subtle animations, and optional dark mode. The website's SEO optimization, performance enhancements, and analytics integration make it a potent tool for showcasing the skills.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+<br/>
 
-## 🚀 Project Structure
+# Built With
 
-Inside of your Astro project, you'll see the following folders and files:
+This project was built using
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- Astro
+- Tailwind CSS
+- Typewriter-Effects
+- VS Code
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+<br/>
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+# Features
 
-Any static assets, like images, can be placed in the `public/` directory.
+**📖 Multi-Page Layout**
 
-## 🧞 Commands
+**🎨 Styled with TailwindCSS easy to customize theme**
 
-All commands are run from the root of the project, from a terminal:
+**📱 Fully Responsive**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+<br/>
 
-## 👀 Want to learn more?
+# Getting Started
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Clone down this repository. You will need `node.js` and `git` installed globally on your machine.
+
+<br/>
+
+## 🛠 Installation and Setup Instructions
+
+1. Installation: `npm install`
+
+2. In the project directory, you can run: `npm run dev`
+
+Runs the app in the development mode.\
+Open [http://localhost:4321](http://localhost:4321) to view it in the browser.
+The page will reload if you make edits.
+
+<br/>
+
+First, run the development server:
+You can start editing the page by modifying `src/pages`. The page auto-updates as you edit the file.
+
+## Learn More
+
+To learn more about Astro, take a look at the following resources:
+
+- [Astro Documentation](https://docs.astro.build/en/getting-started/) - learn about Astro features.
+
+You can check out [the Astro GitHub repository](https://github.com/withastro/astro) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Astro app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+
+Check out [Astro deployment documentation](https://vercel.com/docs/frameworks/astro) for more details.
+
+## Deploy on Cloudflare pages
+
+[Cloudflare Pages](https://pages.cloudflare.com/) is a JAMstack platform for frontend developers to collaborate and deploy websites.
+
+Check out [Astro deployment documentation](https://developers.cloudflare.com/pages/framework-guides/deploy-an-astro-site/) for more details.
+<br>
+
+# 🖼️ Screenshots
+
+<div align="center" > 
+  <img src="./Readme/HomeDark.jpeg" width="49%">
+  <img src="./Readme/HomeLight.jpeg" width="49%">
+  <img src="./Readme/AboutDark.jpeg" width="49%">
+  <img src="./Readme/AboutLight.jpeg" width="49%">
+  <img src="./Readme/ProjectsDark.jpeg" width="49%">
+  <img src="./Readme/ProjectsLight.jpeg" width="49%">
+</div>
+
+<br/>
+
+# 🧷 Share My Portfolio
+
+<div align="center">
+
+Share my portfolio ( https://www.chhatreshkhatri.com/ ) with your friends in just a click
+
+<a title="Mail" href="mailto:?subject=Chhatresh Khatri | Portfolio&body=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/931465f32268d3f9f1c971ada3615fb8b91f6507/assets/gmail.svg" width="32px"/></a>
+<a title="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/facebook.svg" width="32px"/></a>
+<a title="X (Twitter)" href="https://twitter.com/intent/tweet?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/x.svg" width="32px"/></a>
+<a title="Whatsapp" href="https://api.whatsapp.com/send?text=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/whatsapp.svg" width="32px"/></a>
+<a title="LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/linkedin.svg" width="32px"/></a>
+<a title="Pinterest" href="https://pinterest.com/pin/create/button/?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/pinterest.svg" width="32px"/></a>
+<a title="Reddit" href="https://www.reddit.com/submit?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/reddit.svg" width="32px"/></a>
+<a title="Pocket" href="https://getpocket.com/save?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/getpocket.svg" width="32px"/></a>
+<a title="Tumblr" href="https://www.tumblr.com/share?v=3&u=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/tumblr.svg" width="32px"/></a>
+
+</div>

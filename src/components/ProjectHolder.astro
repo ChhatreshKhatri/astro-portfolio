@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 const { heading, subHeading, projectContent, projectImage, order } = Astro.props;
 ---
 
@@ -14,14 +14,14 @@ const { heading, subHeading, projectContent, projectImage, order } = Astro.props
         <h2 class="text-2xl xxs:text-3xl md:text-4xl xl:text-5xl font-semibold text-center">{heading}</h2>
         <h3 class="text-xl xs:text-2xl xl:text-3xl font-semibold text-center">{subHeading}</h3>
         <p class="text-lg xs:text-xl text-justify">{projectContent}</p>
-        <div class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xxs:text-xl">
+        <div class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl">
           <slot />
         </div>
       </div>
     </div>
     <div class="flex justify-start items-center mt-6 lg:mt-0">
       {/* Content for the second column */}
-      <div class="w-full h-full flex justify-center items-center relative ">
+      <div class="w-full h-full flex justify-center items-center relative">
         {/* Centered content in the second column */}
         <div class="w-full h-[300px] md:h-[350px] relative overflow-hidden rounded-2xl scroll-div xs:px-8">
           <Image

@@ -7,7 +7,11 @@ import ResumeIcon from "../assets/ResumeIcon.astro";
 import SocialIcon from "../assets/SocialIcon.astro";
 ---
 
-<RootLayout title="Chhatresh Khatri | Portfolio" description="" keywords="" url="https://www.chhatreshkhatri.com/">
+<RootLayout
+  title="Chhatresh Khatri | Portfolio"
+  description="Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code."
+  keywords=""
+  url="https://www.chhatreshkhatri.com/">
   <PageHead pageTitle="Welcome to my Portfolio" />
   <div class="relative group grid grid-cols-1 w-full lg:grid-cols-3">
     <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50">
@@ -26,11 +30,11 @@ import SocialIcon from "../assets/SocialIcon.astro";
           player, I thrive on new opportunities and challenges.
         </p>
         <div class="flex flex-wrap justify-center items-center gap-2 xxs:gap-4 mt-4 text-md xxs:text-xl">
-          <LinkButton name="Resume" link="https://drive.google.com/file/d/1i_gAK3PxDoMok4g5XEh0KTaD7Dm-JRR_/view?usp=sharing" icon={"R"} pos="0">
-            <ResumeIcon class='w-8' />
+          <LinkButton name="Resume" link="https://drive.google.com/file/d/1i_gAK3PxDoMok4g5XEh0KTaD7Dm-JRR_/view?usp=sharing" pos="0">
+            <ResumeIcon class="w-6 xs:w-8" />
           </LinkButton>
-          <LinkButton name="Social Links" link="https://social.chhatreshkhatri.com/" icon={"S"} pos={"1"}>
-            <SocialIcon class='w-8' />
+          <LinkButton name="Social Links" link="https://social.chhatreshkhatri.com/" pos={"1"}>
+            <SocialIcon class="w-6 xs:w-8" />
           </LinkButton>
         </div>
       </div>

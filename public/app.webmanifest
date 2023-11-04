@@ -1,11 +1,11 @@
 {
-  "name": "Chhatresh Khatri | Social Links",
-  "short_name": "Social Links",
-  "description": "Chhatresh Khatri Social Links. The webpage will feature links to various social media profiles and websites.",
+  "name": "Chhatresh Khatri | Portfolio",
+  "short_name": "Chhatresh Khatri",
+  "description": "Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code.",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#191919",
+  "background_color": "#191919",
   "icons": [
     {
       "src": "https://assets.chhatreshkhatri.com/assets/icon.svg",
