@@ -90,17 +90,14 @@ import NavLinks from "./NavLinks.astro";
   menuButton?.addEventListener("click", toggleNav);
 
   const currentUrl = window.location.pathname;
-  console.log(currentUrl);
   // hover effect on nav links
   const hover1 = document.getElementById("hover1");
   const hover2 = document.getElementById("hover2");
   const hover3 = document.getElementById("hover3");
   if (currentUrl.includes("/about")) {
     hover2?.classList.add("w-full");
-    console.log("about");
   } else if (currentUrl.includes("/projects")) {
     hover3?.classList.add("w-full");
-    console.log("projects");
   } else {
     hover1?.classList.add("w-full");
   }
