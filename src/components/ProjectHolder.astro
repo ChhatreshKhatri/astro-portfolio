@@ -14,7 +14,7 @@ const { heading, subHeading, projectContent, projectImage, order } = Astro.props
         <h2 class="text-2xl xxs:text-3xl md:text-4xl xl:text-5xl font-semibold text-center">{heading}</h2>
         <h3 class="text-xl xs:text-2xl xl:text-3xl font-semibold text-center">{subHeading}</h3>
         <p class="text-lg xs:text-xl text-justify">{projectContent}</p>
-        <div class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl">
+        <div class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xxs:text-lg md:text-xl">
           <slot />
         </div>
       </div>
