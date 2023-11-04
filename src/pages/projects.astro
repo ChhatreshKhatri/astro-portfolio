@@ -2,13 +2,18 @@
 import PageHead from "../components/PageHead.astro";
 import RootLayout from "../layouts/RootLayout.astro";
 import ProjectHolder from "../components/ProjectHolder.astro";
-import GitHub from "../assets/GitHub.astro";
+import GitHub from "../assets/GitHubIcon.astro";
 import AlibabaCloud from "../assets/AlibabaCloud.astro";
 import LiveLink from "../assets/LiveLink.astro";
 import LinkButton from "../components/LinkButton.astro";
+import GitHubIcon from "../assets/GitHubIcon.astro";
 ---
 
-<RootLayout title="Chhatresh Khatri | Projects" description="" keywords="" url="https://www.chhatreshkhatri.com/projects">
+<RootLayout
+  title="Chhatresh Khatri | Projects"
+  description="Chhatresh Khatri Projects. Explore a collection of diverse projects,  discover their unique features and access relevant links for more information."
+  keywords=""
+  url="https://www.chhatreshkhatri.com/projects">
   <PageHead pageTitle="Projects" />
   {/* Ramaa Creations */}
   <ProjectHolder
@@ -50,22 +55,21 @@ import LinkButton from "../components/LinkButton.astro";
   </ProjectHolder>
   {/* MyChat Project */}
   <ProjectHolder
-    heading="Ramaa Creations"
-    subHeading="An e-commerce Jewellery website"
-    projectContent="Built using Alicms tool at Alibaba Cloud Low-Code Development Contest 2022. Achieved second position out of 2043 participants."
-    projectImage={`RamaaCreations.webp`}
-    order="even">
-    <LinkButton name="Blog Link" link="https://www.alibabacloud.com/blog/598812" pos="0"><AlibabaCloud classProp="w-8" /></LinkButton>
-    <LinkButton name="Winner List" link="https://www.alibabacloud.com/blog/598754" pos="0"><AlibabaCloud classProp="w-8" /></LinkButton>
-  </ProjectHolder>
-  <!--
-  {/* MyChat Project */}
-  <ProjectHolder
     heading="MyChat"
     subHeading="An android chat application"
     projectContent="A simple Android chat app allows users to communicate with each other through text messages on their Android devices. The app typically features a user-friendly interface and easy-to-use chat functions."
     projectImage={`MyChat.webp`}
-    link1="https://github.com/Chhatreshkhatri/MyChat"
+    order="even">
+    <LinkButton name="GitHub Link" link="https://github.com/Chhatreshkhatri/MyChat" pos="0"><GitHubIcon class="w-8" /></LinkButton>
+  </ProjectHolder>
+  <!--
+  {/* MyChat Project */}
+  <ProjectHolder
+    heading=""
+    subHeading=""
+    projectContent=""
+    projectImage={`.webp`}
+    link1=""
     link1Type="Github Link"
     link1Icon={(<GitHub />)}
     link2=""

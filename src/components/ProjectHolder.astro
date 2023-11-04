@@ -1,5 +1,5 @@
 ---
-import LinkButton from "./LinkButton.astro";
+import { Image } from 'astro:assets';
 const { heading, subHeading, projectContent, projectImage, order } = Astro.props;
 ---
 
@@ -24,7 +24,7 @@ const { heading, subHeading, projectContent, projectImage, order } = Astro.props
       <div class="w-full h-full flex justify-center items-center relative ">
         {/* Centered content in the second column */}
         <div class="w-full h-[300px] md:h-[350px] relative overflow-hidden rounded-2xl scroll-div xs:px-8">
-          <img
+          <Image
             title={heading}
             src={`https://assets.chhatreshkhatri.com/${projectImage}`}
             alt={`${heading} Image`}
