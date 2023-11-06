@@ -7,7 +7,7 @@ const { name, color, classProps } = Astro.props;
   class={`relative w-auto h-[35px] xs:h-[45px] ${color} rounded-md p-1 xs:p-2 flex items-center justify-center text-light dark:text-dark`}>
   <div class={`absolute inset-0 bg-gradient-to-b from-[#fff]/10 rounded-md`}></div>
   <div class={`relative flex items-center justify-center ${classProps}`}>
-    <slot />
+    <slot /><!-- content is injected here -->
     <p class="relative text-xl md:text-2xl ml-1 xs:ml-2 drop-shadow-text whitespace-nowrap">{name}</p>
   </div>
 </button>

@@ -13,8 +13,6 @@ import SunIcon from "../assets/SunIcon.astro";
 </button>
 
 <script lang="ts">
-  // import {SITE_METADATA} from "../consts";
-
   // Detect system preference change
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
     setTheme(event.matches ? "dark" : "light");
@@ -39,9 +37,6 @@ import SunIcon from "../assets/SunIcon.astro";
   // Detect system preference
   if (!localStorage.getItem("theme")) {
     let isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    // if (SITE_METADATA.theme !== 'system') {
-    //     isDark = SITE_METADATA.theme === 'dark'
-    // }
     setTheme(isDark ? "dark" : "light");
   }
 
