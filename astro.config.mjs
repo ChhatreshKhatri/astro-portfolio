@@ -5,5 +5,5 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.chhatreshkhatri.com",
-  integrations: [tailwind(), sitemap()]
+  integrations: [tailwind(), sitemap({ lastmod: new Date() })],
 });
