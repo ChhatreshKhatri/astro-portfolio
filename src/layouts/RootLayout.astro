@@ -12,17 +12,19 @@ const { title, description, keywords, url } = Astro.props;
     <meta name="description" content={description} />
     <meta
       name="keywords"
-      content={`Chhatresh Khatri,Portfolio,About,Projects,Full Stack Developer,web Development,Web Designer,Website,Code,Innovation,Next.JS,frontend, ${keywords}`}
+      content={`Chhatresh Khatri,Portfolio,About,Projects,Full Stack Developer,web Development,Web Designer,Website,Code,Innovation, Astro, Next.JS,frontend, ${keywords}`}
     />
     <meta name="author" content="Chhatresh Khatri" />
     <link rel="shortcut icon" type="image/svg+xml" href="https://assets.chhatreshkhatri.com/icons/icon.svg" />
     <link rel="icon" type="image/x-icon" href="https://assets.chhatreshkhatri.com/icons/favicon.ico" />
     <link rel="apple-touch-icon" href="https://assets.chhatreshkhatri.com/icons/apple-icon.png" />
+    <link rel="mask-icon" type="image/svg+xml" href="https://assets.chhatreshkhatri.com/icons/icon.svg" color="#191919"/>
     <link rel="manifest" href="/app.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="canonical" href={url} />
+    <meta name="theme-color" content="#191919" />
     <meta property="og:url" content={url} />
-    <meta property="og:site_name" content={title} />
+    <meta property="og:site_name" content={`chhatreshkhatri`} />
     <meta property="og:title" content={title} />
     <meta
       property="og:description"
@@ -41,7 +43,7 @@ const { title, description, keywords, url } = Astro.props;
     <meta name="allow-search" content="yes" />
     <meta name="identifier-URL" content={url} />
     <meta name="audience" content="All" />
-    <meta name="classification" content="Social Links, Web Developer" />
+    <meta name="classification" content="Portfoflio website, Web Developer" />
     <meta name="language" content="english" />
     <meta http-equiv="content-language" content="en-in" />
   </head>
