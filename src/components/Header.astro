@@ -4,9 +4,9 @@ import NavIcons from "./NavIcons.astro";
 import NavLinks from "./NavLinks.astro";
 ---
 
-<header>
-  <nav id="navBar" class="w-full flex flex-col items-center px-3 py-1.5 xs:px-6 md:px-12 lg:px-20 z-10 transition-navBar backdrop-blur-md">
-    <div class="flex flex-col justify-center lg:flex-row lg:justify-between w-full">
+<header class="sticky top-0 z-10">
+  <nav id="navBar" class="w-full flex flex-col items-center px-3 py-1.5 xs:px-6 md:px-12 lg:px-20 transition-navBar backdrop-blur-md">
+    <div class="flex flex-col justify-center lg:flex-row lg:justify-between w-full gap-y-2">
       <div class="flex justify-between">
         <a aria-label="Home Page" href="/" class="flex justify-center items-center">
           <ChhatreshKhatri />
@@ -22,12 +22,12 @@ import NavLinks from "./NavLinks.astro";
           ></span>
         </button>
       </div>
-      <div id="navLinks" class="hidden flex-col lg:flex-row items-center justify-center gap-x-8 text-xl font-semibold lg:flex">
+      <div id="navLinks" class="hidden flex-col lg:flex-row items-center justify-center gap-x-8 gap-y-1 text-xl font-semibold lg:flex">
         <NavLinks page="Home" link="/" ID="hover1" />
         <NavLinks page="About" link="/about" ID="hover2" />
         <NavLinks page="Projects" link="/projects" ID="hover3" />
       </div>
-      <div id="navIcons" class="hidden items-center justify-center whitespace-nowrap gap-x-5 py-1 lg:flex">
+      <div id="navIcons" class="hidden items-center justify-center whitespace-nowrap gap-x-5 lg:flex">
         <NavIcons />
       </div>
     </div>
@@ -43,19 +43,8 @@ import NavLinks from "./NavLinks.astro";
   const navBar = document.getElementById("navBar");
   const navLinks = document.getElementById("navLinks");
 
-  // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-  function myFunction() {
-    if (window.scrollY >= (navBar?.offsetTop ?? 0)) {
-
-      navBar?.classList.add("fixed");
-    } else {
-      navBar?.classList.remove("fixed");
-    }
-  }
-
   function toggleNav() {
     navOpen = !navOpen;
-    // Toggle classes on the topBar element
     if (navOpen) {
       topBar?.classList.remove("translate-y-1");
       topBar?.classList.add("rotate-45", "translate-y-1");
@@ -90,17 +79,16 @@ import NavLinks from "./NavLinks.astro";
   }
 
   window.addEventListener("scroll", () => {
-    myFunction();
     if (window.scrollY > 0 || navOpen) {
       navBar?.classList.add("bg-navbarBg/50", "dark:bg-darker/80");
       navBar?.classList.add("shadow-bottom");
-      navBar?.classList.remove("py-1.5");
-      navBar?.classList.add("py-1");
-    } else if (window.scrollY == 0 && !navOpen) {
+      navBar?.classList.remove("py-2");
+      navBar?.classList.add("py-1.5");
+    } else {
       navBar?.classList.remove("bg-navbarBg/50", "dark:bg-darker/80");
       navBar?.classList.remove("shadow-bottom");
-      navBar?.classList.remove("py-1");
-      navBar?.classList.add("py-1.5");
+      navBar?.classList.remove("py-1.5");
+      navBar?.classList.add("py-2");
     }
   });
 
