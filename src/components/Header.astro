@@ -5,7 +5,7 @@ import NavLinks from "./NavLinks.astro";
 ---
 
 <header>
-  <nav id="navBar" class="w-full flex flex-col items-center px-3 py-1.5 xs:px-6 md:px-12 lg:px-20 fixed z-10 transition-navBar backdrop-blur-md">
+  <nav id="navBar" class="w-full flex flex-col items-center px-3 py-1.5 xs:px-6 md:px-12 lg:px-20 z-10 transition-navBar backdrop-blur-md">
     <div class="flex flex-col justify-center lg:flex-row lg:justify-between w-full">
       <div class="flex justify-between">
         <a aria-label="Home Page" href="/" class="flex justify-center items-center">
@@ -42,6 +42,17 @@ import NavLinks from "./NavLinks.astro";
   const navIcons = document.getElementById("navIcons");
   const navBar = document.getElementById("navBar");
   const navLinks = document.getElementById("navLinks");
+
+  // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+  function myFunction() {
+    if (window.scrollY >= (navBar?.offsetTop ?? 0)) {
+
+      navBar?.classList.add("fixed");
+    } else {
+      navBar?.classList.remove("fixed");
+    }
+  }
+
   function toggleNav() {
     navOpen = !navOpen;
     // Toggle classes on the topBar element
@@ -59,8 +70,7 @@ import NavLinks from "./NavLinks.astro";
       navIcons?.classList.add("flex");
 
       navBar?.classList.add("bg-navbarBg/50", "dark:bg-darker/80");
-    }
-    else {
+    } else {
       topBar?.classList.remove("rotate-45", "translate-y-1");
       topBar?.classList.add("-translate-y-1");
       middleBar?.classList.remove("opacity-0");
@@ -80,6 +90,7 @@ import NavLinks from "./NavLinks.astro";
   }
 
   window.addEventListener("scroll", () => {
+    myFunction();
     if (window.scrollY > 0 || navOpen) {
       navBar?.classList.add("bg-navbarBg/50", "dark:bg-darker/80");
       navBar?.classList.add("shadow-bottom");
