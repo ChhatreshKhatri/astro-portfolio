@@ -1,6 +1,5 @@
 ---
 import ChhatreshKhatri from "../assets/ChhatreshKhatri.astro";
-import { Image } from "astro:assets";
 ---
 
 <footer
@@ -8,15 +7,8 @@ import { Image } from "astro:assets";
   <div class="flex justify-center items-center" title="Chhatresh Khatri">
     <ChhatreshKhatri className={`flex`} alt="Chhatresh Khatri Logo" />
   </div>
-  <div class="flex flex-col lg:flex-row items-center justify-center text-center">
+  <div class="flex items-center justify-center text-center">
     <p>&copy; <strong>Chhatresh Khatri 2023</strong>&nbsp;</p>
   </div>
   <a href="/privacy-policy">Privacy Policy</a>
-  <Image
-    src={`https://visits.chhatreshkhatri.com/ck?label=Visits&LBGC=0c0c0c&CBGC=0074cc&CSHW=003366`}
-    alt={`Visits Counter`}
-    width={24}
-    height={6}
-    class="h-6 w-auto"
-  />
 </footer>

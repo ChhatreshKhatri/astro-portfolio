@@ -2,6 +2,7 @@
 import ChhatreshKhatri from "../assets/ChhatreshKhatri.astro";
 import NavIcons from "./NavIcons.astro";
 import NavLinks from "./NavLinks.astro";
+import { Image } from "astro:assets";
 ---
 
 <header class="sticky top-0 z-10">
@@ -27,7 +28,7 @@ import NavLinks from "./NavLinks.astro";
         <NavLinks page="About" link="/about" ID="hover2" />
         <NavLinks page="Projects" link="/projects" ID="hover3" />
       </div>
-      <div id="navIcons" class="hidden items-center justify-center whitespace-nowrap gap-x-5 lg:flex">
+      <div id="navIcons" class="hidden lg:flex items-center justify-center gap-x-4 gap-y-2">
         <NavIcons />
       </div>
     </div>
