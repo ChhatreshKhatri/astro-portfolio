@@ -1,8 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import ChhatreshKhatri from "../assets/ChhatreshKhatri.astro";
 import NavIcons from "./NavIcons.astro";
 import NavLinks from "./NavLinks.astro";
-import { Image } from "astro:assets";
 ---
 
 <header class="sticky top-0 z-10">
@@ -30,6 +30,14 @@ import { Image } from "astro:assets";
       </div>
       <div id="navIcons" class="hidden lg:flex items-center justify-center gap-x-4 gap-y-2">
         <NavIcons />
+        <Image
+          id="visitsImage"
+          src="https://visits.chhatreshkhatri.com/astro?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF"
+          alt="Visits"
+          width={100}
+          height={8}
+          class="h-8"
+        />
       </div>
     </div>
   </nav>
@@ -113,4 +121,19 @@ import { Image } from "astro:assets";
     hover1?.classList.remove("w-0");
     hover1?.classList.add("w-full");
   }
+  let visitsUrl: string;
+  if (document.documentElement.classList.contains("dark")) {
+    visitsUrl = "https://visits.chhatreshkhatri.com/astro?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF";
+  } else {
+    visitsUrl = "https://visits.chhatreshkhatri.com/astro?LBGC=3048C680&CBGC=30C68A80&LTC=000000&CTC=000000";
+  }
+
+  // Set the src attribute dynamically after the page has loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    const visitsImage: HTMLImageElement | null = document.getElementById("visitsImage") as HTMLImageElement | null;
+
+    if (visitsImage) {
+      visitsImage.src = visitsUrl;
+    }
+  });
 </script>
