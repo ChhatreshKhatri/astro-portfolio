@@ -12,7 +12,7 @@ import SunIcon from "../assets/icons/SunIcon.astro";
   </span>
 </button>
 
-<script lang="ts">
+<script is:inline>
   // Detect system preference change
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
     setTheme(event.matches ? "dark" : "light");

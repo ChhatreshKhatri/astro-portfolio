@@ -1,10 +1,10 @@
 ---
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 const { name, link,imageUrl, pos } = Astro.props;
 ---
 
-<div class={`items-center justify-center p-0.5 rounded bg-gradient-to-r ${pos == "1" ? "from-ck2 to-ck1 " : "from-ck1 to-ck2 "}`}>
-  <a title={name + " link"} href={link} target="_blank" class="flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker">
+<div class={`flex items-center justify-center text-md xs:text-xl p-0.5 rounded bg-gradient-to-r ${pos == "1" ? "from-ck2 to-ck1 " : "from-ck1 to-ck2 "}`}>
+  <a title={name} href={link} target="_blank" class="flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker">
     <Image src={imageUrl} alt={name + " alt"} width={24} height={24} class="w-6 xs:w-8 text-white" />
     {name}
   </a>
