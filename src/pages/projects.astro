@@ -36,11 +36,11 @@ try {
   {
     data ? (
       data.projects.map((project, index) => (
-        <section class="group relative p-3 xs:p-6 xs:px-10 py-6">
+        <section class="group relative p-3 xs:p-6 xs:px-10">
           <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50" />
-          <div class="relative grid grid-cols-1 w-full lg:grid-cols-2 rounded-xl gap-1 xs:gap-8">
+          <div class="relative grid grid-cols-1 w-full lg:grid-cols-2 rounded-xl gap-1 xs:gap-4 lg:gap-8">
             <article class={`${(index + 1) % 2 ? "" : "lg:order-2"}`}>
-              <div class="w-full h-full flex flex-col justify-center items-center gap-y-4">
+              <div class="w-full h-full flex flex-col justify-center items-center gap-2 md:gap-4">
                 <h2 class="text-2xl xxs:text-3xl md:text-4xl xl:text-5xl font-semibold text-center">{project.heading}</h2>
                 <h3 class="text-xl xl:text-3xl font-semibold text-center">{project.subHeading}</h3>
                 <p class="text-md xs:text-xl text-justify">{project.description} </p>

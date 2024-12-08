@@ -31,22 +31,24 @@ try {
   {
     data ? (
       <>
-        <section class="relative group rounded-lg w-full text-justify p-3 xs:p-6 xs:px-10 py-6">
+        <section class="relative group rounded-lg w-full text-justify p-3 xs:p-6 xs:px-10">
           <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50" />
-          <h2 class={`relative text-2xl xxs:text-3xl md:text-4xl text-center`}>{data.content.title}</h2>
-          <p class="relative text-md xs:text-xl mt-4">{data.content.text}</p>
+          <article class="relative flex flex-col gap-2 xs:gap-4">
+            <h2 class={`text-2xl xxs:text-3xl md:text-4xl text-center`}>{data.content.title}</h2>
+            <p class="text-md xs:text-xl">{data.content.text}</p>
+          </article>
         </section>
         <div role="button" class="rounded flex items-center justify-center bg-gradient-to-r from-ck1 to-ck2 p-0.5">
           <h2 class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 md:px-2 bg-buttonBg dark:bg-darked rounded">Technology Stack</h2>
         </div>
         {data.sections.map((section) => (
-          <section class="relative group rounded-lg w-full p-3 xs:p-6 xs:px-10 py-6">
+          <section class="relative group rounded-lg w-full p-3 xs:p-6 xs:px-10">
             <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50" />
             <div class="relative flex flex-col gap-4">
               <h3 class="text-2xl xxs:text-3xl md:text-4xl text-center">{section.title}</h3>
               <div class="flex flex-wrap items-center justify-center gap-2 xs:gap-4">
                 {section.skills.map((data) => (
-                  <div role="button" title={data.name} class={`items-center justify-center p-0.5 rounded bg-gradient-to-r from-ck2 to-ck1`}>
+                  <div role="button" title={data.name} class={`items-center justify-center p-0.5 rounded bg-gradient-to-r from-ck1 to-ck2`}>
                     <div class={`flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker`}>
                       <Image src={data.icon} alt={data.name +' alt'} height={32} width={32} class="w-6 h-6 xs:w-8 xs:h-8" />
                       <p class="relative text-lg xs:text-xl whitespace-nowrap">{data.name}</p>
