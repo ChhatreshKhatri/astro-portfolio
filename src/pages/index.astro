@@ -30,16 +30,16 @@ try {
   <PageHead pageTitle="Welcome to my Portfolio" />
   {
     data ? (
-      <section class="relative group grid grid-cols-1 w-full lg:grid-cols-3 p-3 xs:p-6 xs:px-10 py-6">
+      <section class="relative group grid grid-cols-1 w-full lg:grid-cols-3 p-3 xs:p-6 xs:px-10 gap-1 xs:gap-4 lg:gap-8">
         <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50" />
         <article class="relative order-2 lg:order-1 lg:col-span-2 flex justify-end items-center rounded-lg">
-          <div class="w-full h-full flex flex-col justify-center rounded-lg md:gap-4">
+          <div class="w-full h-full flex flex-col justify-center rounded-lg gap-2 md:gap-4">
             <h2 class="text-xl xxs:text-2xl xs:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold text-center">{data.intro}</h2>
             <span class="text-xl xxs:text-2xl xs:3xl md:text-4xl xl:text-5xl font-semibold text-center">
               <span id="autoType" />
             </span>
-            <p class="text-md xs:text-xl text-justify mt-1">{data.content}</p>
-            <div class="flex flex-wrap justify-center items-center gap-2 xxs:gap-4 mt-4 text-md xxs:text-xl">
+            <p class="text-md xs:text-xl text-justify">{data.content}</p>
+            <div class="flex flex-wrap justify-center items-center gap-2 xxs:gap-4 text-md xxs:text-xl">
               {data.links.map((link, index) => (
                 <LinkButton key={index} name={link.type} link={link.url} imageUrl={link.icon} pos={index % 2} />
               ))}
