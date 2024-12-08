@@ -1,10 +1,9 @@
 ---
-import { Image } from "astro:assets";
 import ChhatreshKhatri from "../assets/icons/ChhatreshKhatri.astro";
 import NavIcons from "./NavIcons.astro";
 import NavLinks from "./NavLinks.astro";
 
-const visitsCounter=import.meta.env.visitsCounter
+
 ---
 
 <header class="fixed w-full top-0 z-10" >
@@ -28,7 +27,7 @@ const visitsCounter=import.meta.env.visitsCounter
       </div>
       <div id="navIcons" class="hidden flex-col lg:flex lg:flex-row items-center justify-center gap-x-4 gap-y-2">
         <NavIcons />
-        <Image id="visitsImage" src=`https://visits.chhatreshkhatri.com/${visitsCounter}?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF&LBC=3048C680&BC=30C68A80&TC=FFFFFF&TTC=FFFFFF` alt="Visits" width={100} height={8} class="h-8" />
+        
       </div>
     </div>
   </nav>

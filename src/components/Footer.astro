@@ -1,5 +1,7 @@
 ---
 import ChhatreshKhatri from "../assets/icons/ChhatreshKhatri.astro";
+import { Image } from "astro:assets";
+const visitsCounter=import.meta.env.visitsCounter
 ---
 
 <footer class="mt-auto">
@@ -12,10 +14,11 @@ import ChhatreshKhatri from "../assets/icons/ChhatreshKhatri.astro";
         &copy; <strong>Chhatresh Khatri 2023&nbsp;</strong>
       </p>
     </div>
-    <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center gap-4">
       <a href="/privacy-policy" aria-label="Privacy Policy">
         Privacy Policy
       </a>
+      <Image id="visitsImage" src=`https://visits.chhatreshkhatri.com/${visitsCounter}?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF&LBC=3048C680&BC=30C68A80&TC=FFFFFF&TTC=FFFFFF` alt="Visits" width={68} height={20} class="h-8" />
     </div>
   </section>
 </footer>
