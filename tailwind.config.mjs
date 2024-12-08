@@ -37,6 +37,8 @@ export default {
         navbarBg: "#c7e1fc",
         darker: "#101010",
         lighter: "#e9e9ff",
+        ck1:"#3048C6",
+        ck2:"#30C68A",
       },
 
       dropShadow: {

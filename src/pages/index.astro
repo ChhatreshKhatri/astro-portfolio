@@ -3,65 +3,73 @@ import { Image } from "astro:assets";
 import LinkButton from "../components/LinkButton.astro";
 import PageHead from "../components/PageHead.astro";
 import RootLayout from "../layouts/RootLayout.astro";
-import ResumeIcon from "../assets/ResumeIcon.astro";
-import SocialIcon from "../assets/SocialIcon.astro";
+
+interface Link {
+  type: string;
+  url: string;
+  icon: string;
+}
+
+interface Data {
+  intro: string;
+  content: string;
+  pic: string;
+  links: Link[];
+}
+
+let data: Data | null = null;
+try {
+  const response = await fetch(import.meta.env.API_URL! + "/home");
+  data = await response.json();
+} catch (error) {
+  console.error("Error fetching data:", error);
+}
 ---
 
-<RootLayout
-  title="Chhatresh Khatri | Portfolio"
-  description="Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code."
-  keywords=""
-  url="https://www.chhatreshkhatri.com/">
+<RootLayout title="Chhatresh Khatri | Portfolio" description="Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code." keywords="" url="https://www.chhatreshkhatri.com/">
   <PageHead pageTitle="Welcome to my Portfolio" />
-  <div class="relative group grid grid-cols-1 w-full lg:grid-cols-3">
-    <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50">
-    </div>
-    <div class="relative order-2 lg:order-1 lg:col-span-2 flex justify-end items-center rounded-lg">
-      {/* Content for the first column */}
-      <div class="w-full h-full flex flex-col justify-center rounded-lg p-2 md:gap-4 xs:p-6">
-        {/* Centered content in the first column */}
-        <h2 class="text-2xl xxs:text-2xl xs:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold text-center">{`Hi! I'm Chhatresh Khatri`}</h2>
-        <h2 class="text-2xl xxs:text-2xl xs:3xl md:text-4xl xl:text-5xl font-semibold text-center">
-          <span id="autoType"></span>
-        </h2>
-        <p class="text-lg xs:text-xl text-justify mt-1">
-          A Computer Science & Engineering graduate with a passion for problem-solving and web development. An enthusiastic, self-motivated
-          professional with strong interpersonal and communication skills, I&apos;m passionate about the latest tech trends. A quick learner and team
-          player, I thrive on new opportunities and challenges.
-        </p>
-        <div class="flex flex-wrap justify-center items-center gap-2 xxs:gap-4 mt-4 text-md xxs:text-lg md:text-xl">
-          <LinkButton name="Resume" link="https://drive.google.com/file/d/1i_gAK3PxDoMok4g5XEh0KTaD7Dm-JRR_/view?usp=sharing" pos="0">
-            <ResumeIcon class="w-6 xs:w-8" />
-          </LinkButton>
-          <LinkButton name="Social Links" link="https://social.chhatreshkhatri.com/" pos={"1"}>
-            <SocialIcon class="w-6 xs:w-8" />
-          </LinkButton>
-        </div>
+  {
+    data ? (
+      <section class="relative group grid grid-cols-1 w-full lg:grid-cols-3">
+        <>
+          <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50" />
+          <article class="relative order-2 lg:order-1 lg:col-span-2 flex justify-end items-center rounded-lg">
+            <div class="w-full h-full flex flex-col justify-center rounded-lg p-2 md:gap-4 xs:p-6">
+              <h2 class="text-xl xxs:text-2xl xs:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold text-center">{data.intro}</h2>
+              <span class="text-xl xxs:text-2xl xs:3xl md:text-4xl xl:text-5xl font-semibold text-center">
+                <span id="autoType" />
+              </span>
+              <p class="text-md xs:text-xl text-justify mt-1">{data.content}</p>
+              <div class="flex flex-wrap justify-center items-center gap-2 xxs:gap-4 mt-4 text-md xxs:text-xl">
+                {data.links.map((link, index) => (
+                  <LinkButton key={index} name={link.type} link={link.url} imageUrl={link.icon} pos={index % 2} />
+                ))}
+              </div>
+            </div>
+          </article>
+          <aside class="order-1 lg:order-2 lg:col-span-1 flex justify-start items-center">
+            <div role="img" class="w-full h-full flex justify-center items-center py-5">
+              <Image title="Chhatresh Khatri" src={data.pic || "/icon.svg"} alt={"Chhatresh Khatri"} height={480} width={480} class="w-[60%] xs:w-[50%] md:w-[35%] lg:w-[100%] xl:w-[80%] drop-shadow-2xl" />
+            </div>
+          </aside>
+        </>
+      </section>
+    ) : (
+      <div class="flex justify-center items-center">
+        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500" />
       </div>
-    </div>
-    <div class="order-1 lg:order-2 lg:col-span-1 flex justify-start items-center">
-      {/* Content for the second column */}
-      <div class="w-full h-full flex justify-center items-center py-5">
-        {/* Centered content in the second column */}
-        <Image
-          title={"Chhatresh Khatri"}
-          src={`https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.webp`}
-          alt={"Chhatresh Khatri"}
-          width={500}
-          height={500}
-          class="w-[60%] xs:w-[50%] md:w-[35%] lg:w-[100%] xl:w-[80%] drop-shadow-2xl"
-        />
-      </div>
-    </div>
-  </div>
+    )
+  }
 </RootLayout>
 
 <script>
   import Typewriter from "typewriter-effect/dist/core";
 
-  new Typewriter("#autoType", {
-    strings: ["Full Stack Developer", "Web Developer", "Software Engineer"],
-    autoStart: true,
-    loop: true,
-  });
+  if (document.querySelector("#autoType")) {
+    new Typewriter("#autoType", {
+      strings: ["Software Engineer", "Full Stack Developer", "Web Developer"],
+      autoStart: true,
+      loop: true,
+    });
+  }
 </script>

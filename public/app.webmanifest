@@ -4,8 +4,8 @@
   "description": "Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code.",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#191919",
-  "background_color": "#191919",
+  "theme_color": "#0c0c0c",
+  "background_color": "#0c0c0c",
   "icons": [
     {
       "src": "https://cdn.chhatreshkhatri.com/icons/icon.svg",

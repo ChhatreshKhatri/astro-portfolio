@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import ChhatreshKhatri from "../assets/ChhatreshKhatri.astro";
+import ChhatreshKhatri from "../assets/icons/ChhatreshKhatri.astro";
 import NavIcons from "./NavIcons.astro";
 import NavLinks from "./NavLinks.astro";
 ---
 
-<header class="sticky top-0 z-10">
+<header class="fixed w-full top-0 z-10">
   <nav id="navBar" class="w-full flex flex-col items-center px-3 py-2 xs:px-6 md:px-12 lg:px-20 transition-navBar backdrop-blur-md">
     <div class="flex flex-col justify-center lg:flex-row lg:justify-between w-full gap-y-2">
       <div class="flex justify-between">
@@ -14,13 +14,9 @@ import NavLinks from "./NavLinks.astro";
         </a>
 
         <button id="menuButton" aria-label="Toggle Menu" class="flex flex-col justify-center items-center lg:hidden">
-          <span id="topBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm -translate-y-1"
-          ></span>
-          <span
-            id="middleBar"
-            class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 opacity-100"></span>
-          <span id="bottomBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm translate-y-1"
-          ></span>
+          <span id="topBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm -translate-y-1"></span>
+          <span id="middleBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 opacity-100"></span>
+          <span id="bottomBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm translate-y-1"></span>
         </button>
       </div>
       <div id="navLinks" class="hidden flex-col lg:flex-row items-center justify-center gap-x-8 gap-y-1 text-xl font-semibold lg:flex">
@@ -28,16 +24,9 @@ import NavLinks from "./NavLinks.astro";
         <NavLinks page="About" link="/about" ID="hover2" />
         <NavLinks page="Projects" link="/projects" ID="hover3" />
       </div>
-      <div id="navIcons" class="hidden lg:flex items-center justify-center gap-x-4 gap-y-2">
+      <div id="navIcons" class="hidden flex-col lg:flex lg:flex-row items-center justify-center gap-x-4 gap-y-2">
         <NavIcons />
-        <Image
-          id="visitsImage"
-          src="https://visits.chhatreshkhatri.com/astro?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF"
-          alt="Visits"
-          width={100}
-          height={8}
-          class="h-8"
-        />
+        <Image id="visitsImage" src=`https://visits.chhatreshkhatri.com/${import.meta.env.visitsCounter}?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF&LBC=3048C680&BC=30C68A80&TC=FFFFFF&TTC=FFFFFF` alt="Visits" width={100} height={8} class="h-8" />
       </div>
     </div>
   </nav>
@@ -45,95 +34,76 @@ import NavLinks from "./NavLinks.astro";
 
 <script>
   let navOpen = false;
+
+  // Cache DOM elements
   const topBar = document.getElementById("topBar");
   const middleBar = document.getElementById("middleBar");
   const bottomBar = document.getElementById("bottomBar");
   const navIcons = document.getElementById("navIcons");
   const navBar = document.getElementById("navBar");
   const navLinks = document.getElementById("navLinks");
+  const menuButton = document.getElementById("menuButton");
+  const hover1 = document.getElementById("hover1");
+  const hover2 = document.getElementById("hover2");
+  const hover3 = document.getElementById("hover3");
+
+  // Helper function to toggle classes
+  const toggleClasses = (element: HTMLElement | null, addClasses: string[], removeClasses: string[]) => {
+    if (element) {
+      element.classList.remove(...removeClasses);
+      element.classList.add(...addClasses);
+    }
+  };
 
   function toggleNav() {
     navOpen = !navOpen;
+
     if (navOpen) {
-      topBar?.classList.remove("translate-y-1");
-      topBar?.classList.add("rotate-45", "translate-y-1");
-      middleBar?.classList.remove("opacity-100");
-      middleBar?.classList.add("opacity-0");
-      bottomBar?.classList.remove("translate-y-1");
-      bottomBar?.classList.add("-rotate-45", "-translate-y-1");
-
-      navLinks?.classList.remove("hidden");
-      navLinks?.classList.add("flex");
-      navIcons?.classList.remove("hidden");
-      navIcons?.classList.add("flex");
-
+      toggleClasses(topBar, ["rotate-45", "translate-y-1"], ["translate-y-1"]);
+      toggleClasses(middleBar, ["opacity-0"], ["opacity-100"]);
+      toggleClasses(bottomBar, ["-rotate-45", "-translate-y-1"], ["translate-y-1"]);
+      toggleClasses(navLinks, ["flex"], ["hidden"]);
+      toggleClasses(navIcons, ["flex"], ["hidden"]);
+      if (window.scrollY === 0) {
+        navBar?.classList.add("shadow-bottom");
+      }
       navBar?.classList.add("bg-navbarBg/50", "dark:bg-darker/80");
     } else {
-      topBar?.classList.remove("rotate-45", "translate-y-1");
-      topBar?.classList.add("-translate-y-1");
-      middleBar?.classList.remove("opacity-0");
-      middleBar?.classList.add("opacity-100");
-      bottomBar?.classList.remove("-rotate-45", "-translate-y-1");
-      bottomBar?.classList.add("translate-y-1");
-
-      navLinks?.classList.remove("flex");
-      navLinks?.classList.add("hidden");
-      navIcons?.classList.remove("flex");
-      navIcons?.classList.add("hidden");
-      if (window.scrollY == 0) {
-        navBar?.classList.remove("bg-navbarBg/50", "dark:bg-darker/80");
-        navBar?.classList.remove("shadow-bottom");
+      toggleClasses(topBar, ["-translate-y-1"], ["rotate-45", "translate-y-1"]);
+      toggleClasses(middleBar, ["opacity-100"], ["opacity-0"]);
+      toggleClasses(bottomBar, ["translate-y-1"], ["-rotate-45", "-translate-y-1"]);
+      toggleClasses(navLinks, ["hidden"], ["flex"]);
+      toggleClasses(navIcons, ["hidden"], ["flex"]);
+      if (window.scrollY === 0) {
+        navBar?.classList.remove("bg-navbarBg/50", "dark:bg-darker/80", "shadow-bottom");
       }
     }
   }
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 0 || navOpen) {
-      navBar?.classList.add("bg-navbarBg/50", "dark:bg-darker/80");
-      navBar?.classList.add("shadow-bottom");
+      navBar?.classList.add("bg-navbarBg/50", "dark:bg-darker/80", "shadow-bottom", "py-1.5");
       navBar?.classList.remove("py-2");
-      navBar?.classList.add("py-1.5");
     } else {
-      navBar?.classList.remove("bg-navbarBg/50", "dark:bg-darker/80");
-      navBar?.classList.remove("shadow-bottom");
-      navBar?.classList.remove("py-1.5");
+      navBar?.classList.remove("bg-navbarBg/50", "dark:bg-darker/80", "shadow-bottom", "py-1.5");
       navBar?.classList.add("py-2");
     }
   });
 
-  const menuButton = document.getElementById("menuButton");
   menuButton?.addEventListener("click", toggleNav);
 
+  // Update hover effects based on URL
   const currentUrl = window.location.pathname;
-  // hover effect on nav links
-  const hover1 = document.getElementById("hover1");
-  const hover2 = document.getElementById("hover2");
-  const hover3 = document.getElementById("hover3");
-  if (currentUrl.includes("/about")) {
-    hover2?.classList.remove("w-0");
-    hover2?.classList.add("w-full");
-  } else if (currentUrl.includes("/projects")) {
-    hover3?.classList.remove("w-0");
-    hover3?.classList.add("w-full");
-  } else if (currentUrl.includes("/privacy-policy")) {
-    // do nothing
-  } else {
-    hover1?.classList.remove("w-0");
-    hover1?.classList.add("w-full");
+  switch (true) {
+    case currentUrl.includes("/about"):
+      toggleClasses(hover2, ["w-full"], ["w-0"]);
+      break;
+    case currentUrl.includes("/projects"):
+      toggleClasses(hover3, ["w-full"], ["w-0"]);
+      break;
+    case currentUrl.includes("/privacy-policy"):
+      break; // No hover effect needed
+    default:
+      toggleClasses(hover1, ["w-full"], ["w-0"]);
   }
-  let visitsUrl: string;
-  if (document.documentElement.classList.contains("dark")) {
-    visitsUrl = "https://visits.chhatreshkhatri.com/astro?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF";
-  } else {
-    visitsUrl = "https://visits.chhatreshkhatri.com/astro?LBGC=3048C680&CBGC=30C68A80&LTC=000000&CTC=000000";
-  }
-
-  // Set the src attribute dynamically after the page has loaded
-  document.addEventListener("DOMContentLoaded", function () {
-    const visitsImage: HTMLImageElement | null = document.getElementById("visitsImage") as HTMLImageElement | null;
-
-    if (visitsImage) {
-      visitsImage.src = visitsUrl;
-    }
-  });
 </script>

@@ -1,0 +1,1 @@
+npm i astro@latest @astrojs/check@latest @astrojs/sitemap@latest @astrojs/tailwind@latest tailwindcss@latest typescript@latest typewriter-effect@latest @astrojs/cloudflare@latest @cloudflare/workers-types@latest wrangler@latest

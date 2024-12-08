@@ -22,3 +22,4 @@ pnpm-debug.log*
 
 deploy.cmd
 packageUpade.bat
+package-lock.json

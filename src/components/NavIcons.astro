@@ -1,32 +1,19 @@
 ---
-import GitHub from "../assets/GitHubIcon.astro";
-import Gmail from "../assets/GmailIcon.astro";
-import LinkedIn from "../assets/LinkedIn.astro";
+import GitHub from "../assets/icons/GitHubIcon.astro";
+import Gmail from "../assets/icons/GmailIcon.astro";
+import LinkedIn from "../assets/icons/LinkedIn.astro";
 import ThemeSwitcher from "./ThemeSwitcher.astro";
 ---
 
-<a
-  title="GitHub"
-  href="https://github.com/Chhatreshkhatri"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="flex align-center justify-center transform transition-transform duration-300 hover:scale-110 w-8">
-  <GitHub width="32px" class="w-8" />
-</a>
-<a
-  title="LinkedIn"
-  href="https://www.linkedin.com/in/chhatreshkhatri"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="flex align-center justify-center transform transition-transform duration-300 hover:scale-110 w-8">
-  <LinkedIn width="32px" class="w-8" />
-</a>
-<a
-  title="Mail"
-  href="mailto:contact@chhatreshkhatri.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="flex align-center justify-center transform transition-transform duration-300 hover:scale-110 w-8">
-  <Gmail width="32px" class="w-8" />
-</a>
-<ThemeSwitcher />
+<div class="flex items-center justify-center py-1 lg:py-0 gap-x-5">
+  <a title="GitHub" aria-label="GitHub Link" href="https://github.com/Chhatreshkhatri" target="_blank" rel="noopener noreferrer" class="flex align-center justify-center transform transition-transform duration-300 hover:scale-110 w-8">
+    <GitHub width="32px" class="w-8" />
+  </a>
+  <a title="LinkedIn" aria-label="LinkedIn Link"href="https://www.linkedin.com/in/chhatreshkhatri" target="_blank" rel="noopener noreferrer" class="flex align-center justify-center transform transition-transform duration-300 hover:scale-110 w-8">
+    <LinkedIn width="32px" class="w-8" />
+  </a>
+  <a title="Mail" aria-label="Mail Link" href="mailto:contact@chhatreshkhatri.com" target="_blank" rel="noopener noreferrer" class="flex align-center justify-center transform transition-transform duration-300 hover:scale-110 w-8">
+    <Gmail width="32px" class="w-8" />
+  </a>
+  <ThemeSwitcher />
+</div>

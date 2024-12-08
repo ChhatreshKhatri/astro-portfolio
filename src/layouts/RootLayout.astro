@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 const { title, description, keywords, url } = Astro.props;
 ---
 
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" >
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,8 +48,8 @@ const { title, description, keywords, url } = Astro.props;
     <meta http-equiv="content-language" content="en-in" />
   </head>
   <body class="w-full min-h-screen flex flex-col bg-light text-darked dark:bg-dark dark:text-light font-display">
-    <Header />
-    <main class="w-full h-full flex items-center flex-col justify-center font-medium px-2 xxs:px-3 xs:px-6 md:px-12 lg:px-20 py-10 gap-y-8">
+    <Header client:idle /> 
+    <main class="w-full h-full flex items-center flex-col justify-center font-medium px-2 xxs:px-3 xs:px-6 md:px-12 lg:px-20 py-20 gap-y-8" >
       <slot /><!-- content is injected here -->
     </main>
     <Footer />
@@ -68,14 +68,14 @@ const { title, description, keywords, url } = Astro.props;
 <style>
   @font-face {
     font-family: "poppins";
-    src: url("./fonts/Poppins.woff2") format("woff2");
+    src: url("../assets/fonts/Poppins.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
   @font-face {
     font-family: "poppins";
-    src: url("./fonts/PoppinsBold.woff2") format("woff2");
+    src: url("../assets/fonts/PoppinsBold.woff2") format("woff2");
     font-weight: 700;
     font-style: bold;
     font-display: swap;
