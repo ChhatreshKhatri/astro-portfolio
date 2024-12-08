@@ -72,12 +72,12 @@ Check out [Astro deployment documentation](https://developers.cloudflare.com/pag
 # 🖼️ Screenshots
 
 <div align="center" > 
-  <img src="./Readme/HomeDark.jpeg" width="49%">
-  <img src="./Readme/HomeLight.jpeg" width="49%">
-  <img src="./Readme/AboutDark.jpeg" width="49%">
-  <img src="./Readme/AboutLight.jpeg" width="49%">
-  <img src="./Readme/ProjectsDark.jpeg" width="49%">
-  <img src="./Readme/ProjectsLight.jpeg" width="49%">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/home-dark.jpeg" width="49%">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/home-light.jpeg" width="49%">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/about-dark.jpeg" width="49%">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/about-light.jpeg" width="49%">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/projects-dark.jpeg" width="49%">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/projects-light.jpeg" width="49%">
 </div>
 
 <br/>
