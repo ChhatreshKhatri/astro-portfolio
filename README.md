@@ -1,6 +1,6 @@
 # Portfolio Website <a href="https://www.chhatreshkhatri.com/" target="_blank">Chhatresh Khatri | Portfolio</a>
 
-This portfolio website, meticulously crafted using Astro, Tailwind CSS, and Typewriter-Effects, embodies a fusion of modern design and robust functionality. Its architecture comprises a Home Page, an About Page, and a Projects Page, each tailored to deliver a distinctive user experience.
+This portfolio website, meticulously crafted using Astro, Tailwind CSS, TypeScript and Typewriter-Effects, embodies a fusion of modern design and robust functionality. Its architecture comprises a Home Page, an About Page, and a Projects Page, each tailored to deliver a distinctive user experience.
 
 Consistency is ensured across the site with a well-structured navigation menu, subtle animations, and optional dark mode. The website's SEO optimization, performance enhancements, and analytics integration make it a potent tool for showcasing the skills.
 
