@@ -48,7 +48,7 @@ try {
                 {section.skills.map((data) => (
                   <div role="button" title={data.name} class={`items-center justify-center p-0.5 rounded bg-gradient-to-r from-ck2 to-ck1`}>
                     <div class={`flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker`}>
-                      <Image src={data.icon} alt={data.name} height={32} width={32} class="w-6 h-6 xs:w-8 xs:h-8" />
+                      <Image src={data.icon} alt={data.name +' alt'} height={32} width={32} class="w-6 h-6 xs:w-8 xs:h-8" />
                       <p class="relative text-lg xs:text-xl whitespace-nowrap">{data.name}</p>
                     </div>
                   </div>
