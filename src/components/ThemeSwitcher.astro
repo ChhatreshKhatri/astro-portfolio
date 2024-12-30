@@ -3,7 +3,7 @@ import MoonIcon from "../assets/icons/MoonIcon.astro";
 import SunIcon from "../assets/icons/SunIcon.astro";
 ---
 
-<button aria-label="Toggle Dark Mode" class="flex align-center justify-center transform transition-transform duration-300 hover:scale-110 w-8">
+<button aria-label="Toggle Mode" class="flex align-center justify-center transform transition-transform duration-300 hover:scale-110 w-8">
   <span title="Dark Theme" class="sun hidden">
     <SunIcon class="w-8" />
   </span>
@@ -23,8 +23,8 @@ import SunIcon from "../assets/icons/SunIcon.astro";
     localStorage.setItem("theme", newTheme);
     document.documentElement.classList.remove("dark", "light");
     document.documentElement.classList.add(newTheme);
-    document.querySelector('button[aria-label="Toggle Dark Mode"] .sun').classList.toggle("hidden", newTheme !== "dark");
-    document.querySelector('button[aria-label="Toggle Dark Mode"] .moon').classList.toggle("hidden", newTheme !== "light");
+    document.querySelector('button[aria-label="Toggle Mode"] .sun').classList.toggle("hidden", newTheme !== "dark");
+    document.querySelector('button[aria-label="Toggle Mode"] .moon').classList.toggle("hidden", newTheme !== "light");
   }
 
   // Toggle theme
@@ -44,6 +44,6 @@ import SunIcon from "../assets/icons/SunIcon.astro";
   setTheme(localStorage.getItem("theme"));
 
   // Add event listener
-  document.querySelector('button[aria-label="Toggle Dark Mode"]').addEventListener("click", toggleTheme);
+  document.querySelector('button[aria-label="Toggle Mode"]').addEventListener("click", toggleTheme);
   document.addEventListener("astro:after-swap", () => setTheme(localStorage.getItem("theme")));
 </script>
