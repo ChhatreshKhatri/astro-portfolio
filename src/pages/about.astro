@@ -19,7 +19,7 @@ interface Data {
 
 let data: Data | null = null;
 try {
-  const response = await fetch(import.meta.env.SECRET_API_URL + "/about");
+  const response = await fetch(import.meta.env.PUBLIC_API_URL + "/about");
   data = await response.json();
 } catch (error) {
   console.error("Error fetching data:", error);
