@@ -19,6 +19,7 @@ interface Data {
 
 let data: Data | null = null;
 try {
+  console.log("api ",import.meta.env.API_URL);
   const response = await fetch(import.meta.env.API_URL! + "/home");
   data = await response.json();
 } catch (error) {
