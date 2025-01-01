@@ -9,6 +9,8 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   site: "https://www.chhatreshkhatri.com",
   integrations: [tailwind(), sitemap({ lastmod: new Date() })],
+  adapter: cloudflare({
+    imageService: "cloudflare",
+  }),
   output: "server",
-  adapter: cloudflare()
 });
