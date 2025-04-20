@@ -1,14 +1,15 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
-import cloudflare from "@astrojs/cloudflare";
-
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
+  vite: {
+    plugins: [tailwindcss()],
+  },
   site: "https://www.chhatreshkhatri.com",
-  integrations: [tailwind(), sitemap({ lastmod: new Date() })],
+  integrations: [sitemap({ lastmod: new Date() })],
   adapter: cloudflare({
     imageService: "cloudflare",
   }),
