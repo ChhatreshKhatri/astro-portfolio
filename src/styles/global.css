@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    /* Fonts */
+    --font-display: "Poppins", sans-serif;
+  
+    /* Colors */
+    --color-dark: #191919;
+    --color-light: #f3f3ff;
+    --color-darker: #101010;
+    --color-lighter: #e9e9ff;
+    --color-blue1: #4158D0;
+    --color-yellow1: #FFCC70;
+    --color-blue2: #1952C0;
+    --color-green2: #20C68A;
+    --color-darked: #0c0c0c;
+    --color-buttonBg: #dde6ff;
+    --color-navbarBg: #c7e1fc;
+    --color-ck1: #3048C6;
+    --color-ck2: #30C68A;
+  
+    /* Font sizes */
+    --text-4xl: 35px;
+    --text-5xl: 40px;
+    --text-6xl: 50px;
+  
+    /* Breakpoints */
+    --breakpoint-xxs: 375px;
+    --breakpoint-xs: 480px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1440px;
+  
+    /* Other styles */
+    --padding-25: 100px;
+    --shadow-top: 0px -4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-bottom: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    --drop-shadow-text: 0.75px 0.75px 0.75px #222222;
+    --drop-shadow-2xl: 0 0 15px #000000;
+    --drop-shadow-3xl: 0 0 20px #000000;
+  }
+  

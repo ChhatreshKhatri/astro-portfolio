@@ -1,5 +1,5 @@
 ---
-import ChhatreshKhatri from "../assets/icons/ChhatreshKhatri.astro";
+import { Image } from "astro:assets";
 import NavIcons from "./NavIcons.astro";
 import NavLinks from "./NavLinks.astro";
 
@@ -7,11 +7,11 @@ import NavLinks from "./NavLinks.astro";
 ---
 
 <header class="fixed w-full top-0 z-10" >
-  <nav id="navBar" class="w-full flex flex-col items-center px-3 py-2 xs:px-6 md:px-12 lg:px-20 transition-navBar backdrop-blur-md">
+  <nav id="navBar" class="w-full flex flex-col items-center px-3 py-2 xs:px-6 md:px-12 lg:px-20 transition backdrop-blur-md">
     <div class="flex flex-col justify-center lg:flex-row lg:justify-between w-full gap-y-2">
       <div class="flex justify-between">
         <a aria-label="Home Page" href="/" class="flex justify-center items-center">
-          <ChhatreshKhatri />
+          <Image src={"https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg"} alt="Chhatresh Khatri" width={239} height={19} class="h-8" />
         </a>
 
         <button id="menuButton" aria-label="Toggle Menu" class="flex flex-col justify-center items-center lg:hidden">
