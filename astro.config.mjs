@@ -10,8 +10,6 @@ export default defineConfig({
   },
   site: "https://www.chhatreshkhatri.com",
   integrations: [sitemap({ lastmod: new Date() })],
-  adapter: cloudflare({
-    imageService: "cloudflare",
-  }),
   output: "server",
+  adapter: cloudflare(),
 });
