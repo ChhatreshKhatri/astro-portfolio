@@ -4,20 +4,21 @@
  */
 {
 	// "$schema": "node_modules/wrangler/config-schema.json",
-	// "name": "my-astro-app",
-	// "main": "./dist/_worker.js/index.js",
+	"name": "astro-portfolio",
+	"main": "./dist/_worker.js/index.js",
 	"compatibility_date": "2025-06-17",
 	"compatibility_flags": [
 		"nodejs_compat",
 		"global_fetch_strictly_public"
 	],
-	"assets": {
-		"binding": "ASSETS",
-		"directory": "./dist"
-	},
+	// "assets": {
+	// 	"binding": "ASSETS",
+	// 	"directory": "./dist"
+	// },
 	"observability": {
 		"enabled": true
-	}
+	},
+	"keep_vars": true
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
