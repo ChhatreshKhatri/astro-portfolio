@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-const { title, description, keywords, url } = Astro.props;
+const { title = "Chhatresh Khatri | Portfolio", description = "Full stack developer building modern web apps.", keywords = "Chhatresh Khatri,Portfolio,About,Projects,Full Stack Developer,web Development,Web Designer,Website,Code,Innovation, Astro, Next.JS,frontend", page = "/" } = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -17,11 +17,13 @@ const { title, description, keywords, url } = Astro.props;
     <link rel="icon" type="image/x-icon" href="https://cdn.chhatreshkhatri.com/icons/favicon.ico" />
     <link rel="apple-touch-icon" href="https://cdn.chhatreshkhatri.com/icons/apple-icon.png" />
     <link rel="mask-icon" type="image/svg+xml" href="https://cdn.chhatreshkhatri.com/icons/icon.svg" color="#191919" />
-    <link rel="manifest" href="/app.webmanifest" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="canonical" href={url} />
+    <link rel="manifest" href={new URL("/app.webmanifest", Astro.site)} />
+    <link rel="sitemap" href={new URL("sitemap-index.xml", Astro.site)} />
+    <link rel="alternate" type="application/rss+xml" title={title + " RSS Feed"} href={new URL("rss.xml", Astro.site)} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={new URL(page, Astro.site)} />
     <meta name="theme-color" content="#191919" />
-    <meta property="og:url" content={url} />
+    <meta property="og:url" content={new URL(page, Astro.site)} />
     <meta property="og:site_name" content={`chhatreshkhatri`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -36,11 +38,13 @@ const { title, description, keywords, url } = Astro.props;
     <meta name="twitter:image" content="https://cdn.chhatreshkhatri.com/icons/opengraph-image.png" />
     <meta name="robots" content="index, follow" />
     <meta name="allow-search" content="yes" />
-    <meta name="identifier-URL" content={url} />
+    <meta name="identifier-URL" content={new URL(page, Astro.site)} />
     <meta name="audience" content="All" />
     <meta name="classification" content="Portfoflio website, Web Developer" />
     <meta name="language" content="english" />
     <meta http-equiv="content-language" content="en-in" />
+    <link rel="preload" as="font" type="font/woff2" href={new URL("fonts/Poppins.woff2", Astro.site)} crossorigin="anonymous" />
+    <link rel="preload" as="font" type="font/woff2" href={new URL("fonts/PoppinsBold.woff2", Astro.site)} crossorigin="anonymous" />
   </head>
   <body class="w-full min-h-screen flex flex-col bg-light text-darked dark:bg-dark dark:text-light font-display">
     <Header />
@@ -63,16 +67,16 @@ const { title, description, keywords, url } = Astro.props;
 <style>
   @font-face {
     font-family: "poppins";
-    src: url("../assets/fonts/Poppins.woff2") format("woff2");
+    src: url("/fonts/Poppins.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
   @font-face {
     font-family: "poppins";
-    src: url("../assets/fonts/PoppinsBold.woff2") format("woff2");
+    src: url("/fonts/PoppinsBold.woff2") format("woff2");
     font-weight: 700;
-    font-style: bold;
+    font-style: normal;
     font-display: swap;
   }
 </style>
