@@ -19,7 +19,7 @@ interface Data {
 
 let data: Data | null = null;
 try {
-  console.log("api ",import.meta.env.PUBLIC_API_URL);
+  // console.log("api ",import.meta.env.PUBLIC_API_URL);
   const response = await fetch(import.meta.env.PUBLIC_API_URL + "/home");
   data = await response.json();
 } catch (error) {
@@ -27,7 +27,7 @@ try {
 }
 ---
 
-<RootLayout title="Chhatresh Khatri | Portfolio" description="Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code." keywords="" url="https://www.chhatreshkhatri.com/">
+<RootLayout title="Chhatresh Khatri | Portfolio" description="Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code." keywords="" page="">
   <PageHead pageTitle="Welcome to my Portfolio" />
   {
     data ? (
@@ -38,6 +38,7 @@ try {
             <h2 class="text-xl xxs:text-2xl xs:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold text-center">{data.intro}</h2>
             <span class="text-xl xxs:text-2xl xs:3xl md:text-4xl xl:text-5xl font-semibold text-center">
               <span id="autoType" />
+              <span class="animate-pulse">|</span>
             </span>
             <p class="text-md xs:text-xl text-justify">{data.content}</p>
             <div class="flex flex-wrap justify-center items-center gap-2 xxs:gap-4 text-md xxs:text-xl">
@@ -62,13 +63,45 @@ try {
 </RootLayout>
 
 <script>
-  import Typewriter from "typewriter-effect/dist/core";
+  // import Typewriter from "typewriter-effect/dist/core";
 
-  if (document.querySelector("#autoType")) {
-    new Typewriter("#autoType", {
-      strings: ["Software Engineer", "Full Stack Developer", "Web Developer"],
-      autoStart: true,
-      loop: true,
-    });
+  // if (document.querySelector("#autoType")) {
+  //   new Typewriter("#autoType", {
+  //     strings: ["Software Engineer", "Full Stack Developer", "Web Developer"],
+  //     autoStart: true,
+  //     loop: true,
+  //   });
+  // }
+  const autoTypeElement = document.querySelector("#autoType");
+  const words = ["Software Engineer", "Full Stack Developer", "Web Developer"];
+  let index = 0;
+  let charIndex = 0;
+  const typeSpeed = 150;
+  const deleteSpeed = 150;
+  const pauseDuration = 1000;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (words.length > 0 && autoTypeElement) {
+      setTimeout(startTyping, pauseDuration);
+    }
+  });
+  function startTyping() {
+    if (charIndex < words[index].length) {
+      autoTypeElement!.textContent += words[index][charIndex];
+      charIndex++;
+      setTimeout(startTyping, typeSpeed);
+    } else {
+      setTimeout(deleteText, pauseDuration);
+    }
+  }
+  function deleteText() {
+    if (charIndex > 0) {
+      autoTypeElement!.textContent = words[index].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(deleteText, deleteSpeed);
+    } else {
+      index = (index + 1) % words.length;
+      setTimeout(startTyping, typeSpeed);
+    }
   }
 </script>

@@ -26,7 +26,7 @@ try {
 }
 ---
 
-<RootLayout title="Chhatresh Khatri | About" description="Chhatresh Khatri About. Full Stack developer skilled in diverse tech including C/C++, Java, HTML5, CSS3, JavaScript, React.js, Next.js, and more." keywords="" url="https://www.chhatreshkhatri.com/about">
+<RootLayout title="Chhatresh Khatri | About" description="Chhatresh Khatri About. Full Stack developer skilled in diverse tech including C/C++, Java, HTML5, CSS3, JavaScript, React.js, Next.js, and more." keywords="" page="about">
   <PageHead pageTitle="About" />
   {
     data ? (
@@ -50,7 +50,7 @@ try {
                 {section.skills.map((data) => (
                   <div role="button" title={data.name} class={`items-center justify-center p-0.5 rounded bg-gradient-to-r from-ck1 to-ck2`}>
                     <div class={`flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker`}>
-                      <Image src={data.icon} alt={data.name +' alt'} height={32} width={32} class="w-6 h-6 xs:w-8 xs:h-8" />
+                      <Image src={data.icon} alt={data.name + " alt"} height={32} width={32} class="w-6 h-6 xs:w-8 xs:h-8" />
                       <p class="relative text-lg xs:text-xl whitespace-nowrap">{data.name}</p>
                     </div>
                   </div>
