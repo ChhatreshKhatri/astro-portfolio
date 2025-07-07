@@ -15,9 +15,9 @@
 	// 	"binding": "ASSETS",
 	// 	"directory": "./dist"
 	// },
-	"observability": {
-		"enabled": true
-	},
+	// "observability": {
+	// 	"enabled": true
+	// },
 	"keep_vars": true
 	/**
 	 * Smart Placement
