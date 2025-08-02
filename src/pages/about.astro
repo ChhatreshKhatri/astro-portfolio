@@ -27,30 +27,36 @@ try {
 ---
 
 <RootLayout title="Chhatresh Khatri | About" description="Chhatresh Khatri About. Full Stack developer skilled in diverse tech including C/C++, Java, HTML5, CSS3, JavaScript, React.js, Next.js, and more." keywords="" page="about">
-  <PageHead pageTitle="About" />
+  <div class="flex items-center justify-center rounded p-0.5 bg-gradient-to-r from-ck1 to-ck2">
+    <h1 class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-buttonBg dark:bg-darked rounded">About</h1>
+  </div>
   {
     data ? (
       <>
-        <section class="relative group rounded-lg w-full text-justify p-3 xs:p-6 xs:px-10">
+        <section class="relative group rounded-lg w-full text-justify p-3 xs:p-6 xs:px-10" aria-labelledby="about-intro">
           <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50" />
           <article class="relative flex flex-col gap-2 xs:gap-4">
-            <h2 class={`text-2xl xxs:text-3xl md:text-4xl text-center`}>{data.content.title}</h2>
+            <h2 id="about-intro" class={`text-2xl xxs:text-3xl md:text-4xl text-center`}>
+              {data.content.title}
+            </h2>
             <p class="text-md xs:text-xl">{data.content.text}</p>
           </article>
         </section>
-        <div role="button" class="rounded flex items-center justify-center bg-gradient-to-r from-ck1 to-ck2 p-0.5">
+        <div class="rounded flex items-center justify-center bg-gradient-to-r from-ck1 to-ck2 p-0.5">
           <h2 class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 md:px-2 bg-buttonBg dark:bg-darked rounded">Technology Stack</h2>
         </div>
-        {data.sections.map((section) => (
-          <section class="relative group rounded-lg w-full p-3 xs:p-6 xs:px-10">
+        {data.sections.map((section, index) => (
+          <section class="relative group rounded-lg w-full p-3 xs:p-6 xs:px-10" aria-labelledby={`skills-section-${index}`}>
             <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50" />
             <div class="relative flex flex-col gap-4">
-              <h3 class="text-2xl xxs:text-3xl md:text-4xl text-center">{section.title}</h3>
-              <div class="flex flex-wrap items-center justify-center gap-2 xs:gap-4">
+              <h3 id={`skills-section-${index}`} class="text-2xl xxs:text-3xl md:text-4xl text-center">
+                {section.title}
+              </h3>
+              <div class="flex flex-wrap items-center justify-center gap-2 xs:gap-4" role="list" aria-label={`${section.title} skills`}>
                 {section.skills.map((data) => (
-                  <div role="button" title={data.name} class={`items-center justify-center p-0.5 rounded bg-gradient-to-r from-ck1 to-ck2`}>
+                  <div title={data.name} class={`items-center justify-center p-0.5 rounded bg-gradient-to-r from-ck1 to-ck2`} role="listitem">
                     <div class={`flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker`}>
-                      <Image src={data.icon} alt={data.name + " alt"} height={32} width={32} class="w-6 h-6 xs:w-8 xs:h-8" />
+                      <Image src={data.icon} alt={`${data.name} technology icon`} height={32} width={32} class="w-6 h-6 xs:w-8 xs:h-8" />
                       <p class="relative text-lg xs:text-xl whitespace-nowrap">{data.name}</p>
                     </div>
                   </div>
@@ -61,8 +67,9 @@ try {
         ))}
       </>
     ) : (
-      <div class="flex justify-center items-center">
+      <div class="flex justify-center items-center" role="status" aria-label="Loading content">
         <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500" />
+        <span class="sr-only">Loading...</span>
       </div>
     )
   }
