@@ -32,11 +32,13 @@ try {
 ---
 
 <RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects,  discover their unique features and access relevant links for more information." keywords="" page="projects">
-  <PageHead pageTitle="Projects" />
+  <div class="flex items-center justify-center rounded p-0.5 bg-gradient-to-r from-ck1 to-ck2">
+    <h1 class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-buttonBg dark:bg-darked rounded">My Projects</h1>
+  </div>
   {
     data ? (
       data.projects.map((project, index) => (
-        <section class="group relative p-3 xs:p-6 xs:px-10">
+        <section class="group relative p-3 xs:p-6 xs:px-10" aria-labelledby={`project-${index}`}>
           <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50" />
           <div class="relative grid grid-cols-1 w-full lg:grid-cols-2 rounded-xl gap-1 xs:gap-4 lg:gap-8">
             <article class={`${(index + 1) % 2 ? "" : "lg:order-2"}`}>
@@ -44,33 +46,34 @@ try {
                 <h2 class="text-2xl xxs:text-3xl md:text-4xl xl:text-5xl font-semibold text-center">{project.heading}</h2>
                 <h3 class="text-xl md:text-2xl xxl:text-3xl text-center">{project.subHeading}</h3>
                 <p class="text-md xs:text-xl text-justify">{project.description} </p>
-                <div class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl">
+                <nav class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl" aria-label={`${project.heading} links`}>
                   {project.links.map((link, index) => (
                     <LinkButton key={index} name={link.type} link={link.url} imageUrl={link.icon} pos={index % 2} />
                   ))}
-                </div>
-                <div class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl">
+                </nav>
+                <div class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl" role="list" aria-label={`${project.heading} technologies`}>
                   {project.tags?.map((tag) => (
-                    <div role="button" title={tag.name} class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl py-1 px-2 bg-buttonBg dark:bg-darked rounded border-2 border-dark dark:border-light">
-                      <Image title={tag.name} src={tag.url} alt={tag.name + " alt"} width={24} height={24} class="w-6 h-6 xs:w-8 xs:h-8 text-white" />
+                    <div title={tag.name} class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl py-1 px-2 bg-buttonBg dark:bg-darked rounded border-2 border-dark dark:border-light" role="listitem">
+                      <Image title={tag.name} src={tag.url} alt={`${tag.name} technology icon`} width={24} height={24} class="w-6 h-6 xs:w-8 xs:h-8 text-white" />
                     </div>
                   ))}
                 </div>
               </div>
             </article>
             <aside class="flex justify-start items-center mt-6 lg:mt-0">
-              <div class="w-full h-full flex justify-center items-center relative">
-                <div role="img" aria-label={`${project.heading}'s Image`} class="w-full h-[300px] md:h-[350px] relative overflow-hidden rounded-2xl scroll-div">
-                  <Image title={project.heading} src={project.image} alt={`${project.heading} alt`} width={480} height={480} class="w-full h-full object-cover object-top transition-all duration-4000 ease-in-out rounded-2xl hover:object-bottom" />
+              <figure class="w-full h-full flex justify-center items-center relative">
+                <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-[300px] md:h-[350px] relative overflow-hidden rounded-2xl scroll-div">
+                  <Image title={project.heading} src={project.image} alt={`Screenshot of ${project.heading} project interface`} width={480} height={480} class="w-full h-full object-cover object-top transition-all duration-4000 ease-in-out rounded-2xl hover:object-bottom" />
                 </div>
-              </div>
+              </figure>
             </aside>
           </div>
         </section>
       ))
     ) : (
-      <div class="flex justify-center items-center">
+      <div class="flex justify-center items-center" role="status" aria-label="Loading projects">
         <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500" />
+        <span class="sr-only">Loading...</span>
       </div>
     )
   }

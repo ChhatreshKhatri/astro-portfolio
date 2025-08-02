@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-const visitsCounter=import.meta.env.PUBLIC_visitsCounter
+const visitsCounter = import.meta.env.PUBLIC_visitsCounter;
 ---
 
 <footer class="mt-auto">
@@ -10,14 +10,12 @@ const visitsCounter=import.meta.env.PUBLIC_visitsCounter
     </div>
     <div class="flex items-center justify-center text-center">
       <p>
-        &copy; <strong>Chhatresh Khatri 2023&nbsp;</strong>
+        <strong>&copy; Chhatresh Khatri <time datetime="2023">2023</time></strong>
       </p>
     </div>
-    <div class="flex justify-center items-center gap-2 xs:gap-4">
-      <a href="/privacy-policy" aria-label="Privacy Policy">
-        Privacy Policy
-      </a>
-      <Image id="visitsImage" src=`https://visits.chhatreshkhatri.com/${visitsCounter}?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF&LBC=3048C680&BC=30C68A80&TC=FFFFFF&TTC=FFFFFF` alt="Visits" width={75} height={22} class="" />
-    </div>
+    <nav class="flex justify-center items-center gap-2 xs:gap-4" aria-label="Footer navigation">
+      <a href="/privacy-policy" aria-label="Privacy Policy"> Privacy Policy </a>
+      <Image id="visitsImage" src=`https://visits.chhatreshkhatri.com/${visitsCounter}?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF&LBC=3048C680&BC=30C68A80&TC=FFFFFF&TTC=FFFFFF` alt="Website visits" width={75} height={22} class="" />
+    </nav>
   </section>
 </footer>

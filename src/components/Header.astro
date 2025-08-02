@@ -2,32 +2,29 @@
 import { Image } from "astro:assets";
 import NavIcons from "./NavIcons.astro";
 import NavLinks from "./NavLinks.astro";
-
-
 ---
 
-<header class="fixed w-full top-0 z-10" >
-  <nav id="navBar" class="w-full flex flex-col items-center px-3 py-2 xs:px-6 md:px-12 lg:px-20 transition backdrop-blur-md">
+<header class="fixed w-full top-0 z-10">
+  <nav id="navBar" class="w-full flex flex-col items-center px-3 py-2 xs:px-6 md:px-12 lg:px-20 transition backdrop-blur-md" aria-label="Main navigation">
     <div class="flex flex-col justify-center lg:flex-row lg:justify-between w-full gap-y-2">
       <div class="flex justify-between">
-        <a aria-label="Home Page" href="/" class="flex justify-center items-center">
-          <Image src={"https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg"} alt="Chhatresh Khatri" width={239} height={19} class="h-8" />
+        <a aria-label="Chhatresh Khatri - Home Page" href="/" class="flex justify-center items-center">
+          <Image src={"https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg"} alt="Chhatresh Khatri logo" width={239} height={19} class="h-8" />
         </a>
 
-        <button id="menuButton" aria-label="Toggle Menu" class="flex flex-col justify-center items-center lg:hidden">
+        <button id="menuButton" aria-label="Toggle navigation menu" aria-expanded="false" class="flex flex-col justify-center items-center lg:hidden">
           <span id="topBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm -translate-y-1"></span>
           <span id="middleBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 opacity-100"></span>
           <span id="bottomBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm translate-y-1"></span>
         </button>
       </div>
-      <div id="navLinks" class="hidden flex-col lg:flex-row items-center justify-center gap-x-8 gap-y-1 text-xl font-semibold lg:flex">
+      <div id="navLinks" class="hidden flex-col lg:flex-row items-center justify-center gap-x-8 gap-y-1 text-xl font-semibold lg:flex" aria-label="Page navigation">
         <NavLinks page="Home" link="/" ID="hover1" />
         <NavLinks page="About" link="/about" ID="hover2" />
         <NavLinks page="Projects" link="/projects" ID="hover3" />
       </div>
-      <div id="navIcons" class="hidden flex-col lg:flex lg:flex-row items-center justify-center gap-x-4 gap-y-2">
+      <div id="navIcons" class="hidden flex-col lg:flex lg:flex-row items-center justify-center gap-x-4 gap-y-2" aria-label="Social media links">
         <NavIcons />
-        
       </div>
     </div>
   </nav>
