@@ -18,7 +18,6 @@ interface Data {
 
 let data: Data | null = null;
 try {
-  // console.log("api ",import.meta.env.PUBLIC_API_URL);
   const response = await fetch(import.meta.env.PUBLIC_API_URL + "/home");
   data = await response.json();
 } catch (error) {
@@ -27,33 +26,35 @@ try {
 ---
 
 <RootLayout title="Chhatresh Khatri | Portfolio" description="Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code." keywords="" page="">
-  <div class="flex items-center justify-center rounded p-0.5 bg-gradient-to-r from-ck1 to-ck2">
+  <div class="flex items-center justify-center rounded p-0.5 bg-gradient-to-r from-ck1 to-ck2 opacity-0 animate-fade-in-down">
     <div class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-buttonBg dark:bg-darked rounded">Welcome to my Portfolio</div>
   </div>
   {
     data ? (
-      <section class="relative group grid grid-cols-1 w-full lg:grid-cols-3 p-3 xs:p-6 xs:px-10 gap-1 xs:gap-4 lg:gap-8" aria-labelledby="hero-heading">
-        <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition duration-500 group-hover:opacity-50" />
+      <section class="hero-section relative group grid grid-cols-1 w-full lg:grid-cols-3 p-3 xs:p-6 xs:px-10 gap-1 xs:gap-4 lg:gap-8 opacity-0 animate-fade-in-up [animation-delay:0.2s]" aria-labelledby="hero-heading">
+        <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50 animate-gradient" aria-hidden="true" />
         <article class="relative order-2 lg:order-1 lg:col-span-2 flex justify-end items-center rounded-lg">
           <div class="w-full h-full flex flex-col justify-evenly rounded-lg gap-2 md:gap-4">
-            <h1 id="hero-heading" class="text-xl xxs:text-2xl xs:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold text-center">
+            <h1 id="hero-heading" class="hero-heading text-xl xxs:text-2xl xs:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold text-center opacity-0">
               {data.intro}
             </h1>
-            <span class="text-xl xxs:text-2xl xs:3xl md:text-4xl xl:text-5xl font-semibold text-center">
+            <span class="hero-typewriter text-xl xxs:text-2xl xs:3xl md:text-4xl xl:text-5xl font-semibold text-center opacity-0">
               <span id="autoType" />
               <span class="animate-pulse">|</span>
             </span>
-            <p class="text-md xs:text-xl text-justify">{data.content}</p>
-            <div class="flex flex-wrap justify-center items-center gap-2 xxs:gap-4 text-md xxs:text-xl" aria-label="Social and portfolio links">
+            <p class="hero-description text-md xs:text-xl text-justify opacity-0">{data.content}</p>
+            <div class="hero-links flex flex-wrap justify-center items-center gap-2 xxs:gap-4 text-md xxs:text-xl opacity-0" aria-label="Social and portfolio links">
               {data.links.map((link, index) => (
-                <LinkButton key={index} name={link.type} link={link.url} imageUrl={link.icon} pos={index % 2} />
+                <div class="hero-link opacity-0" data-index={index}>
+                  <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={index % 2} />
+                </div>
               ))}
             </div>
           </div>
         </article>
-        <aside class="order-1 lg:order-2 lg:col-span-1 flex justify-start items-center">
+        <aside class="hero-image order-1 lg:order-2 lg:col-span-1 flex justify-start items-center opacity-0">
           <figure class="w-full h-full flex justify-center items-center py-5">
-            <Image title="Chhatresh Khatri" src={data.pic || "/icon.svg"} alt="Professional photo of Chhatresh Khatri" height={480} width={480} class="w-[60%] xs:w-[50%] md:w-[35%] lg:w-[100%] xl:w-[80%] drop-shadow-2xl" />
+            <Image title="Chhatresh Khatri" src={data.pic || "/icon.svg"} alt="Professional photo of Chhatresh Khatri" height={480} width={480} class="w-[60%] xs:w-[50%] md:w-[35%] lg:w-[100%] xl:w-[80%] drop-shadow-2xl animate-float" loading="eager" fetchpriority="high" />
           </figure>
         </aside>
       </section>
@@ -72,14 +73,9 @@ try {
   let index = 0;
   let charIndex = 0;
   const typeSpeed = 150;
-  const deleteSpeed = 150;
-  const pauseDuration = 1000;
+  const deleteSpeed = 100;
+  const pauseDuration = 2000;
 
-  document.addEventListener("DOMContentLoaded", () => {
-    if (words.length > 0 && autoTypeElement) {
-      setTimeout(startTyping, pauseDuration);
-    }
-  });
   function startTyping() {
     if (charIndex < words[index].length) {
       autoTypeElement!.textContent += words[index][charIndex];
@@ -89,6 +85,7 @@ try {
       setTimeout(deleteText, pauseDuration);
     }
   }
+
   function deleteText() {
     if (charIndex > 0) {
       autoTypeElement!.textContent = words[index].substring(0, charIndex - 1);
@@ -99,4 +96,43 @@ try {
       setTimeout(startTyping, typeSpeed);
     }
   }
+
+  // Single DOMContentLoaded listener
+  document.addEventListener("DOMContentLoaded", () => {
+    // Start typewriter effect
+    if (words.length > 0 && autoTypeElement) {
+      setTimeout(startTyping, pauseDuration);
+    }
+
+    // Animate hero section elements with stagger
+    const heroSection = document.querySelector('.hero-section');
+    if (!heroSection) return;
+    
+    const elements = [
+      { selector: '.hero-heading', delay: 0 },
+      { selector: '.hero-typewriter', delay: 100 },
+      { selector: '.hero-description', delay: 200 },
+      { selector: '.hero-links', delay: 300 },
+      { selector: '.hero-image', delay: 150, animation: 'scale-in 0.8s ease-out forwards' }
+    ];
+    
+    setTimeout(() => {
+      elements.forEach(({ selector, delay, animation = 'fade-in-up 0.6s ease-out forwards' }) => {
+        const element = heroSection.querySelector(selector);
+        if (element) {
+          setTimeout(() => {
+            (element as HTMLElement).style.animation = animation;
+          }, delay);
+        }
+      });
+      
+      // Stagger link buttons
+      const heroLinks = heroSection.querySelectorAll('.hero-link');
+      heroLinks.forEach((link, linkIndex) => {
+        setTimeout(() => {
+          (link as HTMLElement).style.animation = 'scale-in 0.5s ease-out forwards';
+        }, 500 + linkIndex * 100);
+      });
+    }, 400);
+  });
 </script>

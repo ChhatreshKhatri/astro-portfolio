@@ -1,21 +1,89 @@
 ---
 import { Image } from "astro:assets";
 const visitsCounter = import.meta.env.PUBLIC_visitsCounter;
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="mt-auto">
+<footer class="mt-auto footer-container opacity-0">
   <section class="flex flex-col md:flex-row justify-between items-center w-full shadow-top bg-navbarBg dark:bg-darker py-2 px-3 xs:px-6 md:px-12 lg:px-20 mt-auto space-y-0.50">
-    <div class="flex justify-center items-center" title="Chhatresh Khatri">
-      <Image src={"https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg"} alt="Chhatresh Khatri" width={239} height={19} class="h-8" />
+    <div class="flex justify-center items-center hover-scale cursor-pointer" title="Chhatresh Khatri">
+      <Image src={"https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg"} alt="Chhatresh Khatri logo" width={239} height={19} class="h-8" />
     </div>
     <div class="flex items-center justify-center text-center">
-      <p>
-        <strong>&copy; Chhatresh Khatri <time datetime="2023">2023</time></strong>
+      <p class="hover-scale">
+        <strong>&copy; Chhatresh Khatri <time datetime={currentYear.toString()}>{currentYear}</time></strong>
       </p>
     </div>
     <nav class="flex justify-center items-center gap-2 xs:gap-4" aria-label="Footer navigation">
-      <a href="/privacy-policy" aria-label="Privacy Policy"> Privacy Policy </a>
-      <Image id="visitsImage" src=`https://visits.chhatreshkhatri.com/${visitsCounter}?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF&LBC=3048C680&BC=30C68A80&TC=FFFFFF&TTC=FFFFFF` alt="Website visits" width={75} height={22} class="" />
+      <a href="/privacy-policy" aria-label="Privacy Policy" class="flex items-center hover:text-ck1 dark:hover:text-ck2 transition-colors duration-300 hover-scale cursor-pointer"> Privacy Policy </a>
+      <div class="visits-counter-container relative">
+        <Image 
+          id="visitsImage" 
+          src={`https://visits.chhatreshkhatri.com/${visitsCounter}?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF&LBC=3048C680&BC=30C68A80&TC=FFFFFF&TTC=FFFFFF`} 
+          alt="Website visits counter" 
+          width={75} 
+          height={22} 
+          loading="lazy" 
+          decoding="async"
+          class="hover-scale cursor-pointer visits-image" 
+        />
+        <noscript>
+          <span class="text-xs">Visits: N/A</span>
+        </noscript>
+      </div>
     </nav>
   </section>
 </footer>
+
+<script>
+  // Animate footer when it comes into view
+  document.addEventListener("DOMContentLoaded", () => {
+    const footer = document.querySelector('.footer-container');
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).classList.add('animate-fade-in-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    if (footer) {
+      observer.observe(footer);
+    }
+
+    // Handle visits counter image load errors
+    const visitsImage = document.getElementById('visitsImage') as HTMLImageElement;
+    if (visitsImage) {
+      // Set a timeout for slow loading
+      const loadTimeout = setTimeout(() => {
+        if (!visitsImage.complete) {
+          console.warn('Visits counter loading slowly');
+        }
+      }, 3000);
+
+      visitsImage.addEventListener('load', () => {
+        clearTimeout(loadTimeout);
+      });
+
+      visitsImage.addEventListener('error', () => {
+        clearTimeout(loadTimeout);
+        // Hide the image on error, show fallback
+        const container = visitsImage.closest('.visits-counter-container');
+        if (container) {
+          visitsImage.style.display = 'none';
+          const fallback = document.createElement('span');
+          fallback.textContent = 'Visits: -';
+          fallback.className = 'text-xs opacity-50';
+          container.appendChild(fallback);
+        }
+      });
+    }
+  });
+</script>
