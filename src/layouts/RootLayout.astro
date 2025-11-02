@@ -54,8 +54,9 @@ const { title = "Chhatresh Khatri | Portfolio", description = "Full stack develo
     <link rel="preload" as="font" type="font/woff2" href="/fonts/Poppins.woff2" crossorigin="anonymous" />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/PoppinsBold.woff2" crossorigin="anonymous" />
     
-    <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' https://cdn.chhatreshkhatri.com https://visits.chhatreshkhatri.com data: blob:; font-src 'self' data:; connect-src 'self' https://cdn.chhatreshkhatri.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" />
+  <!-- Content Security Policy (meta can't enforce frame-ancestors) -->
+  <!-- Note: frame-ancestors is ignored in meta tags by browsers; deliver it via HTTP headers instead (see public/_headers) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' https://cdn.chhatreshkhatri.com https://visits.chhatreshkhatri.com data: blob:; font-src 'self' data:; connect-src 'self' https://cdn.chhatreshkhatri.com; base-uri 'self'; form-action 'self';" />
     
     <script type="application/ld+json">
       {
