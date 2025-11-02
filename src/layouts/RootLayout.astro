@@ -40,15 +40,41 @@ const { title = "Chhatresh Khatri | Portfolio", description = "Full stack develo
     <meta name="allow-search" content="yes" />
     <meta name="identifier-URL" content={new URL(page, Astro.site)} />
     <meta name="audience" content="All" />
-    <meta name="classification" content="Portfoflio website, Web Developer" />
+    <meta name="classification" content="Portfolio website, Web Developer" />
     <meta name="language" content="english" />
     <meta http-equiv="content-language" content="en-in" />
+    
+    <!-- Resource Hints for Performance -->
+    <link rel="dns-prefetch" href="https://cdn.chhatreshkhatri.com" />
+    <link rel="preconnect" href="https://cdn.chhatreshkhatri.com" crossorigin />
+    <link rel="dns-prefetch" href="https://visits.chhatreshkhatri.com" />
+    <link rel="preconnect" href="https://visits.chhatreshkhatri.com" crossorigin />
+    
+    <!-- Font Preloading -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/Poppins.woff2" crossorigin="anonymous" />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/PoppinsBold.woff2" crossorigin="anonymous" />
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' https://cdn.chhatreshkhatri.com https://visits.chhatreshkhatri.com data: blob:; font-src 'self' data:; connect-src 'self' https://cdn.chhatreshkhatri.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" />
+    
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Chhatresh Khatri",
+        "url": "https://www.chhatreshkhatri.com",
+        "jobTitle": "Full Stack Developer",
+        "description": "Full stack developer building modern web applications",
+        "sameAs": [
+          "https://github.com/Chhatreshkhatri",
+          "https://www.linkedin.com/in/chhatreshkhatri"
+        ]
+      }
+    </script>
   </head>
   <body class="w-full min-h-screen flex flex-col bg-light text-darked dark:bg-dark dark:text-light font-display">
     <Header />
-    <main class="w-full h-full flex items-center flex-col justify-center font-medium px-2 xxs:px-3 xs:px-6 md:px-12 lg:px-20 py-20 gap-y-8">
+    <main id="main" class="w-full h-full flex items-center flex-col justify-center font-medium px-2 xxs:px-3 xs:px-6 md:px-12 lg:px-20 py-20 gap-y-8">
       <slot /><!-- content is injected here -->
     </main>
     <Footer />

@@ -1,3 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
+Allow: /
 Disallow: /_astro/*
+
+Sitemap: https://www.chhatreshkhatri.com/sitemap-index.xml
