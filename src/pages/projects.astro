@@ -2,6 +2,7 @@
 import RootLayout from "../layouts/RootLayout.astro";
 import { Image } from "astro:assets";
 import LinkButton from "../components/LinkButton.astro";
+import Loading from "../components/Loading.astro";
 
 interface Link {
   type: string;
@@ -102,10 +103,7 @@ try {
         </section>
       ))
     ) : (
-      <div class="flex justify-center items-center" role="status" aria-label="Loading projects">
-        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500" />
-        <span class="sr-only">Loading...</span>
-      </div>
+      <Loading label="Loading projects" />
     )
   }
 </RootLayout>
