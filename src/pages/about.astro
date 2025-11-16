@@ -1,6 +1,7 @@
 ---
 import RootLayout from "../layouts/RootLayout.astro";
 import { Image } from "astro:assets";
+import Loading from "../components/Loading.astro";
 
 interface Skill {
   name: string;
@@ -66,10 +67,7 @@ try {
         ))}
       </>
     ) : (
-      <div class="flex justify-center items-center" role="status" aria-label="Loading content">
-        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500" />
-        <span class="sr-only">Loading...</span>
-      </div>
+      <Loading />
     )
   }
 </RootLayout>

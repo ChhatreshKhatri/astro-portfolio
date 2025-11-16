@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import LinkButton from "../components/LinkButton.astro";
 import RootLayout from "../layouts/RootLayout.astro";
+import Loading from "../components/Loading.astro";
 
 interface Link {
   type: string;
@@ -73,24 +74,20 @@ try {
           <figure class="w-full h-full flex justify-center items-center py-5">
             <Image 
               title="Chhatresh Khatri" 
-              src={data.pic || "/icon.svg"} 
+              src={data.pic} 
               alt="Chhatresh Khatri" 
               class="w-[60%] xs:w-[50%] md:w-[35%] lg:w-full xl:w-[80%] drop-shadow-2xl" 
               loading="eager" 
               fetchpriority="high"
               decoding="async"
-              format={data.pic?.endsWith('.svg') ? undefined : 'webp'}
-              quality={85}
-              inferSize
+              width={512}
+              height={512}
             />
           </figure>
         </aside>
       </section>
     ) : (
-      <div class="flex justify-center items-center" role="status" aria-label="Loading content">
-        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500" />
-        <span class="sr-only">Loading...</span>
-      </div>
+      <Loading />
     )
   }
 </RootLayout>
