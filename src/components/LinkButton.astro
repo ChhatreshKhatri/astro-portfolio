@@ -6,27 +6,27 @@ interface Props {
   link: string;
   imageUrl: string;
   pos: number;
+  loading?: "eager" | "lazy";
 }
 
-const { name, link, imageUrl, pos } = Astro.props;
+const { name, link, imageUrl, pos, loading = "eager" } = Astro.props;
 ---
 
-<div class={`flex items-center justify-center text-md xs:text-xl p-0.5 rounded bg-gradient-to-r ${pos == 1 ? "from-ck2 to-ck1 " : "from-ck1 to-ck2 "} group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer`}>
+<div class={`flex items-center justify-center text-md xs:text-xl p-0.5 rounded bg-linear-to-r ${pos == 1 ? "from-ck2 to-ck1 " : "from-ck1 to-ck2 "} group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer`}>
   <a 
     title={name} 
     href={link} 
     target="_blank" 
     rel="noopener noreferrer" 
     aria-label={`Visit ${name} (opens in new tab)`}
-    class="flex justify-center items-center py-2 px-3 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker hover:bg-opacity-90 transition-all duration-300 group-hover:gap-x-3 cursor-pointer min-h-[44px]"
+    class="flex justify-center items-center py-2 px-3 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker hover:bg-opacity-90 transition-all duration-300 group-hover:gap-x-3 cursor-pointer min-h-11"
   >
     <Image 
       src={imageUrl} 
       alt="" 
-      width={24} 
-      height={24} 
       class="w-6 xs:w-8 text-white transition-transform duration-300 group-hover:scale-110" 
-      loading="lazy"
+      loading={loading}
+      inferSize
       aria-hidden="true"
     />
     <span class="transition-all duration-300">{name}</span>

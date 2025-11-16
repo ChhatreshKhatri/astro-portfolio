@@ -23,15 +23,30 @@ interface Projects {
 
 let data: Projects | null = null;
 try {
-  const response = await fetch(import.meta.env.PUBLIC_API_URL + "/projects");
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+  
+  const response = await fetch(import.meta.env.PUBLIC_API_URL + "/projects", {
+    signal: controller.signal,
+    headers: {
+      'Cache-Control': 'public, max-age=3600',
+    },
+  });
+  
+  clearTimeout(timeoutId);
   data = await response.json();
 } catch (error) {
   console.error("Error fetching data:", error);
+  // Provide fallback
+  data = {
+    content: { title: "Projects", description: "My portfolio projects" },
+    projects: [],
+  };
 }
 ---
 
 <RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects,  discover their unique features and access relevant links for more information." keywords="" page="projects">
-  <div class="flex items-center justify-center rounded p-0.5 bg-gradient-to-r from-ck1 to-ck2 opacity-0 animate-fade-in-down">
+  <div class="flex items-center justify-center rounded p-0.5 bg-linear-to-r from-ck1 to-ck2 opacity-0 animate-fade-in-down">
     <h1 class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-buttonBg dark:bg-darked rounded">My Projects</h1>
   </div>
   {
@@ -42,7 +57,7 @@ try {
           aria-labelledby={`project-${index}`}
           data-index={index}
         >
-          <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50 animate-gradient" aria-hidden="true" />
+          <div class="absolute inset-0 rounded-lg bg-linear-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50 animate-gradient" aria-hidden="true" />
           <div class="relative grid grid-cols-1 w-full lg:grid-cols-2 rounded-xl gap-1 xs:gap-4 lg:gap-8">
             <article class={`${(index + 1) % 2 ? "" : "lg:order-2"} project-content`}>
               <div class="w-full h-full flex flex-col justify-center items-center gap-2 md:gap-4">
@@ -51,7 +66,7 @@ try {
                 <p class="text-md xs:text-xl text-justify project-description opacity-0">{project.description} </p>
                 <nav class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl project-links opacity-0" aria-label={`${project.heading} links`}>
                   {project.links.map((link, linkIndex) => (
-                    <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={linkIndex % 2} />
+                    <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={linkIndex % 2} loading={index === 0 ? "eager" : "lazy"} />
                   ))}
                 </nav>
                 <div class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl project-tags" role="list" aria-label={`${project.heading} technologies`}>
@@ -61,8 +76,9 @@ try {
                       class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl py-1 px-2 bg-buttonBg dark:bg-darked rounded border-2 border-dark dark:border-light transition-all duration-300 hover:scale-110 hover:rotate-3 project-tag cursor-pointer" 
                       role="listitem"
                       data-tag-index={tagIndex}
+                      aria-label={tag.name}
                     >
-                      <Image title={tag.name} src={tag.url} alt={`${tag.name} technology icon`} width={24} height={24} class="w-6 h-6 xs:w-8 xs:h-8 text-white" loading="lazy" />
+                      <Image title={tag.name} src={tag.url} alt="" class="w-6 h-6 xs:w-8 xs:h-8 text-white" loading={index === 0 ? "eager" : "lazy"} inferSize aria-hidden="true" />
                     </div>
                   ))}
                 </div>
@@ -74,11 +90,10 @@ try {
                   <Image 
                     title={project.heading} 
                     src={project.image} 
-                    alt={`Screenshot of ${project.heading} project interface`} 
-                    width={480} 
-                    height={480} 
-                    class="w-full h-full object-cover object-top transition-all duration-[4000ms] ease-in-out rounded-2xl hover:object-bottom" 
-                    loading="lazy" 
+                    alt={project.heading} 
+                    class="w-full h-full object-cover object-top transition-all duration-4000 ease-in-out rounded-2xl hover:object-bottom" 
+                    loading={index <= 1 ? "eager" : "lazy"}
+                    inferSize
                   />
                 </div>
               </figure>

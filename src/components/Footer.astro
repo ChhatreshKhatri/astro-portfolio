@@ -7,7 +7,13 @@ const currentYear = new Date().getFullYear();
 <footer class="mt-auto footer-container opacity-0">
   <section class="flex flex-col md:flex-row justify-between items-center w-full shadow-top bg-navbarBg dark:bg-darker py-2 px-3 xs:px-6 md:px-12 lg:px-20 mt-auto space-y-0.50">
     <div class="flex justify-center items-center hover-scale cursor-pointer" title="Chhatresh Khatri">
-      <Image src={"https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg"} alt="Chhatresh Khatri logo" width={239} height={19} class="h-8" />
+      <Image 
+        src="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg" 
+        alt="Chhatresh Khatri logo" 
+        class="h-8"
+        loading="lazy"
+        inferSize
+      />
     </div>
     <div class="flex items-center justify-center text-center">
       <p class="hover-scale">
@@ -21,11 +27,10 @@ const currentYear = new Date().getFullYear();
           id="visitsImage" 
           src={`https://visits.chhatreshkhatri.com/${visitsCounter}?LBGC=3048C680&CBGC=30C68A80&LTC=FFFFFF&CTC=FFFFFF&LBC=3048C680&BC=30C68A80&TC=FFFFFF&TTC=FFFFFF`} 
           alt="Website visits counter" 
-          width={75} 
-          height={22} 
           loading="lazy" 
           decoding="async"
-          class="hover-scale cursor-pointer visits-image" 
+          class="hover-scale cursor-pointer visits-image"
+          inferSize
         />
         <noscript>
           <span class="text-xs">Visits: N/A</span>

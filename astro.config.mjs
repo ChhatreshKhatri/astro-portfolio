@@ -15,15 +15,40 @@ export default defineConfig({
     },
     imageService: "cloudflare",
   }),
+  security: {
+    checkOrigin: true,
+  },
+  image: {
+    domains: ["cdn.chhatreshkhatri.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.chhatreshkhatri.com",
+      },
+    ],
+    format: ["webp"],
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+      config: {
+        limitInputPixels: false,
+      },
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssCodeSplit: true,
+      minify: "esbuild",
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            animations: ["/src/styles/global.css"],
+          },
+        },
+      },
+    },
     ssr: {
-      external: [
-        "node:fs/promises",
-        "node:path",
-        "node:url",
-        "node:crypto",
-      ],
+      external: ["node:fs/promises", "node:path", "node:url", "node:crypto"],
     },
   },
 });

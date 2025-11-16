@@ -10,13 +10,20 @@ import NavLinks from "./NavLinks.astro";
     <div class="flex flex-col justify-center lg:flex-row lg:justify-between w-full gap-y-2">
       <div class="flex justify-between opacity-0 animate-fade-in-down">
         <a aria-label="Chhatresh Khatri - Home Page" href="/" class="flex justify-center items-center cursor-pointer hover-scale">
-          <Image src={"https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg"} alt="Chhatresh Khatri logo" width={239} height={19} class="h-8" title="Chhatresh Khatri" />
+          <Image 
+            src="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg" 
+            alt="Chhatresh Khatri logo" 
+            class="h-8" 
+            title="Chhatresh Khatri"
+            loading="eager"
+            inferSize
+          />
         </a>
 
         <button id="menuButton" aria-label="Toggle navigation menu" aria-expanded="false" class="flex flex-col justify-center items-center lg:hidden cursor-pointer">
-          <span id="topBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm -translate-y-1"></span>
-          <span id="middleBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 opacity-100"></span>
-          <span id="bottomBar" class="bg-gradient-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm translate-y-1"></span>
+          <span id="topBar" class="bg-linear-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm -translate-y-1"></span>
+          <span id="middleBar" class="bg-linear-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 opacity-100"></span>
+          <span id="bottomBar" class="bg-linear-to-r from-green2 to-blue2 transition-all duration-300 ease-out h-0.5 w-6 rounded-sm translate-y-1"></span>
         </button>
       </div>
       <div id="navLinks" class="hidden flex-col lg:flex-row items-center justify-center gap-x-8 gap-y-1 text-xl font-semibold lg:flex nav-animate-links" aria-label="Page navigation">
