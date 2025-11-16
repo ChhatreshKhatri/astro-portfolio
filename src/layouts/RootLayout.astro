@@ -36,7 +36,20 @@ const { title = "Chhatresh Khatri | Portfolio", description = "Full stack develo
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://cdn.chhatreshkhatri.com/icons/opengraph-image.png" />
-    <meta name="robots" content="index, follow" />
+    
+    <!-- SEO Control: Block preview domain from search engines -->
+    {Astro.url.hostname === 'preview.chhatreshkhatri.com' ? (
+      <>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href={new URL(page, "https://www.chhatreshkhatri.com")} />
+      </>
+    ) : (
+      <>
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={new URL(page, Astro.site)} />
+      </>
+    )}
+    
     <meta name="allow-search" content="yes" />
     <meta name="identifier-URL" content={new URL(page, Astro.site)} />
     <meta name="audience" content="All" />
@@ -108,13 +121,6 @@ const { title = "Chhatresh Khatri | Portfolio", description = "Full stack develo
     font-family: "poppins";
     src: url("/fonts/Poppins.woff2") format("woff2");
     font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "poppins";
-    src: url("/fonts/PoppinsBold.woff2") format("woff2");
-    font-weight: 700;
     font-style: normal;
     font-display: swap;
   }
