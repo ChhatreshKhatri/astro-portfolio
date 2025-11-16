@@ -17,5 +17,5 @@ const isActive = (currentPath === '/' && link === '/') || (link !== '/' && curre
   class="relative flex items-center justify-center group hover:text-ck1 dark:hover:text-ck2 transition-colors duration-300 cursor-pointer"
 >
   {page}
-  <span id={ID} class={`absolute h-0.5 bg-gradient-to-r from-ck1 to-ck2 bottom-1 group-hover:w-full transition-[width] ease duration-500 ${isActive ? 'w-full' : 'w-0'}`}> </span>
+  <span id={ID} class={`absolute h-0.5 bg-linear-to-r from-ck1 to-ck2 bottom-1 group-hover:w-full transition-[width] ease duration-500 ${isActive ? 'w-full' : 'w-0'}`}> </span>
 </a>

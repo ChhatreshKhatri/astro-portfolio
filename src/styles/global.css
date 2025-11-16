@@ -147,6 +147,33 @@ html {
   }
 }
 
+/* Will-change optimization for animated elements */
+.animate-fade-in-up,
+.animate-fade-in-down,
+.animate-fade-in-left,
+.animate-fade-in-right,
+.animate-scale-in,
+.animate-float,
+.animate-gradient {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes */
+.animate-fade-in-up,
+.animate-fade-in-down,
+.animate-fade-in-left,
+.animate-fade-in-right,
+.animate-scale-in {
+  animation-fill-mode: forwards;
+}
+
+@media (hover: hover) {
+  .animate-float,
+  .animate-gradient {
+    animation-iteration-count: infinite;
+  }
+}
+
 /* Enhanced focus visible states for keyboard navigation */
 *:focus-visible {
   outline: 2px solid var(--color-ck1);

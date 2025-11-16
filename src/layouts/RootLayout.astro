@@ -44,19 +44,18 @@ const { title = "Chhatresh Khatri | Portfolio", description = "Full stack develo
     <meta name="language" content="english" />
     <meta http-equiv="content-language" content="en-in" />
     
-    <!-- Resource Hints for Performance -->
-    <link rel="dns-prefetch" href="https://cdn.chhatreshkhatri.com" />
+    <!-- Early Resource Hints for Performance -->
     <link rel="preconnect" href="https://cdn.chhatreshkhatri.com" crossorigin />
     <link rel="dns-prefetch" href="https://visits.chhatreshkhatri.com" />
-    <link rel="preconnect" href="https://visits.chhatreshkhatri.com" crossorigin />
     
-    <!-- Font Preloading -->
+    <!-- Font Preloading - Only preload regular weight for LCP -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/Poppins.woff2" crossorigin="anonymous" />
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/PoppinsBold.woff2" crossorigin="anonymous" />
     
-  <!-- Content Security Policy (meta can't enforce frame-ancestors) -->
-  <!-- Note: frame-ancestors is ignored in meta tags by browsers; deliver it via HTTP headers instead (see public/_headers) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://cdn.chhatreshkhatri.com https://visits.chhatreshkhatri.com data: blob:; font-src 'self' data:; connect-src 'self' https://cdn.chhatreshkhatri.com https://cloudflareinsights.com; base-uri 'self'; form-action 'self';" />
+    <!-- Inline Critical CSS to avoid render blocking -->
+    <style>
+      /* Critical above-the-fold styles */
+      html{overflow-y:scroll}body{font-family:"Poppins",sans-serif;background-color:#f3f3ff;color:#0c0c0c}.dark body{background-color:#191919;color:#f3f3ff}
+    </style>
     
     <script type="application/ld+json">
       {
@@ -82,14 +81,27 @@ const { title = "Chhatresh Khatri | Portfolio", description = "Full stack develo
   </body>
 </html>
 <script>
-  const favicon = document.querySelector('link[rel="icon"]');
-
-  const handleVisibilityChange = () => {
-    const hidden = document.hidden;
-    favicon?.setAttribute("href", `https://cdn.chhatreshkhatri.com/icons/${hidden ? "icon-hidden.svg" : "favicon.ico"}`);
-  };
-
-  document.addEventListener("visibilitychange", handleVisibilityChange);
+  // Defer non-critical favicon change to avoid blocking
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      const favicon = document.querySelector('link[rel="icon"]');
+      const handleVisibilityChange = () => {
+        const hidden = document.hidden;
+        favicon?.setAttribute("href", `https://cdn.chhatreshkhatri.com/icons/${hidden ? "icon-hidden.svg" : "favicon.ico"}`);
+      };
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+    });
+  } else {
+    // Fallback for browsers without requestIdleCallback
+    setTimeout(() => {
+      const favicon = document.querySelector('link[rel="icon"]');
+      const handleVisibilityChange = () => {
+        const hidden = document.hidden;
+        favicon?.setAttribute("href", `https://cdn.chhatreshkhatri.com/icons/${hidden ? "icon-hidden.svg" : "favicon.ico"}`);
+      };
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+    }, 1000);
+  }
 </script>
 <style>
   @font-face {

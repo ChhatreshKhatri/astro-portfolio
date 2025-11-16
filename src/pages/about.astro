@@ -26,14 +26,14 @@ try {
 ---
 
 <RootLayout title="Chhatresh Khatri | About" description="Chhatresh Khatri About. Full Stack developer skilled in diverse tech including C/C++, Java, HTML5, CSS3, JavaScript, React.js, Next.js, and more." keywords="" page="about">
-  <div class="flex items-center justify-center rounded p-0.5 bg-gradient-to-r from-ck1 to-ck2 opacity-0 animate-fade-in-down">
+  <div class="flex items-center justify-center rounded p-0.5 bg-linear-to-r from-ck1 to-ck2 opacity-0 animate-fade-in-down">
     <h1 class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-buttonBg dark:bg-darked rounded">About</h1>
   </div>
   {
     data ? (
       <>
         <section class="about-intro-section relative group rounded-lg w-full text-justify p-3 xs:p-6 xs:px-10 opacity-0 animate-fade-in-up [animation-delay:0.2s]" aria-labelledby="about-intro">
-          <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50 animate-gradient" aria-hidden="true" />
+          <div class="absolute inset-0 rounded-lg bg-linear-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50 animate-gradient" aria-hidden="true" />
           <article class="relative flex flex-col gap-2 xs:gap-4">
             <h2 id="about-intro" class="about-intro-title text-2xl xxs:text-3xl md:text-4xl text-center opacity-0">
               {data.content.title}
@@ -41,21 +41,21 @@ try {
             <p class="about-intro-text text-md xs:text-xl opacity-0">{data.content.text}</p>
           </article>
         </section>
-        <div class="rounded flex items-center justify-center bg-gradient-to-r from-ck1 to-ck2 p-0.5 opacity-0 animate-scale-in [animation-delay:0.5s]">
+        <div class="rounded flex items-center justify-center bg-linear-to-r from-ck1 to-ck2 p-0.5 opacity-0 animate-scale-in [animation-delay:0.5s]">
           <h2 class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 md:px-2 bg-buttonBg dark:bg-darked rounded">Technology Stack</h2>
         </div>
         {data.sections.map((section, sectionIndex) => (
           <section class="skills-section relative group rounded-lg w-full p-3 xs:p-6 xs:px-10 opacity-0" data-section-index={sectionIndex} aria-labelledby={`skills-section-${sectionIndex}`}>
-            <div class="absolute -inset-0 rounded-lg bg-gradient-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50" aria-hidden="true" />
+            <div class="absolute inset-0 rounded-lg bg-linear-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50" aria-hidden="true" />
             <div class="relative flex flex-col gap-4">
               <h3 id={`skills-section-${sectionIndex}`} class="skills-section-title text-2xl xxs:text-3xl md:text-4xl text-center opacity-0">
                 {section.title}
               </h3>
               <div class="flex flex-wrap items-center justify-center gap-2 xs:gap-4 skill-container" role="list" aria-label={`${section.title} skills`}>
                 {section.skills.map((skill, skillIndex) => (
-                  <div title={skill.name} class="items-center justify-center p-0.5 rounded bg-gradient-to-r from-ck1 to-ck2 skill-item opacity-0 transition-transform duration-300 hover:scale-105 hover:rotate-2 cursor-pointer" role="listitem" data-index={skillIndex}>
+                  <div title={skill.name} class="items-center justify-center p-0.5 rounded bg-linear-to-r from-ck1 to-ck2 skill-item opacity-0 transition-transform duration-300 hover:scale-105 hover:rotate-2 cursor-pointer" role="listitem" data-index={skillIndex}>
                     <div class="flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker hover:bg-opacity-90 transition-all duration-300">
-                      <Image src={skill.icon} alt={`${skill.name} technology icon`} height={32} width={32} class="w-6 h-6 xs:w-8 xs:h-8" loading="lazy" />
+                      <Image src={skill.icon} alt={`${skill.name} technology icon`} class="w-6 h-6 xs:w-8 xs:h-8" loading={sectionIndex === 0 && skillIndex < 12 ? "eager" : "lazy"} inferSize />
                       <p class="relative text-lg xs:text-xl whitespace-nowrap">{skill.name}</p>
                     </div>
                   </div>
