@@ -8,12 +8,14 @@ const currentYear = new Date().getFullYear();
   <section class="flex flex-col md:flex-row justify-between items-center w-full shadow-top bg-navbarBg dark:bg-darker py-2 px-3 xs:px-6 md:px-12 lg:px-20 mt-auto space-y-0.50">
     <div class="flex justify-center items-center hover-scale cursor-pointer" title="Chhatresh Khatri">
       <Image 
-        src="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg" 
-        alt="Chhatresh Khatri logo" 
-        class="h-8"
-        loading="lazy"
-        inferSize
-      />
+            src="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg" 
+            alt="Chhatresh Khatri logo" 
+            class="max-w-60" 
+            title="Chhatresh Khatri"
+            loading="lazy"
+            width={512}
+            height={41}
+          />
     </div>
     <div class="flex items-center justify-center text-center">
       <p class="hover-scale">
@@ -29,8 +31,9 @@ const currentYear = new Date().getFullYear();
           alt="Website visits counter" 
           loading="lazy" 
           decoding="async"
-          class="hover-scale cursor-pointer visits-image"
-          inferSize
+          class="max-w-28 hover-scale cursor-pointer visits-image"
+          width={200}
+          height={40}
         />
         <noscript>
           <span class="text-xs">Visits: N/A</span>
