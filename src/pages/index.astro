@@ -57,7 +57,7 @@ try {
               {data.intro}
             </h1>
             <span class="hero-typewriter text-xl xxs:text-2xl xs:3xl md:text-4xl xl:text-5xl font-semibold text-center">
-              <span id="autoType">Software Engineer</span>
+              <span id="autoType"></span>
               <span class="animate-pulse">|</span>
             </span>
             <p class="hero-description text-md xs:text-xl text-justify opacity-0">{data.content}</p>
@@ -113,8 +113,8 @@ try {
 
   function deleteText() {
     if (charIndex > 0) {
-      autoTypeElement!.textContent = words[index].substring(0, charIndex - 1);
       charIndex--;
+      autoTypeElement!.textContent = words[index].substring(0, charIndex);
       setTimeout(deleteText, deleteSpeed);
     } else {
       index = (index + 1) % words.length;
@@ -124,8 +124,9 @@ try {
 
   // Single DOMContentLoaded listener
   document.addEventListener("DOMContentLoaded", () => {
-    // Start typewriter effect with delay
+    // Clear initial text and start typewriter effect with delay
     if (words.length > 0 && autoTypeElement) {
+      autoTypeElement.textContent = "";
       setTimeout(startTyping, pauseDuration);
     }
 

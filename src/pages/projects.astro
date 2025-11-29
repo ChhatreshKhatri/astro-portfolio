@@ -56,11 +56,10 @@ try {
         <section 
           class="group relative p-3 xs:p-6 xs:px-10 project-card opacity-0" 
           aria-labelledby={`project-${index}`}
-          data-index={index}
         >
           <div class="absolute inset-0 rounded-lg bg-linear-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50 animate-gradient" aria-hidden="true" />
           <div class="relative grid grid-cols-1 w-full lg:grid-cols-2 rounded-xl gap-1 xs:gap-4 lg:gap-8">
-            <article class={`${(index + 1) % 2 ? "" : "lg:order-2"} project-content`}>
+            <article class="project-content">
               <div class="w-full h-full flex flex-col justify-center items-center gap-2 md:gap-4">
                 <h2 class="text-2xl xxs:text-3xl md:text-4xl xl:text-5xl font-semibold text-center project-heading opacity-0">{project.heading}</h2>
                 <h3 class="text-xl md:text-2xl xxl:text-3xl text-center project-subheading opacity-0">{project.subHeading}</h3>
@@ -85,7 +84,7 @@ try {
                 </div>
               </div>
             </article>
-            <aside class={`flex justify-start items-center mt-6 lg:mt-0 project-image ${(index + 1) % 2 ? "" : "lg:order-1"}`}>
+            <aside class="flex justify-start items-center mt-6 lg:mt-0 project-image">
               <figure class="w-full h-full flex justify-center items-center relative">
                 <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-[300px] md:h-[350px] relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
                   <Image 
@@ -110,7 +109,7 @@ try {
 </RootLayout>
 
 <script>
-  // Intersection Observer for project cards with alternating animations
+  // Intersection Observer for project cards
   document.addEventListener("DOMContentLoaded", () => {
     const observerOptions = {
       threshold: 0.15,
@@ -121,36 +120,33 @@ try {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const card = entry.target as HTMLElement;
-          const index = parseInt(card.dataset.index || "0");
           
-          // Alternate slide direction
-          card.classList.add((index + 1) % 2 === 0 ? 'animate-fade-in-right' : 'animate-fade-in-left');
+          // Fade in the entire card
+          card.style.animation = 'fade-in-up 0.8s ease-out forwards';
           
           // Animate content elements with stagger
           const elements = [
-            { selector: '.project-heading', delay: 0 },
-            { selector: '.project-subheading', delay: 100 },
-            { selector: '.project-description', delay: 200 },
-            { selector: '.project-links', delay: 300 }
+            { selector: '.project-heading', delay: 200 },
+            { selector: '.project-subheading', delay: 300 },
+            { selector: '.project-description', delay: 400 },
+            { selector: '.project-links', delay: 500 }
           ];
           
-          setTimeout(() => {
-            elements.forEach(({ selector, delay }) => {
-              const element = card.querySelector(selector);
-              if (element) {
-                setTimeout(() => {
-                  (element as HTMLElement).style.animation = 'fade-in-up 0.6s ease-out forwards';
-                }, delay);
-              }
-            });
-          }, 200);
+          elements.forEach(({ selector, delay }) => {
+            const element = card.querySelector(selector);
+            if (element) {
+              setTimeout(() => {
+                (element as HTMLElement).style.animation = 'fade-in-up 0.6s ease-out forwards';
+              }, delay);
+            }
+          });
           
           // Animate project tags with stagger
           const tags = card.querySelectorAll('.project-tag');
           tags.forEach((tag, tagIndex) => {
             setTimeout(() => {
               (tag as HTMLElement).style.animation = 'scale-in 0.5s ease-out forwards';
-            }, 500 + tagIndex * 80);
+            }, 600 + tagIndex * 80);
           });
           
           observer.unobserve(entry.target);
@@ -167,29 +163,6 @@ try {
         (tag as HTMLElement).style.opacity = '0';
       });
       observer.observe(card);
-    });
-
-    // Add parallax effect to project images on scroll
-    let ticking = false;
-    
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const projectImages = document.querySelectorAll('.project-image');
-          projectImages.forEach((imageContainer) => {
-            const rect = imageContainer.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            if (rect.top < windowHeight && rect.bottom > 0) {
-              const scrollPercentage = (windowHeight - rect.top) / (windowHeight + rect.height);
-              const translateY = (scrollPercentage - 0.5) * 30; // Parallax effect
-              (imageContainer as HTMLElement).style.transform = `translateY(${translateY}px)`;
-            }
-          });
-          ticking = false;
-        });
-        ticking = true;
-      }
     });
   });
 </script>
