@@ -19,17 +19,7 @@ interface Data {
 
 let data: Data | null = null;
 try {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 3000); // 3s timeout
-  
-  const response = await fetch(import.meta.env.PUBLIC_API_URL + "/about", {
-    signal: controller.signal,
-    headers: {
-      'Cache-Control': 'public, max-age=3600',
-    },
-  });
-  
-  clearTimeout(timeoutId);
+  const response = await fetch(import.meta.env.PUBLIC_API_URL + "/about");
   data = await response.json();
 } catch (error) {
   console.error("Error fetching data:", error);
