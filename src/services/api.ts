@@ -9,16 +9,16 @@ const DEFAULT_TIMEOUT = 2000; // 2 seconds
 /**
  * Fetch with timeout support
  */
-async function fetchWithTimeout<T>(
-  endpoint: string,
-  timeout: number = DEFAULT_TIMEOUT
-): Promise<T | null> {
+async function fetchWithTimeout<T>(endpoint: string, timeout: number = DEFAULT_TIMEOUT): Promise<T | null> {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), timeout);
 
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       signal: controller.signal,
+      headers: {
+        "Cache-Control": "public, max-age=3600",
+      },
     });
 
     clearTimeout(timeoutId);
