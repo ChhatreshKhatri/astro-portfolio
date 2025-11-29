@@ -2,33 +2,9 @@
 import RootLayout from "../layouts/RootLayout.astro";
 import { Image } from "astro:assets";
 import Loading from "../components/Loading.astro";
+import { getAboutData } from "../services/api";
 
-interface Skill {
-  name: string;
-  color: string;
-  icon: string;
-}
-
-interface Data {
-  content: { title: string; text: string };
-  sections: {
-    title: string;
-    skills: Skill[];
-  }[];
-}
-
-let data: Data | null = null;
-try {
-  const response = await fetch(import.meta.env.PUBLIC_API_URL + "/about");
-  data = await response.json();
-} catch (error) {
-  console.error("Error fetching data:", error);
-  // Provide fallback to allow page to render
-  data = {
-    content: { title: "About Me", text: "Full stack developer passionate about building modern web applications." },
-    sections: [],
-  };
-}
+const data = await getAboutData();
 ---
 
 <RootLayout title="Chhatresh Khatri | About" description="Chhatresh Khatri About. Full Stack developer skilled in diverse tech including C/C++, Java, HTML5, CSS3, JavaScript, React.js, Next.js, and more." keywords="" page="about">

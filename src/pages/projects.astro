@@ -3,37 +3,9 @@ import RootLayout from "../layouts/RootLayout.astro";
 import { Image } from "astro:assets";
 import LinkButton from "../components/LinkButton.astro";
 import Loading from "../components/Loading.astro";
+import { getProjectsData } from "../services/api";
 
-interface Link {
-  type: string;
-  url: string;
-  icon: string;
-}
-interface Project {
-  heading: string;
-  subHeading: string;
-  description: string;
-  image: string;
-  links: Link[];
-  tags: { name: string; url: string }[];
-}
-interface Projects {
-  content: { title: string; description: string };
-  projects: Project[];
-}
-
-let data: Projects | null = null;
-try {
-  const response = await fetch(import.meta.env.PUBLIC_API_URL + "/projects");
-  data = await response.json();
-} catch (error) {
-  console.error("Error fetching data:", error);
-  // Provide fallback with empty projects to allow page to render
-  data = {
-    content: { title: "Projects", description: "My portfolio projects" },
-    projects: [],
-  };
-}
+const data = await getProjectsData();
 ---
 
 <RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects,  discover their unique features and access relevant links for more information." keywords="" page="projects">
