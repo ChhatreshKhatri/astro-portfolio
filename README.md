@@ -12,7 +12,7 @@ This project was built using
 
 - Astro
 - Tailwind CSS
-- Typewriter-Effects
+- Cloudflare
 - VS Code
 
 <br/>
