@@ -12,8 +12,9 @@ This project was built using
 
 - Astro
 - Tailwind CSS
-- Typewriter-Effects
 - VS Code
+- TypeScript
+- Cloudflare
 
 <br/>
 

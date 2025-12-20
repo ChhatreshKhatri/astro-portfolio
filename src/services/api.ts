@@ -1,27 +1,20 @@
 /**
  * API Service Layer
- * Centralized API calls with timeout handling
+ * Centralized API calls
  */
 
 const API_BASE_URL = import.meta.env.PUBLIC_API_URL;
-const DEFAULT_TIMEOUT = 2000; // 2 seconds
 
 /**
- * Fetch with timeout support
+ * Fetch data from API
  */
-async function fetchWithTimeout<T>(endpoint: string, timeout: number = DEFAULT_TIMEOUT): Promise<T | null> {
+async function fetchData<T>(endpoint: string): Promise<T | null> {
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), timeout);
-
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      signal: controller.signal,
       headers: {
         "Cache-Control": "public, max-age=3600",
       },
     });
-
-    clearTimeout(timeoutId);
 
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);
@@ -38,51 +31,32 @@ async function fetchWithTimeout<T>(endpoint: string, timeout: number = DEFAULT_T
  * Fetch home page data
  */
 export async function getHomeData() {
-  const data = await fetchWithTimeout<{
+  return await fetchData<{
     intro: string;
     content: string;
     pic: string;
     links: Array<{ type: string; url: string; icon: string }>;
   }>("/home");
-
-  return (
-    data || {
-      intro: "Hi, I'm Chhatresh Khatri",
-      content: "Full stack developer building modern web applications.",
-      pic: "/icon.svg",
-      links: [],
-    }
-  );
 }
 
 /**
  * Fetch about page data
  */
 export async function getAboutData() {
-  const data = await fetchWithTimeout<{
+  return await fetchData<{
     content: { title: string; text: string };
     sections: Array<{
       title: string;
       skills: Array<{ name: string; color: string; icon: string }>;
     }>;
   }>("/about");
-
-  return (
-    data || {
-      content: {
-        title: "About Me",
-        text: "Full stack developer passionate about building modern web applications.",
-      },
-      sections: [],
-    }
-  );
 }
 
 /**
  * Fetch projects page data
  */
 export async function getProjectsData() {
-  const data = await fetchWithTimeout<{
+  return await fetchData<{
     content: { title: string; description: string };
     projects: Array<{
       heading: string;
@@ -93,11 +67,4 @@ export async function getProjectsData() {
       tags: Array<{ name: string; url: string }>;
     }>;
   }>("/projects");
-
-  return (
-    data || {
-      content: { title: "Projects", description: "My portfolio projects" },
-      projects: [],
-    }
-  );
 }
