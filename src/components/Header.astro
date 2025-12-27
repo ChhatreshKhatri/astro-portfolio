@@ -50,20 +50,6 @@ import NavLinks from "./NavLinks.astro";
   const navLinks = document.getElementById("navLinks");
   const menuButton = document.getElementById("menuButton");
 
-  // Apply navbar styling based on scroll position
-  const updateNavbarStyle = () => {
-    if (window.scrollY > 0 || navOpen) {
-      navBar?.classList.add("bg-navbarBg/50", "dark:bg-darker/80", "shadow-bottom", "py-1.5");
-      navBar?.classList.remove("py-2");
-    } else {
-      navBar?.classList.remove("bg-navbarBg/50", "dark:bg-darker/80", "shadow-bottom", "py-1.5");
-      navBar?.classList.add("py-2");
-    }
-  };
-
-  // Check scroll position on page load
-  updateNavbarStyle();
-
   // Helper function to toggle classes
   const toggleClasses = (element: HTMLElement | null, addClasses: string[], removeClasses: string[]) => {
     if (element) {
@@ -72,20 +58,30 @@ import NavLinks from "./NavLinks.astro";
     }
   };
 
+  // Apply navbar styling based on scroll position
+  const updateNavbarStyle = () => {
+    if (window.scrollY > 0 || navOpen) {
+      toggleClasses(navBar, ["bg-navbarBg/50", "dark:bg-darker/80", "shadow-bottom"], []);
+      if (window.scrollY > 0) toggleClasses(navBar, ["py-1.5"], ["py-2"]);
+    } else {
+      toggleClasses(navBar, ["py-2"], ["bg-navbarBg/50", "dark:bg-darker/80", "shadow-bottom", "py-1.5"]);
+    }
+  };
+
+  // Check scroll position on page load
+  updateNavbarStyle();
+
+
   function toggleNav() {
     navOpen = !navOpen;
 
     if (navOpen) {
-      toggleClasses(topBar, ["rotate-45", "translate-y-1"], ["translate-y-1"]);
+      toggleClasses(topBar, ["rotate-45", "translate-y-1"], ["-translate-y-1"]);
       toggleClasses(middleBar, ["opacity-0"], ["opacity-100"]);
       toggleClasses(bottomBar, ["-rotate-45", "-translate-y-1"], ["translate-y-1"]);
       toggleClasses(navLinks, ["flex"], ["hidden"]);
       toggleClasses(navIcons, ["flex"], ["hidden"]);
       menuButton?.setAttribute("aria-expanded", "true");
-      if (window.scrollY === 0) {
-        navBar?.classList.add("shadow-bottom");
-      }
-      navBar?.classList.add("bg-navbarBg/50", "dark:bg-darker/80");
     } else {
       toggleClasses(topBar, ["-translate-y-1"], ["rotate-45", "translate-y-1"]);
       toggleClasses(middleBar, ["opacity-100"], ["opacity-0"]);
@@ -93,10 +89,8 @@ import NavLinks from "./NavLinks.astro";
       toggleClasses(navLinks, ["hidden"], ["flex"]);
       toggleClasses(navIcons, ["hidden"], ["flex"]);
       menuButton?.setAttribute("aria-expanded", "false");
-      if (window.scrollY === 0) {
-        navBar?.classList.remove("bg-navbarBg/50", "dark:bg-darker/80", "shadow-bottom");
-      }
     }
+    updateNavbarStyle();
   }
 
   window.addEventListener("scroll", updateNavbarStyle);
