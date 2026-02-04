@@ -12,23 +12,23 @@ interface Props {
 const { name, link, imageUrl, pos, loading = "eager" } = Astro.props;
 ---
 
-<div class={`flex items-center justify-center text-md xs:text-xl p-0.5 rounded bg-linear-to-r ${pos == 1 ? "from-ck2 to-ck1 " : "from-ck1 to-ck2 "} group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer`}>
+<div class={`flex items-center justify-center text-md xs:text-xl p-0.5 rounded bg-linear-to-r ${pos == 1 ? "from-ck2 to-ck1 " : "from-ck1 to-ck2 "} group transition-transform duration-200 hover:-translate-y-1 cursor-pointer`}>
   <a 
     title={name} 
     href={link} 
     target="_blank" 
     rel="noopener noreferrer" 
     aria-label={`Visit ${name} (opens in new tab)`}
-    class="flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker hover:bg-opacity-90 transition-all duration-300 group-hover:gap-x-3 cursor-pointer min-h-11"
+    class="flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker transition-all duration-200 group-hover:gap-x-3 cursor-pointer min-h-11"
   >
     <Image 
       src={imageUrl} 
       alt="" 
-      class="w-6 xs:w-8 text-white transition-transform duration-300 group-hover:scale-110" 
+      class="w-6 xs:w-8 text-white transition-transform duration-200 group-hover:scale-110" 
       loading={loading}
       inferSize
       aria-hidden="true"
     />
-    <span class="transition-all duration-300">{name}</span>
+    <span>{name}</span>
   </a>
 </div>

@@ -9,33 +9,33 @@ const data = await getHomeData();
 ---
 
 <RootLayout title="Chhatresh Khatri | Portfolio" description="Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code." keywords="" page="">
-  <div class="flex items-center justify-center rounded p-0.5 bg-linear-to-r from-ck1 to-ck2 opacity-0 animate-fade-in-down">
+  <div class="flex items-center justify-center rounded p-0.5 bg-linear-to-r from-ck1 to-ck2 animate-fade-in-down">
     <div class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-buttonBg dark:bg-darked rounded">Welcome to my Portfolio</div>
   </div>
   {
     data ? (
-      <section class="hero-section relative group grid grid-cols-1 w-full lg:grid-cols-3 p-3 xs:p-6 xs:px-10 gap-1 xs:gap-4 lg:gap-8 opacity-0 animate-fade-in-up [animation-delay:0.2s]" aria-labelledby="hero-heading">
-        <div class="absolute inset-0 rounded-lg bg-linear-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50 animate-gradient" aria-hidden="true" />
+      <section class="hero-section relative group grid grid-cols-1 w-full lg:grid-cols-3 p-3 xs:p-6 xs:px-10 gap-1 xs:gap-4 lg:gap-8 animate-fade-in-up [animation-delay:0.1s]" aria-labelledby="hero-heading">
+        <div class="absolute inset-0 rounded-lg bg-linear-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50" aria-hidden="true" />
         <article class="relative order-2 lg:order-1 lg:col-span-2 flex justify-center items-center rounded-lg">
           <div class="w-full flex flex-col justify-evenly gap-2 md:gap-4">
-            <h1 id="hero-heading" class="hero-heading text-xl xxs:text-2xl xs:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold text-center opacity-0 leading-tight">
+            <h1 id="hero-heading" class="hero-heading text-xl xxs:text-2xl xs:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold text-center leading-tight animate-fade-in-up delay-200">
               {data.intro}
             </h1>
-            <div class="hero-typewriter text-xl xxs:text-2xl md:text-4xl xl:text-5xl font-semibold text-center min-h-[1.5em] leading-relaxed">
+            <div class="hero-typewriter text-xl xxs:text-2xl md:text-4xl xl:text-5xl font-semibold text-center min-h-[1.5em] leading-relaxed animate-fade-in-up delay-300">
               <span id="autoType">Software Engineer</span>
-              <span class="animate-pulse">|</span>
+              <span class="opacity-75">|</span>
             </div>
-            <p class="hero-description text-base xs:text-lg md:text-xl text-justify opacity-0 leading-relaxed px-2 md:px-0">{data.content}</p>
-            <div class="hero-links flex flex-nowrap justify-center items-center gap-2 opacity-0" aria-label="Social and portfolio links">
+            <p class="hero-description text-base xs:text-lg md:text-xl text-justify leading-relaxed px-2 md:px-0 animate-fade-in-up delay-400">{data.content}</p>
+            <div class="hero-links flex flex-nowrap justify-center items-center gap-2 animate-fade-in-up delay-500" aria-label="Social and portfolio links">
               {data.links.map((link, index) => (
-                <div class="hero-link opacity-0" data-index={index}>
+                <div class="hero-link" data-index={index}>
                   <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={index % 2} />
                 </div>
               ))}
             </div>
           </div>
         </article>
-        <aside class="hero-image order-1 lg:order-2 lg:col-span-1 flex justify-center items-center opacity-0 py-5">
+        <aside class="hero-image order-1 lg:order-2 lg:col-span-1 flex justify-center items-center py-5 animate-scale-in delay-200">
           <figure class="w-full h-full flex justify-center items-center">
             <Image 
               title="Chhatresh Khatri" 
@@ -88,66 +88,17 @@ const data = await getHomeData();
     }
   }
 
-  // Single DOMContentLoaded listener
-  document.addEventListener("DOMContentLoaded", () => {
-    // Start typewriter effect after initial paint
-    if (words.length > 0 && autoTypeElement) {
-      // Use requestIdleCallback to defer typewriter animation
-      const startAnimation = () => {
-        autoTypeElement.textContent = "";
-        setTimeout(startTyping, 500);
-      };
-      
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(startAnimation, { timeout: 1000 });
-      } else {
-        setTimeout(startAnimation, 100);
-      }
-    }
-
-    // Use IntersectionObserver for performance
-    const heroSection = document.querySelector('.hero-section');
-    if (!heroSection) return;
-    
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px"
+  // Typewriter effect only
+  if (words.length > 0 && autoTypeElement) {
+    const startAnimation = () => {
+      autoTypeElement.textContent = "";
+      setTimeout(startTyping, 500);
     };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Animate hero section elements with stagger
-          const elements = [
-            { selector: '.hero-heading', delay: 0 },
-            { selector: '.hero-typewriter', delay: 100 },
-            { selector: '.hero-description', delay: 200 },
-            { selector: '.hero-links', delay: 300 },
-            { selector: '.hero-image', delay: 150, animation: 'scale-in 0.8s ease-out forwards' }
-          ];
-          
-          elements.forEach(({ selector, delay, animation = 'fade-in-up 0.6s ease-out forwards' }) => {
-            const element = heroSection.querySelector(selector);
-            if (element) {
-              setTimeout(() => {
-                (element as HTMLElement).style.animation = animation;
-              }, delay);
-            }
-          });
-          
-          // Stagger link buttons
-          const heroLinks = heroSection.querySelectorAll('.hero-link');
-          heroLinks.forEach((link, linkIndex) => {
-            setTimeout(() => {
-              (link as HTMLElement).style.animation = 'scale-in 0.5s ease-out forwards';
-            }, 500 + linkIndex * 100);
-          });
-          
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    observer.observe(heroSection);
-  });
+    
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(startAnimation, { timeout: 1000 });
+    } else {
+      setTimeout(startAnimation, 100);
+    }
+  }
 </script>
