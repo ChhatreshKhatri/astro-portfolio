@@ -66,7 +66,7 @@ const { title = "Chhatresh Khatri | Portfolio", description = "Full stack develo
     <!-- Inline Critical CSS to avoid render blocking -->
     <style>
       /* Critical above-the-fold styles */
-      html{overflow-y:scroll}body{font-family:"Poppins",sans-serif;background-color:#f3f3ff;color:#0c0c0c}.dark body{background-color:#191919;color:#f3f3ff}
+      body{font-family:"Poppins",sans-serif;background-color:#f3f3ff;color:#0c0c0c}.dark body{background-color:#191919;color:#f3f3ff}
     </style>
     
     <script type="application/ld+json">
@@ -93,26 +93,13 @@ const { title = "Chhatresh Khatri | Portfolio", description = "Full stack develo
   </body>
 </html>
 <script>
-  // Defer non-critical favicon change to avoid blocking
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(() => {
-      const favicon = document.querySelector('link[rel="icon"]');
-      const handleVisibilityChange = () => {
-        const hidden = document.hidden;
-        favicon?.setAttribute("href", `https://cdn.chhatreshkhatri.com/icons/${hidden ? "icon-hidden.svg" : "favicon.ico"}`);
-      };
-      document.addEventListener("visibilitychange", handleVisibilityChange);
+  const favicon = document.querySelector('link[rel="icon"]');
+  if (favicon) {
+    document.addEventListener("visibilitychange", () => {
+      favicon.setAttribute("href", 
+        `https://cdn.chhatreshkhatri.com/icons/${document.hidden ? "icon-hidden.svg" : "favicon.ico"}`
+      );
     });
-  } else {
-    // Fallback for browsers without requestIdleCallback
-    setTimeout(() => {
-      const favicon = document.querySelector('link[rel="icon"]');
-      const handleVisibilityChange = () => {
-        const hidden = document.hidden;
-        favicon?.setAttribute("href", `https://cdn.chhatreshkhatri.com/icons/${hidden ? "icon-hidden.svg" : "favicon.ico"}`);
-      };
-      document.addEventListener("visibilitychange", handleVisibilityChange);
-    }, 1000);
   }
 </script>
 <style>

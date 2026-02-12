@@ -8,7 +8,7 @@ import NavLinks from "./NavLinks.astro";
   <nav id="navBar" class="w-full flex flex-col items-center px-3 py-2 xs:px-6 md:px-12 lg:px-20 transition backdrop-blur-md" aria-label="Main navigation">
     <div class="flex flex-col justify-center lg:flex-row lg:justify-between w-full gap-y-2">
       <div class="flex justify-between">
-        <a aria-label="Chhatresh Khatri - Home Page" href="/" class="flex justify-center items-center cursor-pointer hover-scale">
+        <a aria-label="Chhatresh Khatri - Home Page" href="/" class="flex justify-center items-center cursor-pointer transition-transform duration-200 hover:scale-105">
           <Image 
             src="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg" 
             alt="Chhatresh Khatri logo" 
@@ -71,7 +71,6 @@ import NavLinks from "./NavLinks.astro";
   // Check scroll position on page load
   updateNavbarStyle();
 
-
   function toggleNav() {
     navOpen = !navOpen;
 
@@ -93,9 +92,7 @@ import NavLinks from "./NavLinks.astro";
     updateNavbarStyle();
   }
 
-  window.addEventListener("scroll", updateNavbarStyle);
+  window.addEventListener("scroll", updateNavbarStyle, { passive: true });
 
   menuButton?.addEventListener("click", toggleNav);
-
-  // Note: aria-current is now handled in NavLinks.astro component
 </script>

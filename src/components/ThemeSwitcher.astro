@@ -3,7 +3,7 @@ import MoonIcon from "../assets/icons/MoonIcon.astro";
 import SunIcon from "../assets/icons/SunIcon.astro";
 ---
 
-<button aria-label="Toggle theme" aria-live="polite" class="flex items-center justify-center cursor-pointer hover-scale w-8 min-h-11 min-w-11">
+<button aria-label="Toggle theme" aria-live="polite" class="flex items-center justify-center cursor-pointer transition-transform duration-200 hover:scale-105 w-8 min-h-11 min-w-11">
   <span title="Switch to Dark Theme" class="sun hidden" aria-hidden="true">
     <SunIcon class="w-8 flex" />
   </span>
@@ -14,75 +14,42 @@ import SunIcon from "../assets/icons/SunIcon.astro";
 
 <script is:inline>
   (function() {
-    // Initialize theme immediately to prevent flash
-    const getInitialTheme = () => {
-      const stored = localStorage.getItem("theme");
-      if (stored) return stored;
-      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    };
+    const getTheme = () => localStorage.getItem("theme") || 
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 
     const applyTheme = (theme) => {
       document.documentElement.classList.remove("dark", "light");
       document.documentElement.classList.add(theme);
     };
 
-    // Apply initial theme before anything renders
-    applyTheme(getInitialTheme());
+    // Apply initial theme immediately to prevent flash
+    applyTheme(getTheme());
+
+    function setTheme(newTheme) {
+      localStorage.setItem("theme", newTheme);
+      applyTheme(newTheme);
+      const sunIcon = document.querySelector('button[aria-label^="Toggle theme"] .sun');
+      const moonIcon = document.querySelector('button[aria-label^="Toggle theme"] .moon');
+      if (sunIcon && moonIcon) {
+        sunIcon.classList.toggle("hidden", newTheme !== "dark");
+        moonIcon.classList.toggle("hidden", newTheme !== "light");
+      }
+    }
+
+    // Set icons on load
+    document.addEventListener("DOMContentLoaded", () => {
+      setTheme(getTheme());
+      document.querySelector('button[aria-label^="Toggle theme"]')?.addEventListener("click", () => {
+        setTheme(getTheme() === "dark" ? "light" : "dark");
+      });
+    });
+
+    // Detect system preference change
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+      if (!localStorage.getItem("theme")) setTheme(e.matches ? "dark" : "light");
+    });
+
+    // Handle Astro page transitions
+    document.addEventListener("astro:after-swap", () => setTheme(getTheme()));
   })();
-
-  // Detect system preference change
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
-    if (!localStorage.getItem("theme")) {
-      setTheme(event.matches ? "dark" : "light");
-    }
-  });
-
-  // Set theme
-  function setTheme(newTheme) {
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.remove("dark", "light");
-    document.documentElement.classList.add(newTheme);
-    
-    const sunIcon = document.querySelector('button[aria-label^="Toggle theme"] .sun');
-    const moonIcon = document.querySelector('button[aria-label^="Toggle theme"] .moon');
-    
-    if (sunIcon && moonIcon) {
-      sunIcon.classList.toggle("hidden", newTheme !== "dark");
-      moonIcon.classList.toggle("hidden", newTheme !== "light");
-    }
-  }
-
-  // Toggle theme
-  function toggleTheme() {
-    const currentTheme = localStorage.getItem("theme") || 
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    
-    // Update aria-label for screen readers
-    const toggleButton = document.querySelector('button[aria-label]');
-    if (toggleButton) {
-      toggleButton.setAttribute('aria-label', `Toggle theme (currently ${newTheme} mode)`);
-    }
-  }
-
-  // Set initial theme on load
-  document.addEventListener("DOMContentLoaded", () => {
-    const initialTheme = localStorage.getItem("theme") || 
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    setTheme(initialTheme);
-
-    // Add event listener
-    const toggleButton = document.querySelector('button[aria-label^="Toggle theme"]');
-    if (toggleButton) {
-      toggleButton.addEventListener("click", toggleTheme);
-    }
-  });
-
-  // Handle Astro page transitions
-  document.addEventListener("astro:after-swap", () => {
-    const currentTheme = localStorage.getItem("theme") || 
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    setTheme(currentTheme);
-  });
 </script>

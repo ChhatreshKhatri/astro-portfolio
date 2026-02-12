@@ -9,24 +9,24 @@ const data = await getHomeData();
 ---
 
 <RootLayout title="Chhatresh Khatri | Portfolio" description="Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code." keywords="" page="">
-  <div class="flex items-center justify-center rounded p-0.5 bg-linear-to-r from-ck1 to-ck2 animate-fade-in-down">
+  <div class="flex items-center justify-center rounded p-0.5 bg-linear-to-r from-ck1 to-ck2 transition duration-400 ease-out starting:opacity-0 starting:-translate-y-2.5">
     <div class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-buttonBg dark:bg-darked rounded">Welcome to my Portfolio</div>
   </div>
   {
     data ? (
-      <section class="hero-section relative group grid grid-cols-1 w-full lg:grid-cols-3 p-3 xs:p-6 xs:px-10 gap-1 xs:gap-4 lg:gap-8 animate-fade-in-up [animation-delay:0.1s]" aria-labelledby="hero-heading">
+      <section class="hero-section relative group grid grid-cols-1 w-full lg:grid-cols-3 p-3 xs:p-6 xs:px-10 gap-1 xs:gap-4 lg:gap-8 transition duration-400 ease-out delay-100 starting:opacity-0 starting:translate-y-2.5" aria-labelledby="hero-heading">
         <div class="absolute inset-0 rounded-lg bg-linear-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50" aria-hidden="true" />
         <article class="relative order-2 lg:order-1 lg:col-span-2 flex justify-center items-center rounded-lg">
           <div class="w-full flex flex-col justify-evenly gap-2 md:gap-4">
-            <h1 id="hero-heading" class="hero-heading text-xl xxs:text-2xl xs:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold text-center leading-tight animate-fade-in-up delay-200">
+            <h1 id="hero-heading" class="hero-heading text-xl xxs:text-2xl xs:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold text-center leading-tight transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
               {data.intro}
             </h1>
-            <div class="hero-typewriter text-xl xxs:text-2xl md:text-4xl xl:text-5xl font-semibold text-center min-h-[1.5em] leading-relaxed animate-fade-in-up delay-300">
+            <div class="hero-typewriter text-xl xxs:text-2xl md:text-4xl xl:text-5xl font-semibold text-center min-h-[1.5em] leading-relaxed transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
               <span id="autoType">Software Engineer</span>
-              <span class="opacity-75">|</span>
+              <span id="cursor" class="inline-block w-1 h-[1em] bg-current align-middle animate-pulse"></span>
             </div>
-            <p class="hero-description text-base xs:text-lg md:text-xl text-justify leading-relaxed px-2 md:px-0 animate-fade-in-up delay-400">{data.content}</p>
-            <div class="hero-links flex flex-nowrap justify-center items-center gap-2 animate-fade-in-up delay-500" aria-label="Social and portfolio links">
+            <p class="hero-description text-base xs:text-lg md:text-xl text-justify leading-relaxed px-2 md:px-0 transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">{data.content}</p>
+            <div class="hero-links flex flex-nowrap justify-center items-center gap-2 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5" aria-label="Social and portfolio links">
               {data.links.map((link, index) => (
                 <div class="hero-link" data-index={index}>
                   <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={index % 2} />
@@ -35,7 +35,7 @@ const data = await getHomeData();
             </div>
           </div>
         </article>
-        <aside class="hero-image order-1 lg:order-2 lg:col-span-1 flex justify-center items-center py-5 animate-scale-in delay-200">
+        <aside class="hero-image order-1 lg:order-2 lg:col-span-1 flex justify-center items-center py-5 transition duration-400 ease-out delay-200 starting:opacity-0 starting:scale-[0.98]">
           <figure class="w-full h-full flex justify-center items-center">
             <Image 
               title="Chhatresh Khatri" 
@@ -61,44 +61,32 @@ const data = await getHomeData();
 <script>
   const autoTypeElement = document.querySelector("#autoType");
   const words = ["Software Engineer", "Full Stack Developer", "Web Developer"];
-  let index = 0;
+  let wordIndex = 0;
   let charIndex = 0;
-  const typeSpeed = 150;
-  const deleteSpeed = 100;
-  const pauseDuration = 2000;
 
-  function startTyping() {
-    if (charIndex < words[index].length) {
-      autoTypeElement!.textContent += words[index][charIndex];
-      charIndex++;
-      setTimeout(startTyping, typeSpeed);
+  function typeChar() {
+    if (!autoTypeElement) return;
+    if (charIndex < words[wordIndex].length) {
+      autoTypeElement.textContent += words[wordIndex][charIndex++];
+      setTimeout(typeChar, 150);
     } else {
-      setTimeout(deleteText, pauseDuration);
+      setTimeout(deleteChar, 2000);
     }
   }
 
-  function deleteText() {
+  function deleteChar() {
+    if (!autoTypeElement) return;
     if (charIndex > 0) {
-      charIndex--;
-      autoTypeElement!.textContent = words[index].substring(0, charIndex);
-      setTimeout(deleteText, deleteSpeed);
+      autoTypeElement.textContent = words[wordIndex].substring(0, --charIndex);
+      setTimeout(deleteChar, 100);
     } else {
-      index = (index + 1) % words.length;
-      setTimeout(startTyping, typeSpeed);
+      wordIndex = (wordIndex + 1) % words.length;
+      setTimeout(typeChar, 150);
     }
   }
 
-  // Typewriter effect only
-  if (words.length > 0 && autoTypeElement) {
-    const startAnimation = () => {
-      autoTypeElement.textContent = "";
-      setTimeout(startTyping, 500);
-    };
-    
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(startAnimation, { timeout: 1000 });
-    } else {
-      setTimeout(startAnimation, 100);
-    }
+  if (autoTypeElement) {
+    autoTypeElement.textContent = "";
+    setTimeout(typeChar, 500);
   }
 </script>

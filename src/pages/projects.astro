@@ -9,15 +9,15 @@ const data = await getProjectsData();
 ---
 
 <RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects,  discover their unique features and access relevant links for more information." keywords="" page="projects">
-  <div class="flex items-center justify-center rounded p-0.5 bg-linear-to-r from-ck1 to-ck2 animate-fade-in-down">
+  <div class="flex items-center justify-center rounded p-0.5 bg-linear-to-r from-ck1 to-ck2 transition duration-400 ease-out starting:opacity-0 starting:-translate-y-2.5">
     <h1 class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-buttonBg dark:bg-darked rounded">My Projects</h1>
   </div>
   {
     data ? (
       data.projects.map((project, index) => (
         <section 
-          class="group relative p-3 xs:p-6 xs:px-10 project-card animate-fade-in-up" 
-          style={`animation-delay: ${0.1 + index * 0.15}s;`}
+          class="group relative p-3 xs:p-6 xs:px-10 project-card transition duration-400 ease-out starting:opacity-0 starting:translate-y-2.5" 
+          style={`transition-delay: ${0.1 + index * 0.15}s;`}
           aria-labelledby={`project-${index}`}
           data-index={index}
         >
@@ -25,10 +25,10 @@ const data = await getProjectsData();
           <div class="relative grid grid-cols-1 w-full lg:grid-cols-2 rounded-xl gap-1 xs:gap-4 lg:gap-8">
             <article class={`${(index + 1) % 2 ? "" : "lg:order-2"} project-content`}>
               <div class="w-full h-full flex flex-col justify-center items-center gap-2 md:gap-4">
-                <h2 class="text-2xl xxs:text-3xl md:text-4xl xl:text-5xl font-semibold text-center project-heading animate-fade-in-up [animation-delay:0.2s]">{project.heading}</h2>
-                <h3 class="text-xl md:text-2xl xxl:text-3xl text-center project-subheading animate-fade-in-up [animation-delay:0.3s]">{project.subHeading}</h3>
-                <p class="text-md xs:text-xl text-justify project-description animate-fade-in-up [animation-delay:0.4s]">{project.description} </p>
-                <nav class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl project-links animate-fade-in-up [animation-delay:0.5s]" aria-label={`${project.heading} links`}>
+                <h2 class="text-2xl xxs:text-3xl md:text-4xl xl:text-5xl font-semibold text-center project-heading transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">{project.heading}</h2>
+                <h3 class="text-xl md:text-2xl xxl:text-3xl text-center project-subheading transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">{project.subHeading}</h3>
+                <p class="text-md xs:text-xl text-justify project-description transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">{project.description} </p>
+                <nav class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl project-links transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5" aria-label={`${project.heading} links`}>
                   {project.links.map((link, linkIndex) => (
                     <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={linkIndex % 2} loading={index === 0 ? "eager" : "lazy"} />
                   ))}
@@ -48,9 +48,9 @@ const data = await getProjectsData();
                 </div>
               </div>
             </article>
-            <aside class={`flex justify-start items-center mt-6 lg:mt-0 project-image animate-scale-in [animation-delay:0.3s] ${(index + 1) % 2 ? "" : "lg:order-1"}`}>
+            <aside class={`flex justify-start items-center mt-6 lg:mt-0 project-image transition duration-400 ease-out delay-300 starting:opacity-0 starting:scale-[0.98] ${(index + 1) % 2 ? "" : "lg:order-1"}`}>
               <figure class="w-full h-full flex justify-center items-center relative">
-                <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-75 md:h-87.5 relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+                <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-75 md:h-87.5 relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
                   <Image 
                     title={project.heading} 
                     src={project.image} 
@@ -75,5 +75,5 @@ const data = await getProjectsData();
 </RootLayout>
 
 <script>
-  // No JavaScript animations needed - using CSS animations via classes
+  // No JavaScript animations needed - using Tailwind starting: variant for entry transitions
 </script>
