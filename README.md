@@ -28,6 +28,29 @@ This project was built using
 
 <br/>
 
+# API
+
+This portfolio uses a dedicated API for content and data:
+
+- Repository: https://github.com/ChhatreshKhatri/portfolio-api
+- Base URL is configured via `PUBLIC_API_URL` (see Environment Variables below).
+- Endpoints used by this site:
+  - `/home`
+  - `/about`
+  - `/projects`
+
+If you are running the API locally, make sure it is available before starting the Astro dev server.
+
+<br/>
+
+# Environment Variables
+
+Create a `.env` file at the project root and set:
+
+- `PUBLIC_API_URL` (example: `http://localhost:3000` or your deployed API URL)
+
+<br/>
+
 # Getting Started
 
 Clone down this repository. You will need `node.js` and `git` installed globally on your machine.
