@@ -61,7 +61,7 @@ const websiteSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content={`Chhatresh Khatri,Portfolio,About,Projects,Full Stack Developer,web Development,Web Designer,Website,Code,Innovation, Astro, Next.JS,frontend, ${keywords}`} />
+    <meta name="keywords" content={["Chhatresh Khatri","Portfolio","About","Projects","Full Stack Developer","Web Development","Web Designer","Website","Code","Innovation","Astro","Next.JS","frontend", keywords].filter(Boolean).join(",")} />
     <meta name="author" content="Chhatresh Khatri" />
     <link rel="shortcut icon" type="image/svg+xml" href="https://cdn.chhatreshkhatri.com/icons/icon.svg" />
     <link rel="icon" type="image/x-icon" href="https://cdn.chhatreshkhatri.com/icons/favicon.ico" />

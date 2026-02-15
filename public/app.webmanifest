@@ -11,7 +11,13 @@
       "src": "https://cdn.chhatreshkhatri.com/icons/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "https://cdn.chhatreshkhatri.com/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     },
     {
       "src": "https://cdn.chhatreshkhatri.com/icons/icon-192x192.png",

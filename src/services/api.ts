@@ -5,11 +5,7 @@ const API_BASE_URL = import.meta.env.PUBLIC_API_URL;
 // Fetch data from API
 async function fetchData<T>(endpoint: string): Promise<T | null> {
   try {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      headers: {
-        "Cache-Control": "public, max-age=3600",
-      },
-    });
+    const response = await fetch(`${API_BASE_URL}${endpoint}`);
 
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);
