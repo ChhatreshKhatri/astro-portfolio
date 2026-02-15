@@ -26,7 +26,8 @@ const { name, link, imageUrl, pos, loading = "eager" } = Astro.props;
       alt="" 
       class="w-6 xs:w-8 text-white transition-transform duration-200 group-hover:scale-110" 
       loading={loading}
-      inferSize
+      width={32}
+      height={32}
       aria-hidden="true"
     />
     <span>{name}</span>

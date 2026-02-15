@@ -42,7 +42,7 @@ const data = await getProjectsData();
                       data-tag-index={tagIndex}
                       aria-label={tag.name}
                     >
-                      <Image title={tag.name} src={tag.url} alt="" class="w-6 h-6 xs:w-8 xs:h-8 text-white" loading={index === 0 ? "eager" : "lazy"} inferSize aria-hidden="true" />
+                      <Image title={tag.name} src={tag.url} alt="" class="w-6 h-6 xs:w-8 xs:h-8 text-white" loading={index === 0 ? "eager" : "lazy"} width={32} height={32} aria-hidden="true" />
                     </div>
                   ))}
                 </div>
