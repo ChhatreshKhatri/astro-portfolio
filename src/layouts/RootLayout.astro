@@ -3,6 +3,56 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 const { title = "Chhatresh Khatri | Portfolio", description = "Full stack developer building modern web apps.", keywords = "Chhatresh Khatri,Portfolio,About,Projects,Full Stack Developer,web Development,Web Designer,Website,Code,Innovation, Astro, Next.JS,frontend", page = "/" } = Astro.props;
+
+const siteUrl = Astro.site?.origin || "https://www.chhatreshkhatri.com";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${siteUrl}/#person`,
+  "name": "Chhatresh Khatri",
+  "givenName": "Chhatresh",
+  "familyName": "Khatri",
+  "url": siteUrl,
+  "image": "https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.png",
+  "email": "mailto:ck@chhatreshkhatri.com",
+  "jobTitle": "Software Engineer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "LTIMindtree",
+  },
+  "description": "Software Engineer with a passion for building modern, user-friendly websites and applications.",
+  "knowsAbout": [
+    "JavaScript", "TypeScript", "React", "Next.js", "Astro", "Node.js",
+    "Express.js", "HTML", "CSS", "Tailwind CSS", "MongoDB", "MySQL",
+    "Firebase", "Git", "C", "C++", "Java", "Linux",
+    "Full Stack Development", "Web Development", "Software Engineering"
+  ],
+  "sameAs": [
+    "https://github.com/ChhatreshKhatri",
+    "https://www.linkedin.com/in/chhatreshkhatri",
+    "https://twitter.com/chhatreshkhatri",
+    "https://www.instagram.com/chhatreshkhatri/",
+    "https://www.facebook.com/chhatreshkhatri/",
+    "https://www.youtube.com/@chhatreshkhatri",
+    "https://leetcode.com/u/chhatreshkhatri/",
+    "https://www.geeksforgeeks.org/profile/chhatreshkhatri",
+
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  "url": siteUrl,
+  "name": "Chhatresh Khatri Portfolio",
+  "description": "Portfolio website of Chhatresh Khatri — Software Engineer and Full Stack Developer.",
+  "publisher": {
+    "@id": `${siteUrl}/#person`
+  },
+  "inLanguage": "en"
+};
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -40,7 +90,7 @@ const { title = "Chhatresh Khatri | Portfolio", description = "Full stack develo
     {Astro.url.hostname === 'preview.chhatreshkhatri.com' ? (
       <>
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href={new URL(page, "https://www.chhatreshkhatri.com")} />
+        <link rel="canonical" href={new URL(page, siteUrl)} />
       </>
     ) : (
       <>
@@ -69,20 +119,8 @@ const { title = "Chhatresh Khatri | Portfolio", description = "Full stack develo
       body{font-family:"Poppins",sans-serif;background-color:#f3f3ff;color:#0c0c0c}.dark body{background-color:#191919;color:#f3f3ff}
     </style>
     
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Chhatresh Khatri",
-        "url": "https://www.chhatreshkhatri.com",
-        "jobTitle": "Full Stack Developer",
-        "description": "Full stack developer building modern web applications",
-        "sameAs": [
-          "https://github.com/Chhatreshkhatri",
-          "https://www.linkedin.com/in/chhatreshkhatri"
-        ]
-      }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   </head>
   <body class="w-full min-h-screen flex flex-col bg-light text-darked dark:bg-dark dark:text-light font-display">
     <Header />
