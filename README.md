@@ -1,6 +1,6 @@
 # Portfolio Website <a href="https://www.chhatreshkhatri.com/" target="_blank">Chhatresh Khatri | Portfolio</a>
 
-This portfolio website, meticulously crafted using Astro, Tailwind CSS, TypeScript and Typewriter-Effects, embodies a fusion of modern design and robust functionality. Its architecture comprises a Home Page, an About Page, and a Projects Page, each tailored to deliver a distinctive user experience.
+This portfolio website, meticulously crafted using Astro, Tailwind CSS, and TypeScript, embodies a fusion of modern design and robust functionality.
 
 Consistency is ensured across the site with a well-structured navigation menu, subtle animations, and optional dark mode. The website's SEO optimization, performance enhancements, and analytics integration make it a potent tool for showcasing the skills.
 
@@ -48,6 +48,7 @@ If you are running the API locally, make sure it is available before starting th
 Create a `.env` file at the project root and set:
 
 - `PUBLIC_API_URL` (example: `http://localhost:3000` or your deployed API URL)
+- `PUBLIC_visitsCounter` (ID used by the footer visits counter badge)
 
 <br/>
 
@@ -59,18 +60,33 @@ Clone down this repository. You will need `node.js` and `git` installed globally
 
 ## 🛠 Installation and Setup Instructions
 
-1. Installation: `npm install`
+1. Install dependencies:
 
-2. In the project directory, you can run: `npm run dev`
+  `npm install`
 
-Runs the app in the development mode.\
-Open [http://localhost:4321](http://localhost:4321) to view it in the browser.
-The page will reload if you make edits.
+2. Start local development:
 
-<br/>
+  `npm run dev`
 
-First, run the development server:
-You can start editing the page by modifying `src/pages`. The page auto-updates as you edit the file.
+  Open [http://localhost:4321](http://localhost:4321).
+
+3. Create production build:
+
+  `npm run build`
+
+4. Preview the built app with Wrangler locally:
+
+  `npm run preview`
+
+5. Deploy to Cloudflare Workers:
+
+  `npm run deploy`
+
+6. Regenerate Cloudflare Worker type definitions (when needed):
+
+  `npm run cf-typegen`
+
+You can start editing pages in `src/pages`; Astro will auto-reload during development.
 
 ## Learn More
 
@@ -80,17 +96,12 @@ To learn more about Astro, take a look at the following resources:
 
 You can check out [the Astro GitHub repository](https://github.com/withastro/astro) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Cloudflare Workers
 
-The easiest way to deploy your Astro app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+This project uses the Astro Cloudflare adapter and Wrangler configuration for deployment to Cloudflare Workers.
 
-Check out [Astro deployment documentation](https://vercel.com/docs/frameworks/astro) for more details.
-
-## Deploy on Cloudflare pages
-
-[Cloudflare Pages](https://pages.cloudflare.com/) is a JAMstack platform for frontend developers to collaborate and deploy websites.
-
-Check out [Astro deployment documentation](https://developers.cloudflare.com/pages/framework-guides/deploy-an-astro-site/) for more details.
+- Astro Cloudflare adapter docs: [https://docs.astro.build/en/guides/integrations-guide/cloudflare/](https://docs.astro.build/en/guides/integrations-guide/cloudflare/)
+- Wrangler configuration docs: [https://developers.cloudflare.com/workers/wrangler/configuration/](https://developers.cloudflare.com/workers/wrangler/configuration/)
 <br>
 
 # 🖼️ Screenshots
