@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import LinkButton from "../components/LinkButton.astro";
 import RootLayout from "../layouts/RootLayout.astro";
+import SectionHeading from "../components/Heading.astro";
 import Loading from "../components/Loading.astro";
 import { getHomeData } from "../services/api";
 
@@ -9,9 +10,7 @@ const data = await getHomeData();
 ---
 
 <RootLayout title="Chhatresh Khatri | Portfolio" description="Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code." keywords="" page="">
-  <div class="flex items-center justify-center rounded p-0.5 bg-linear-to-r from-ck1 to-ck2 transition duration-400 ease-out starting:opacity-0 starting:-translate-y-2.5">
-    <div class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-buttonBg dark:bg-darked rounded">Welcome to my Portfolio</div>
-  </div>
+  <SectionHeading as="div">Welcome to my Portfolio</SectionHeading>
   {
     data ? (
       <section class="hero-section relative group grid grid-cols-1 w-full lg:grid-cols-3 p-3 xs:p-6 xs:px-10 gap-1 xs:gap-4 lg:gap-8 transition duration-400 ease-out delay-100 starting:opacity-0 starting:translate-y-2.5" aria-labelledby="hero-heading">

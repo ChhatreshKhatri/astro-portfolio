@@ -4,14 +4,13 @@ import { Image } from "astro:assets";
 import LinkButton from "../components/LinkButton.astro";
 import Loading from "../components/Loading.astro";
 import { getProjectsData } from "../services/api";
+import SectionHeading from "../components/Heading.astro";
 
 const data = await getProjectsData();
 ---
 
 <RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects,  discover their unique features and access relevant links for more information." keywords="" page="projects">
-  <div class="flex items-center justify-center rounded p-0.5 bg-linear-to-r from-ck1 to-ck2 transition duration-400 ease-out starting:opacity-0 starting:-translate-y-2.5">
-    <h1 class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-buttonBg dark:bg-darked rounded">My Projects</h1>
-  </div>
+  <SectionHeading>My Projects</SectionHeading>
   {
     data ? (
       data.projects.map((project, index) => (
@@ -37,7 +36,7 @@ const data = await getProjectsData();
                   {project.tags?.map((tag, tagIndex) => (
                     <div 
                       title={tag.name} 
-                      class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl py-1 px-2 bg-buttonBg dark:bg-darked rounded border-2 border-dark dark:border-light transition-all duration-300 hover:scale-110 hover:rotate-3 project-tag cursor-pointer" 
+                      class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl py-1 px-2 bg-buttonBg dark:bg-darked rounded border border-dark dark:border-light transition-all duration-300 hover:scale-110 hover:rotate-3 project-tag cursor-pointer" 
                       role="listitem"
                       data-tag-index={tagIndex}
                       aria-label={tag.name}
