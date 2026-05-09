@@ -62,29 +62,29 @@ Clone down this repository. You will need `node.js` and `git` installed globally
 
 1. Install dependencies:
 
-  `npm install`
+`npm install`
 
 2. Start local development:
 
-  `npm run dev`
+`npm run dev`
 
-  Open [http://localhost:4321](http://localhost:4321).
+Open [http://localhost:4321](http://localhost:4321).
 
 3. Create production build:
 
-  `npm run build`
+`npm run build`
 
 4. Preview the built app with Wrangler locally:
 
-  `npm run preview`
+`npm run preview`
 
 5. Deploy to Cloudflare Workers:
 
-  `npm run deploy`
+`npm run deploy`
 
 6. Regenerate Cloudflare Worker type definitions (when needed):
 
-  `npm run cf-typegen`
+`npm run cf-typegen`
 
 You can start editing pages in `src/pages`; Astro will auto-reload during development.
 
@@ -102,7 +102,7 @@ This project uses the Astro Cloudflare adapter and Wrangler configuration for de
 
 - Astro Cloudflare adapter docs: [https://docs.astro.build/en/guides/integrations-guide/cloudflare/](https://docs.astro.build/en/guides/integrations-guide/cloudflare/)
 - Wrangler configuration docs: [https://developers.cloudflare.com/workers/wrangler/configuration/](https://developers.cloudflare.com/workers/wrangler/configuration/)
-<br>
+  <br>
 
 # 🖼️ Screenshots
 
