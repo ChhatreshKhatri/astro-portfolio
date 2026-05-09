@@ -26,6 +26,20 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssCodeSplit: true,
+      minify: "esbuild",
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            animations: ["/src/styles/global.css"],
+          },
+        },
+      },
+    },
+    ssr: {
+      external: ["node:fs/promises", "node:path", "node:url", "node:crypto"],
+    },
   },
 
   integrations: [sitemap({ lastmod: new Date() }), mdx()],
