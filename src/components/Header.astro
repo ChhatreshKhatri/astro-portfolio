@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import NavIcons from "./NavIcons.astro";
 import NavLinks from "./NavLinks.astro";
 ---
@@ -9,14 +8,15 @@ import NavLinks from "./NavLinks.astro";
     <div class="flex flex-col justify-center lg:flex-row lg:justify-between w-full gap-y-2">
       <div class="flex justify-between">
         <a aria-label="Chhatresh Khatri - Home Page" href="/" class="flex justify-center items-center cursor-pointer transition-transform duration-200 hover:scale-105">
-          <Image 
+          <img 
             src="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg" 
             alt="Chhatresh Khatri logo" 
             class="max-w-60" 
             title="Chhatresh Khatri"
             loading="eager"
-            width={512}
-            height={41}
+            width="512"
+            height="41"
+            decoding="async"
           />
         </a>
 

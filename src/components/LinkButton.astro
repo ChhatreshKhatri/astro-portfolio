@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-
 interface Props {
   name: string;
   link: string;
@@ -10,6 +8,7 @@ interface Props {
 }
 
 const { name, link, imageUrl, pos, loading = "eager" } = Astro.props;
+const isSvg = /\.svg($|\?|#)/i.test(imageUrl);
 ---
 
 <div class={`flex items-center justify-center text-md xs:text-xl p-px rounded bg-linear-to-r ${pos == 1 ? "from-ck2 to-ck1 " : "from-ck1 to-ck2 "} group transition-transform duration-200 hover:-translate-y-1 cursor-pointer`}>
@@ -21,15 +20,29 @@ const { name, link, imageUrl, pos, loading = "eager" } = Astro.props;
     aria-label={`Visit ${name} (opens in new tab)`}
     class="flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker transition-all duration-200 cursor-pointer"
   >
-    <Image 
-      src={imageUrl} 
-      alt="" 
-      class="w-6 xs:w-8 text-white transition-transform duration-200" 
-      loading={loading}
-      width={32}
-      height={32}
-      aria-hidden="true"
-    />
+    {isSvg ? (
+      <img 
+        src={imageUrl} 
+        alt="" 
+        class="w-6 xs:w-8 text-white transition-transform duration-200" 
+        loading={loading}
+        width="32"
+        height="32"
+        decoding="async"
+        aria-hidden="true"
+      />
+    ) : (
+      <Image 
+        src={imageUrl} 
+        alt="" 
+        class="w-6 xs:w-8 text-white transition-transform duration-200" 
+        loading={loading}
+        width="32"
+        height="32"
+        decoding="async"
+        aria-hidden="true"
+      />
+    )}
     <span>{name}</span>
   </a>
 </div>
