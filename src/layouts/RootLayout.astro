@@ -116,12 +116,6 @@ const websiteSchema = {
     <!-- Font Preloading - Only preload regular weight for LCP -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/Poppins.woff2" crossorigin="anonymous" />
     
-    <!-- Inline Critical CSS to avoid render blocking -->
-    <style>
-      /* Critical above-the-fold styles */
-      body{font-family:"Poppins",sans-serif;background-color:#f3f3ff;color:#0c0c0c}.dark body{background-color:#191919;color:#f3f3ff}
-    </style>
-    
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   </head>
@@ -143,12 +137,3 @@ const websiteSchema = {
     });
   }
 </script>
-<style>
-  @font-face {
-    font-family: "poppins";
-    src: url("/fonts/Poppins.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-</style>

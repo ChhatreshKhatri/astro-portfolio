@@ -14,8 +14,7 @@ const data = await getProjectsData();
     data ? (
       data.projects.map((project, index) => (
         <section 
-          class="group relative p-3 xs:p-6 xs:px-10 project-card transition duration-400 ease-out starting:opacity-0 starting:translate-y-2.5" 
-          style={`transition-delay: ${0.1 + index * 0.15}s;`}
+          class={`group relative p-3 xs:p-6 xs:px-10 project-card transition duration-400 ease-out starting:opacity-0 starting:translate-y-2.5 delay-[${Math.round((0.1 + index * 0.15) * 1000)}ms]`}
           aria-labelledby={`project-${index}`}
           data-index={index}
         >
@@ -35,7 +34,7 @@ const data = await getProjectsData();
                   {project.tags?.map((tag, tagIndex) => (
                     <div 
                       title={tag.name} 
-                      class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl py-1 px-2 bg-buttonBg dark:bg-darked rounded border border-dark dark:border-light transition-all duration-300 hover:scale-110 hover:rotate-3 project-tag cursor-pointer" 
+                      class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl py-1 px-2 bg-buttonBg dark:bg-darked rounded border border-dark dark:border-light transition-transform duration-300 hover:scale-110 hover:rotate-3 project-tag cursor-pointer" 
                       role="listitem"
                       data-tag-index={tagIndex}
                       aria-label={tag.name}
