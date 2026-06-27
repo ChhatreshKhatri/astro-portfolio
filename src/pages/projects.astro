@@ -4,7 +4,6 @@ import LinkButton from "../components/LinkButton.astro";
 import Loading from "../components/Loading.astro";
 import { getProjectsData } from "../services/api";
 import SectionHeading from "../components/Heading.astro";
-import { Image } from "astro:assets";
 
 const data = await getProjectsData();
 ---
@@ -50,14 +49,14 @@ const data = await getProjectsData();
             <aside class={`flex justify-start items-center mt-6 lg:mt-0 project-image transition duration-400 ease-out delay-300 starting:opacity-0 starting:scale-[0.98] ${(index + 1) % 2 ? "" : "lg:order-1"}`}>
               <figure class="w-full h-full flex justify-center items-center relative">
                 <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-75 md:h-87.5 relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-                  <Image 
+                  <img 
                     title={project.heading} 
                     src={project.image} 
                     alt={project.heading} 
                     class="w-full h-full object-cover object-top transition-all duration-4000 ease-in-out rounded-2xl hover:object-bottom" 
                     loading={index === 0 ? "eager" : "lazy"}
-                    width={1200}
-                    height={800}
+                    width="1200"
+                    height="800"
                   />
                 </div>
               </figure>
