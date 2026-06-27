@@ -1,6 +1,5 @@
 ---
 import RootLayout from "../layouts/RootLayout.astro";
-import { Image } from "astro:assets";
 import LinkButton from "../components/LinkButton.astro";
 import Loading from "../components/Loading.astro";
 import { getProjectsData } from "../services/api";
@@ -15,8 +14,7 @@ const data = await getProjectsData();
     data ? (
       data.projects.map((project, index) => (
         <section 
-          class="group relative p-3 xs:p-6 xs:px-10 project-card transition duration-400 ease-out starting:opacity-0 starting:translate-y-2.5" 
-          style={`transition-delay: ${0.1 + index * 0.15}s;`}
+          class={`group relative p-3 xs:p-6 xs:px-10 project-card transition duration-400 ease-out starting:opacity-0 starting:translate-y-2.5 delay-[${Math.round((0.1 + index * 0.15) * 1000)}ms]`}
           aria-labelledby={`project-${index}`}
           data-index={index}
         >
@@ -36,12 +34,12 @@ const data = await getProjectsData();
                   {project.tags?.map((tag, tagIndex) => (
                     <div 
                       title={tag.name} 
-                      class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl py-1 px-2 bg-buttonBg dark:bg-darked rounded border border-dark dark:border-light transition-all duration-300 hover:scale-110 hover:rotate-3 project-tag cursor-pointer" 
+                      class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl py-1 px-2 bg-buttonBg dark:bg-darked rounded border border-dark dark:border-light transition-transform duration-300 hover:scale-110 hover:rotate-3 project-tag cursor-pointer" 
                       role="listitem"
                       data-tag-index={tagIndex}
                       aria-label={tag.name}
                     >
-                      <Image title={tag.name} src={tag.url} alt="" class="w-6 h-6 xs:w-8 xs:h-8 text-white" loading={index === 0 ? "eager" : "lazy"} width={32} height={32} aria-hidden="true" />
+                      <img title={tag.name} src={tag.url} alt="" class="w-6 h-6 xs:w-8 xs:h-8 text-white" loading={index === 0 ? "eager" : "lazy"} width="32" height="32" aria-hidden="true" />
                     </div>
                   ))}
                 </div>
@@ -50,16 +48,14 @@ const data = await getProjectsData();
             <aside class={`flex justify-start items-center mt-6 lg:mt-0 project-image transition duration-400 ease-out delay-300 starting:opacity-0 starting:scale-[0.98] ${(index + 1) % 2 ? "" : "lg:order-1"}`}>
               <figure class="w-full h-full flex justify-center items-center relative">
                 <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-75 md:h-87.5 relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-                  <Image 
+                  <img 
                     title={project.heading} 
                     src={project.image} 
                     alt={project.heading} 
                     class="w-full h-full object-cover object-top transition-all duration-4000 ease-in-out rounded-2xl hover:object-bottom" 
                     loading={index === 0 ? "eager" : "lazy"}
-                    fetchpriority={index === 0 ? "high" : "auto"}
-                    decoding={index === 0 ? "async" : "auto"}
-                    width={1200}
-                    height={800}
+                    width="1200"
+                    height="800"
                   />
                 </div>
               </figure>
