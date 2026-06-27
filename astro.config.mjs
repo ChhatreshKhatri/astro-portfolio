@@ -7,7 +7,6 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.chhatreshkhatri.com",
-  output: "server",
   integrations: [mdx(), sitemap({ lastmod: new Date() })],
   adapter: cloudflare({
     platformProxy: {
@@ -27,28 +26,11 @@ export default defineConfig({
       },
     ],
     format: ["webp"],
-    service: {
-      entrypoint: "astro/assets/services/sharp",
-      config: {
-        limitInputPixels: false,
-      },
-    },
   },
   vite: {
     plugins: [tailwindcss()],
-    build: {
-      cssCodeSplit: true,
-      minify: "esbuild",
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            animations: ["/src/styles/global.css"],
-          },
-        },
-      },
-    },
-    ssr: {
-      external: ["node:fs/promises", "node:path", "node:url", "node:crypto"],
+    optimizeDeps: {
+      exclude: ['astro/app'],
     },
   },
 });
