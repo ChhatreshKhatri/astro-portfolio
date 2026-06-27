@@ -12,7 +12,7 @@ export default defineConfig({
     platformProxy: {
       enabled: true,
     },
-    imageService: "passthrough",
+    imageService: "cloudflare",
   }),
   security: {
     checkOrigin: true,
