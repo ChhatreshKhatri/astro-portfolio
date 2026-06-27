@@ -36,15 +36,16 @@ const data = await getHomeData();
         </article>
         <aside class="hero-image order-1 lg:order-2 lg:col-span-1 flex justify-center items-center transition duration-400 ease-out delay-200 starting:opacity-0 starting:scale-[0.98]">
           <figure class="w-full h-full flex justify-center items-center">
-            <img
+            <Image
               title="Chhatresh Khatri" 
               src={data.pic} 
               alt="Chhatresh Khatri" 
               class="w-[60%] xs:w-[50%] md:w-[35%] lg:w-[95%] xl:w-[75%] drop-shadow-2xl" 
               loading="eager" 
               decoding="async"
-              width="808"
-              height="1080"
+              width={808}
+              height={1080}
+              format="webp"
             />
           </figure>
         </aside>
