@@ -28,15 +28,22 @@
   --color-navbarBg: #c7e1fc;
   --color-ck1: #3048c6;
   --color-ck2: #30c68a;
+  --color-hd1: #2563EB;
+  --color-hd2: #06B6D4;
+  --color-sub1: #A855F7;
+  --color-sub2: #0EA5E9;
+  --color-bd1: #0EA5E9;
+  --color-bd2: #A855F7;
 
   /* Font sizes */
   --text-4xl: 35px;
-  --text-5xl: 40px;
-  --text-6xl: 50px;
+  --text-5xl: 45px;
+  --text-6xl: 55px;
 
   /* Breakpoints */
   --breakpoint-xxs: 375px;
   --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1200px;

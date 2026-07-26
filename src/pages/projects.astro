@@ -6,69 +6,92 @@ import { getProjectsData } from "../services/api";
 import SectionHeading from "../components/Heading.astro";
 
 const data = await getProjectsData();
+const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay-500"];
 ---
 
-<RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects,  discover their unique features and access relevant links for more information." keywords="" page="projects">
+<RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects, discover their unique features and access relevant links for more information." keywords="" page="projects">
   <SectionHeading>My Projects</SectionHeading>
   {
     data ? (
-      data.projects.map((project, index) => (
-        <section 
-          class={`group relative p-3 xs:p-6 xs:px-10 project-card transition duration-400 ease-out starting:opacity-0 starting:translate-y-2.5 delay-[${Math.round((0.1 + index * 0.15) * 1000)}ms]`}
-          aria-labelledby={`project-${index}`}
-          data-index={index}
-        >
-          <div class="absolute inset-0 rounded-lg bg-linear-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50" aria-hidden="true" />
-          <div class="relative grid grid-cols-1 w-full lg:grid-cols-2 rounded-xl gap-1 xs:gap-4 lg:gap-8">
-            <article class={`${(index + 1) % 2 ? "" : "lg:order-2"} project-content`}>
-              <div class="w-full h-full flex flex-col justify-center items-center gap-2 md:gap-4">
-                <h2 class="text-2xl xxs:text-3xl md:text-4xl xl:text-5xl font-semibold text-center project-heading transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">{project.heading}</h2>
-                <h3 class="text-xl md:text-2xl xxl:text-3xl text-center project-subheading transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">{project.subHeading}</h3>
-                <p class="text-md xs:text-xl text-justify project-description transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">{project.description} </p>
-                <nav class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl project-links transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5" aria-label={`${project.heading} links`}>
-                  {project.links.map((link, linkIndex) => (
-                    <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={linkIndex % 2} loading={index === 0 ? "eager" : "lazy"} />
-                  ))}
-                </nav>
-                <div class="flex flex-wrap items-center justify-center gap-2 xxs:gap-4 text-md xs:text-xl project-tags" role="list" aria-label={`${project.heading} technologies`}>
-                  {project.tags?.map((tag, tagIndex) => (
-                    <div 
-                      title={tag.name} 
-                      class="flex justify-center items-center font-semibold tracking-wider text-xl xxs:text-2xl md:text-3xl py-1 px-2 bg-buttonBg dark:bg-darked rounded border border-dark dark:border-light transition-transform duration-300 hover:scale-110 hover:rotate-3 project-tag cursor-pointer" 
-                      role="listitem"
-                      data-tag-index={tagIndex}
-                      aria-label={tag.name}
-                    >
-                      <img title={tag.name} src={tag.url} alt="" class="w-6 h-6 xs:w-8 xs:h-8 text-white" loading={index === 0 ? "eager" : "lazy"} width="32" height="32" aria-hidden="true" />
+      <div class="w-full flex flex-col gap-10 md:gap-14">
+        <!-- Projects List -->
+        <div class="flex flex-col gap-12 md:gap-16">
+          {data.projects.map((project, index) => (
+            <section 
+              class={`w-full transition duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-500"}`}
+              aria-labelledby={`project-${index}`}
+              data-index={index}
+            >
+              <div class="relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:border-ck1/40 transition-all duration-300">
+                <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+                
+                <div class={`flex flex-col lg:flex-row items-center gap-8 lg:gap-10 ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
+                  <!-- Showcase Image Frame -->
+                  <aside class="w-full lg:w-[42%] flex justify-center items-center transition duration-500 ease-out delay-200 starting:opacity-0 starting:scale-[0.97]">
+                    <figure class="w-full h-full relative">
+                      <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-60 md:h-72 lg:h-76 relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 shadow-md group/img cursor-pointer bg-gray-100 dark:bg-dark/80">
+                        <img 
+                          title={project.heading} 
+                          src={project.image} 
+                          alt={project.heading} 
+                          class="w-full h-full object-cover object-top" 
+                          loading={index === 0 ? "eager" : "lazy"}
+                          width="1200"
+                          height="800"
+                        />
+                        <div class="absolute inset-0 bg-linear-to-t from-black/10 dark:from-black/20 via-transparent to-transparent pointer-events-none" />
+                      </div>
+                    </figure>
+                  </aside>
+
+                  <!-- Showcase Content -->
+                  <article class="w-full lg:w-[58%] flex flex-col justify-between gap-5 py-1">
+                    <header class="flex flex-col gap-1.5">
+                      <h2 id={`project-${index}`} class="flex w-fit text-2xl xs:text-3xl md:text-3xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
+                        {project.heading}
+                      </h2>
+                      <p class="text-base md:text-lg font-bold bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent w-fit tracking-wide transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
+                        {project.subHeading}
+                      </p>
+                    </header>
+
+                    <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">
+                      {project.description}
+                    </p>
+
+                    <div class="flex flex-col gap-4 pt-1 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5">
+                      <!-- Links placed above Technologies and tools -->
+                      <nav class="flex flex-wrap items-center gap-3" aria-label={`${project.heading} links`}>
+                        {project.links.map((link, linkIndex) => (
+                          <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={linkIndex % 2} loading={index === 0 ? "eager" : "lazy"} />
+                        ))}
+                      </nav>
+
+                      <div class="flex flex-col gap-2.5 pt-3 border-t border-black/5 dark:border-white/10">
+                        <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400">
+                          Technologies & Tools
+                        </span>
+                        <div class="flex flex-wrap items-center gap-2" role="list" aria-label={`${project.heading} technologies`}>
+                          {project.tags?.map((tag, tagIndex) => (
+                            <div title={tag.name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-hd1/40 to-hd2/40 hover:from-hd1 hover:to-hd2 skill-item transition-all duration-300 shadow-xs cursor-default" role="listitem" data-tag-index={tagIndex}>
+                              <div class="flex justify-center items-center py-1 px-2.5 gap-x-1.5 rounded-xl whitespace-nowrap bg-white dark:bg-darker hover:bg-opacity-95 transition-all duration-300">
+                                <img title={tag.name} src={tag.url} alt="" class="w-4 h-4 md:w-5 md:h-5" loading={index === 0 ? "eager" : "lazy"} width="20" height="20" aria-hidden="true" />
+                                <span class="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100">{tag.name}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  ))}
+                  </article>
                 </div>
               </div>
-            </article>
-            <aside class={`flex justify-start items-center mt-6 lg:mt-0 project-image transition duration-400 ease-out delay-300 starting:opacity-0 starting:scale-[0.98] ${(index + 1) % 2 ? "" : "lg:order-1"}`}>
-              <figure class="w-full h-full flex justify-center items-center relative">
-                <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-75 md:h-87.5 relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-                  <img 
-                    title={project.heading} 
-                    src={project.image} 
-                    alt={project.heading} 
-                    class="w-full h-full object-cover object-top transition-all duration-4000 ease-in-out rounded-2xl hover:object-bottom" 
-                    loading={index === 0 ? "eager" : "lazy"}
-                    width="1200"
-                    height="800"
-                  />
-                </div>
-              </figure>
-            </aside>
-          </div>
-        </section>
-      ))
+            </section>
+          ))}
+        </div>
+      </div>
     ) : (
       <Loading label="Loading projects" />
     )
   }
 </RootLayout>
-
-<script>
-  // No JavaScript animations needed - using Tailwind starting: variant for entry transitions
-</script>

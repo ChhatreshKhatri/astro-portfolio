@@ -4,14 +4,16 @@ import NavLinks from "./NavLinks.astro";
 ---
 
 <header class="fixed w-full top-0 z-10">
-  <nav id="navBar" class="w-full flex flex-col items-center px-3 py-2 xs:px-6 md:px-12 lg:px-20 transition-[padding,box-shadow] duration-200 backdrop-blur-md" aria-label="Main navigation">
+  <nav id="navBar" class="w-full flex flex-col items-center px-3 py-2 xs:px-6 md:px-12 lg:px-20 transition-[padding,box-shadow] duration-300 backdrop-blur-md" aria-label="Main navigation">
     <div class="flex flex-col justify-center lg:flex-row lg:justify-between w-full gap-y-2">
       <div class="flex justify-between">
-        <a aria-label="Chhatresh Khatri - Home Page" href="/" class="flex justify-center items-center cursor-pointer transition-transform duration-200 hover:scale-105">
+        <a aria-label="Chhatresh Khatri - Home Page" href="/" class="flex justify-center items-center cursor-pointer transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
           <img
             src="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg"
             alt="Chhatresh Khatri logo"
-            class="max-w-60"
+            class="block w-60 max-w-full h-auto shrink-0"
+            width="512"
+            height="41"
             title="Chhatresh Khatri"
             loading="eager"
             decoding="async"
@@ -59,10 +61,10 @@ import NavLinks from "./NavLinks.astro";
   // Apply navbar styling based on scroll position
   const updateNavbarStyle = () => {
     if (window.scrollY > 0 || navOpen) {
-      toggleClasses(navBar, ["bg-navbarBg/50", "dark:bg-darker/80", "shadow-bottom"], []);
+      toggleClasses(navBar, ["bg-white/75", "dark:bg-darker/80", "shadow-bottom", "backdrop-blur-md"], []);
       if (window.scrollY > 0) toggleClasses(navBar, ["py-1.5"], ["py-2"]);
     } else {
-      toggleClasses(navBar, ["py-2"], ["bg-navbarBg/50", "dark:bg-darker/80", "shadow-bottom", "py-1.5"]);
+      toggleClasses(navBar, ["py-2"], ["bg-white/75", "dark:bg-darker/80", "shadow-bottom", "py-1.5"]);
     }
   };
 

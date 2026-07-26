@@ -1,10 +1,11 @@
 import rss from "@astrojs/rss";
+import type { APIContext } from "astro";
 
-export async function GET(context) {
+export async function GET(context: APIContext) {
   return rss({
     title: "Chhatresh Khatri | Portfolio",
     description: "Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code.",
-    site: context.site,
+    site: context.site!,
     customData: `
 			<language>en</language>
 			<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

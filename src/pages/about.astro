@@ -1,54 +1,210 @@
 ---
 import RootLayout from "../layouts/RootLayout.astro";
 import Loading from "../components/Loading.astro";
-import { getAboutData } from "../services/api";
+import { getAboutData, type ExperienceProject } from "../services/api";
 import SectionHeading from "../components/Heading.astro";
 
 const data = await getAboutData();
+const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay-500"];
 ---
 
 <RootLayout title="Chhatresh Khatri | About" description="Chhatresh Khatri About. Full Stack developer skilled in diverse tech including C/C++, Java, HTML5, CSS3, JavaScript, React.js, Next.js, and more." keywords="" page="about">
-  <SectionHeading>About</SectionHeading>
+  <SectionHeading>About Me</SectionHeading>
   {
     data ? (
-      <>
-        <section class="about-intro-section relative group rounded-lg w-full text-justify p-3 xs:p-6 xs:px-10 transition duration-400 ease-out delay-100 starting:opacity-0 starting:translate-y-2.5" aria-labelledby="about-intro">
-          <div class="absolute inset-0 rounded-lg bg-linear-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50" aria-hidden="true" />
-          <article class="relative flex flex-col gap-2 xs:gap-4">
-            <h2 id="about-intro" class="about-intro-title text-2xl xxs:text-3xl md:text-4xl text-center transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
-              {data.content.title}
-            </h2>
-            <p class="about-intro-text text-md xs:text-xl transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">{data.content.text}</p>
-          </article>
+      <div class="w-full flex flex-col gap-10 md:gap-14">
+        <section class="about-intro-section w-full transition duration-400 ease-out delay-100 starting:opacity-0 starting:translate-y-2.5" aria-labelledby="about-intro">
+          <div class="relative group rounded-2xl w-full flex flex-col items-center justify-center text-center p-6 md:p-10 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-300">
+            <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+            <article class="relative flex flex-col items-center justify-center gap-4 w-full">
+              <h2 id="about-intro" class="about-intro-title text-2xl xxs:text-3xl md:text-4xl font-extrabold text-center bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
+                {data.content.title}
+              </h2>
+              <p class="about-intro-text text-base md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-justify w-full transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
+                {data.content.text}
+              </p>
+            </article>
+          </div>
         </section>
-        <SectionHeading as="h2" class="delay-400 starting:scale-[0.98]">Technology Stack</SectionHeading>
-        {data.sections.map((section, sectionIndex) => (
-          <section class={`skills-section relative group rounded-lg w-full p-3 xs:p-6 xs:px-10 transition duration-400 ease-out starting:opacity-0 starting:translate-y-2.5 delay-[${Math.round((0.5 + sectionIndex * 0.1) * 1000)}ms]`} data-section-index={sectionIndex} aria-labelledby={`skills-section-${sectionIndex}`}>
-            <div class="absolute inset-0 rounded-lg bg-linear-to-r from-blue2/50 to-green2/50 opacity-20 transition-opacity duration-500 group-hover:opacity-50" aria-hidden="true" />
-            <div class="relative flex flex-col gap-4">
-              <h3 id={`skills-section-${sectionIndex}`} class="skills-section-title text-2xl xxs:text-3xl md:text-4xl text-center transition duration-400 ease-out delay-100 starting:opacity-0 starting:translate-y-2.5">
-                {section.title}
-              </h3>
-              <div class="flex flex-wrap items-center justify-center gap-2 xs:gap-4 skill-container" role="list" aria-label={`${section.title} skills`}>
-                {section.skills.map((skill, skillIndex) => (
-                  <div title={skill.name} class="items-center justify-center p-px rounded bg-linear-to-r from-ck1 to-ck2 skill-item transition-transform duration-300 hover:scale-105 hover:rotate-2 cursor-pointer" role="listitem" data-index={skillIndex}>
-                    <div class="flex justify-center items-center py-1 px-2 gap-x-2 rounded whitespace-nowrap bg-buttonBg dark:bg-darker hover:bg-opacity-90 transition-opacity duration-300">
-                      <img src={skill.icon} alt={`${skill.name} technology icon`} class="w-6 h-6 xs:w-8 xs:h-8" loading={sectionIndex === 0 ? "eager" : "lazy"} decoding={sectionIndex === 0 ? "async" : "auto"} width="32" height="32" />
-                      <p class="relative text-lg xs:text-xl whitespace-nowrap">{skill.name}</p>
+
+        <!-- Experience Section -->
+        {data.experience && data.experience.length > 0 && (
+          <section class="w-full flex flex-col gap-6 transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
+            <SectionHeading as="h2" class="delay-200 starting:scale-[0.98]">Work Experience</SectionHeading>
+            <div class="flex flex-col gap-6">
+              {data.experience.map((exp, index) => (
+                <div class={`relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-200"}`}>
+                  <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+                  
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 dark:border-white/10 pb-4 mb-6 gap-2">
+                    <div>
+                      <div class="flex items-center gap-3 flex-wrap">
+                        <h3 class="text-xl md:text-2xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent w-fit">{exp.role}</h3>
+                        {exp.badge && (
+                          <span class="px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-linear-to-r from-emerald-600 to-teal-500 text-white shadow-xs">
+                            {exp.badge}
+                          </span>
+                        )}
+                      </div>
+                      <h4 class="text-lg md:text-xl font-bold mt-1 w-fit" style={exp.color ? `color: ${exp.color};` : undefined}>
+                        {exp.company}
+                      </h4>
+                    </div>
+                    <div class="flex flex-col md:items-end gap-1 text-sm md:text-base text-gray-700 dark:text-gray-300 font-medium">
+                      <span class="flex w-fit items-center gap-1.5 px-3 py-1 rounded-full bg-linear-to-r from-ck1/10 to-ck2/10 border border-ck1/20 dark:border-ck1/30 font-semibold text-ck1 dark:text-ck2">
+                        📅 {exp.period}
+                      </span>
+                      {exp.location && <span>📍 {exp.location}</span>}
                     </div>
                   </div>
-                ))}
-              </div>
+
+                  {exp.details && (
+                    <ul class="space-y-3 text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed list-disc list-inside marker:text-ck2">
+                      {exp.details.map((detail: string) => (
+                        <li class="pl-1">
+                          <span class="text-gray-700 dark:text-gray-300">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {exp.projects && (
+                    <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                      {exp.projects.map((proj: ExperienceProject, index: number, projects: ExperienceProject[]) => {
+                        const isLastOdd = projects.length % 2 === 1 && index === projects.length - 1;
+
+                        return (
+                          <div class={`rounded-2xl border p-4 md:p-5 bg-white/25 dark:bg-darker/40 border-black/5 dark:border-white/10 ${isLastOdd ? "lg:col-span-2" : ""}`}>
+                            <div class="flex flex-col gap-3">
+                              <h5 class={`text-base md:text-lg font-bold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent`}>
+                                {proj.name}
+                              </h5>
+                              <ul class="space-y-2.5 text-sm md:text-base leading-relaxed list-disc list-inside marker:text-ck2 text-gray-700 dark:text-gray-300">
+                                {proj.details.map((detail: string) => (
+                                  <li class="pl-1">
+                                    <span class="text-gray-700 dark:text-gray-300">{detail}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {exp.skills && (
+                    <div class="mt-6 flex flex-wrap gap-2 items-center">
+                      <span class="text-sm font-bold text-gray-600 dark:text-gray-400 mr-2">Skills Used:</span>
+                      {exp.skills.map((skill: string) => (
+                        <span class="px-3 py-1 text-xs md:text-sm font-semibold rounded-lg bg-linear-to-r from-ck1/15 to-ck2/15 text-ck1 dark:text-ck2 border border-ck1/20 dark:border-ck1/30 transition-all duration-300">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </section>
-        ))}
-      </>
+        )}
+
+        <!-- Achievements Section -->
+        {data.achievements && data.achievements.length > 0 && (
+          <section class="w-full flex flex-col gap-6 transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
+            <SectionHeading as="h2" class="delay-300 starting:scale-[0.98]">Achievements & Awards</SectionHeading>
+            <div class="grid grid-cols-1 gap-6">
+              {data.achievements.map((ach, index) => (
+                <div class={`relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-300"} flex flex-col md:flex-row items-start md:items-center gap-6`}>
+                  <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+                  
+                  <div class="self-center shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-linear-to-tr from-ck1/15 via-purple-500/15 to-ck2/15 border border-ck1/20 dark:border-ck1/30 flex items-center justify-center text-3xl shadow-md group-hover:scale-110 transition-transform duration-300">
+                    🏆
+                  </div>
+
+                  <div class="flex flex-col gap-1 w-full">
+                    <h3 class="text-xl md:text-2xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent w-fit">
+                      {ach.title}
+                    </h3>
+                    <h4 class="text-base md:text-lg font-bold bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent w-fit">
+                      {ach.award || ach.issuer}
+                    </h4>
+                    <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 mt-2 leading-relaxed">
+                      {ach.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Education Section -->
+        {data.education && data.education.length > 0 && (
+          <section class="w-full flex flex-col gap-6 transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">
+            <SectionHeading as="h2" class="delay-400 starting:scale-[0.98]">Education</SectionHeading>
+            <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-6">
+              {data.education.map((edu, index) => (
+                <div class={`relative group rounded-2xl p-6 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-500 ease-out starting:opacity-0 ${delayClasses[index] || "delay-400"} flex flex-col h-full`}>
+                  <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+                  
+                  <div class="flex flex-col gap-2">
+                    <div class="flex justify-between items-start gap-2">
+                      <h3 class="text-lg md:text-xl font-extrabold leading-tight bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent w-fit">{edu.degree}</h3>
+                    </div>
+                    
+                    <h4 class="text-base md:text-lg font-bold leading-tight bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent w-fit">
+                      {edu.institution}
+                    </h4>
+                  </div>
+
+                  <div class="mt-auto pt-6 flex items-center justify-between gap-4 text-xs md:text-sm text-gray-700 dark:text-gray-300 font-medium">
+                    <div class="flex items-center gap-1.5 min-w-0">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-linear-to-r from-ck1/10 to-ck2/10 border border-ck1/20 dark:border-ck1/30 font-semibold text-ck1 dark:text-ck2">
+                        📅 {edu.period}
+                      </span>
+                    </div>
+                    {edu.location && (
+                      <div class="flex items-center gap-1.5 min-w-0 text-right">
+                        <span class="truncate">📍 {edu.location}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Technology Stack Section -->
+        <section class="w-full flex flex-col gap-8 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5">
+          <SectionHeading as="h2" class="delay-500 starting:scale-[0.98]">Technology Stack</SectionHeading>
+          {data.sections.map((section, sectionIndex) => (
+            <div class={`w-full transition duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[sectionIndex] || "delay-500"}`}>
+              <section class="skills-section relative group rounded-2xl w-full p-6 md:p-8 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-300" data-section-index={sectionIndex} aria-labelledby={`skills-section-${sectionIndex}`}>
+                <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+                <div class="relative flex flex-col gap-6">
+                  <h3 id={`skills-section-${sectionIndex}`} class="skills-section-title flex justify-center items-center text-xl xxs:text-2xl md:text-3xl font-bold text-center bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent">
+                    {section.title}
+                  </h3>
+                  <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4 skill-container" role="list" aria-label={`${section.title} skills`}>
+                    {section.skills.map((skill, skillIndex) => (
+                      <div title={skill.name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-hd1/40 to-hd2/40 hover:from-hd1 hover:to-hd2 skill-item transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer" role="listitem" data-index={skillIndex}>
+                        <div class="flex justify-center items-center py-2 px-3.5 gap-x-2.5 rounded-xl whitespace-nowrap bg-white dark:bg-darker hover:bg-opacity-95 transition-all duration-300">
+                          <img src={skill.icon} alt={`${skill.name} technology icon`} class="w-6 h-6 xs:w-7 xs:h-7 transition-transform duration-300 group-hover:scale-110" loading={sectionIndex === 0 ? "eager" : "lazy"} decoding={sectionIndex === 0 ? "async" : "auto"} width="28" height="28" />
+                          <p class="relative text-base xs:text-lg font-semibold whitespace-nowrap text-gray-800 dark:text-gray-100">{skill.name}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </div>
+          ))}
+        </section>
+      </div>
     ) : (
       <Loading />
     )
   }
 </RootLayout>
-
-<script>
-  // No JavaScript animations needed - using Tailwind starting: variant for entry transitions
-</script>

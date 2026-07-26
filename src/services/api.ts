@@ -18,38 +18,119 @@ async function fetchData<T>(endpoint: string): Promise<T | null> {
   }
 }
 
+export interface HomeLink {
+  type: string;
+  url: string;
+  icon: string;
+}
+
+export interface HomeStat {
+  value: string;
+  label: string;
+}
+
+export interface HomeHighlight {
+  name: string;
+  icon: string;
+}
+
+export interface HomeData {
+  intro: string;
+  content: string;
+  pic: string;
+  roles?: string[];
+  stats?: HomeStat[];
+  highlights?: (string | HomeHighlight)[];
+  links: HomeLink[];
+}
+
+export interface ExperienceProject {
+  name: string;
+  details: string[];
+}
+
+export interface ExperienceItem {
+  role: string;
+  company: string;
+  period: string;
+  badge?: string;
+  color?: string;
+  location?: string;
+  details?: string[];
+  skills?: string[];
+  projects?: ExperienceProject[];
+}
+
+export interface EducationItem {
+  degree: string;
+  institution: string;
+  period: string;
+  grade?: string;
+  location?: string;
+}
+
+export interface AchievementItem {
+  title: string;
+  award?: string;
+  issuer?: string;
+  description: string;
+}
+
+export interface SkillItem {
+  name: string;
+  color: string;
+  icon: string;
+}
+
+export interface SkillSection {
+  title: string;
+  skills: SkillItem[];
+}
+
+export interface AboutData {
+  content: { title: string; text: string };
+  experience?: ExperienceItem[];
+  education?: EducationItem[];
+  achievements?: AchievementItem[];
+  sections: SkillSection[];
+}
+
+export interface ProjectLink {
+  type: string;
+  url: string;
+  icon: string;
+}
+
+export interface ProjectTag {
+  name: string;
+  url: string;
+}
+
+export interface ProjectItem {
+  heading: string;
+  subHeading: string;
+  description: string;
+  image: string;
+  links: ProjectLink[];
+  tags?: ProjectTag[];
+}
+
+export interface ProjectsData {
+  content: { title: string; description: string };
+  projects: ProjectItem[];
+}
+
 // Fetch home page data
-export async function getHomeData() {
-  return await fetchData<{
-    intro: string;
-    content: string;
-    pic: string;
-    links: { type: string; url: string; icon: string }[];
-  }>("/home");
+export async function getHomeData(): Promise<HomeData | null> {
+  return await fetchData<HomeData>("/home");
 }
 
 // Fetch about page data
-export async function getAboutData() {
-  return await fetchData<{
-    content: { title: string; text: string };
-    sections: {
-      title: string;
-      skills: { name: string; color: string; icon: string }[];
-    }[];
-  }>("/about");
+export async function getAboutData(): Promise<AboutData | null> {
+  return await fetchData<AboutData>("/about");
 }
 
 // Fetch projects page data
-export async function getProjectsData() {
-  return await fetchData<{
-    content: { title: string; description: string };
-    projects: {
-      heading: string;
-      subHeading: string;
-      description: string;
-      image: string;
-      links: { type: string; url: string; icon: string }[];
-      tags: { name: string; url: string }[];
-    }[];
-  }>("/projects");
+export async function getProjectsData(): Promise<ProjectsData | null> {
+  return await fetchData<ProjectsData>("/projects");
 }
