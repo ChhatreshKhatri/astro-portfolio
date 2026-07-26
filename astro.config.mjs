@@ -6,6 +6,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "server",
   site: "https://www.chhatreshkhatri.com",
   integrations: [mdx(), sitemap({ lastmod: new Date() })],
   adapter: cloudflare({
