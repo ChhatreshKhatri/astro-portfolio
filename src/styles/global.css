@@ -30,10 +30,10 @@
   --color-ck2: #30c68a;
   --color-hd1: #2563EB;
   --color-hd2: #06B6D4;
-  --color-sub1: #FBBF24;
-  --color-sub2: #F472B6;
-  --color-bd1: #FBBF24;
-  --color-bd2: #F472B6;
+  --color-sub2: #38bdf8;
+  --color-sub1: #818cf8;
+  --color-bd1: #64748b;
+  --color-bd2: #38bdf8;
 
   /* Font sizes */
   --text-4xl: 35px;
