@@ -36,6 +36,7 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
                           alt={project.heading} 
                           class="w-full h-full object-cover object-top" 
                           loading={index === 0 ? "eager" : "lazy"}
+                          fetchpriority={index === 0 ? "high" : "auto"}
                           width="1200"
                           height="800"
                         />
