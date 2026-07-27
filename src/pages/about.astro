@@ -38,17 +38,17 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
                   
                   <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 dark:border-white/10 pb-4 mb-6 gap-2">
                     <div>
+                      <h3 class="text-xl md:text-2xl font-bold mt-1 w-fit" style={exp.color ? `color: ${exp.color};` : undefined}>
+                        {exp.company}
+                      </h3>
                       <div class="flex items-center gap-3 flex-wrap">
-                        <h3 class="text-xl md:text-2xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent w-fit">{exp.role}</h3>
+                        <h4 class="text-lg md:text-xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent w-fit">{exp.role}</h4>
                         {exp.badge && (
                           <span class="px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-linear-to-r from-emerald-600 to-teal-500 text-white shadow-xs">
                             {exp.badge}
                           </span>
                         )}
                       </div>
-                      <h4 class="text-lg md:text-xl font-bold mt-1 w-fit" style={exp.color ? `color: ${exp.color};` : undefined}>
-                        {exp.company}
-                      </h4>
                     </div>
                     <div class="flex flex-col md:items-end gap-1 text-sm md:text-base text-gray-700 dark:text-gray-300 font-medium">
                       <span class="flex w-fit items-center gap-1.5 px-3 py-1 rounded-full bg-linear-to-r from-ck1/10 to-ck2/10 border border-ck1/20 dark:border-ck1/30 font-semibold text-ck1 dark:text-ck2">
@@ -76,7 +76,7 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
                         return (
                           <div class={`rounded-2xl border p-4 md:p-5 bg-white/25 dark:bg-darker/40 border-black/5 dark:border-white/10 ${isLastOdd ? "lg:col-span-2" : ""}`}>
                             <div class="flex flex-col gap-3">
-                              <h5 class={`text-base md:text-lg font-bold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent`}>
+                              <h5 class="flex w-fit text-base md:text-lg font-bold bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent">
                                 {proj.name}
                               </h5>
                               <ul class="space-y-2.5 text-sm md:text-base leading-relaxed list-disc list-inside marker:text-ck2 text-gray-700 dark:text-gray-300">

@@ -10,7 +10,7 @@ interface Props {
 const { name, link, imageUrl, pos, loading = "eager" } = Astro.props;
 ---
 
-<div class={`items-center justify-center p-px rounded-xl bg-linear-to-r ${pos == 1 ? "from-ck2/40 to-ck1/40 hover:from-ck2 hover:to-ck1" : "from-ck1/40 to-ck2/40 hover:from-ck1 hover:to-ck2"} transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group`} role="listitem">
+<div class={`items-center justify-center p-px rounded-xl bg-linear-to-r ${pos == 1 ? "from-ck2/40 to-ck1/40 hover:from-ck2 hover:to-ck1" : "from-ck1/40 to-ck2/40 hover:from-ck1 hover:to-ck2"} transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group`}>
   <a 
     title={name} 
     href={link} 
