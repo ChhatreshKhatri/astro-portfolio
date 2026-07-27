@@ -31,7 +31,7 @@ const data = await getHomeData();
                 data-roles={JSON.stringify(data.roles || ["Software Engineer", "Full Stack Developer", "Next.js Specialist"])}
                 class="hero-typewriter text-lg xxs:text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl xxl:text-4xl font-bold min-h-[1.5em] leading-relaxed transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
                 <span id="autoType" class="bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent">Software Engineer</span>
-                <span id="cursor" class="inline-block w-1 h-[1em] bg-ck2 align-middle animate-pulse ml-1" />
+                <span id="cursor" class="inline-block w-1 h-[1em] bg-linear-to-b from-sub1 to-sub2 align-middle animate-pulse ml-1" />
               </div>
 
               <p class="hero-description text-base xs:text-lg md:text-xl text-gray-700 dark:text-gray-300 text-justify leading-relaxed transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">{data.content}</p>
