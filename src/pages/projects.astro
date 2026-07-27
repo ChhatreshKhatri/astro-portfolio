@@ -25,9 +25,9 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
               <div class="relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:border-ck1/40 transition-all duration-300">
                 <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
                 
-                <div class={`flex flex-col lg:flex-row items-center gap-8 lg:gap-10 ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
+                <div class={`flex flex-col lg:flex-row items-center gap-8 lg:gap-10 ${index % 2 === 0 ? "lg:flex-row-reverse" : ""}`}>
                   <!-- Showcase Image Frame -->
-                  <aside class="w-full lg:w-[42%] flex justify-center items-center transition duration-500 ease-out delay-200 starting:opacity-0 starting:scale-[0.97]">
+                  <aside class="w-full lg:w-[42%] order-last lg:order-0 flex justify-center items-center transition duration-500 ease-out delay-200 starting:opacity-0 starting:scale-[0.97]">
                     <figure class="w-full h-full relative">
                       <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-60 md:h-72 lg:h-76 relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 shadow-md group/img cursor-pointer bg-gray-100 dark:bg-dark/80">
                         <img 
@@ -46,7 +46,7 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
                   </aside>
 
                   <!-- Showcase Content -->
-                  <article class="w-full lg:w-[58%] flex flex-col justify-between gap-5 py-1">
+                  <article class="w-full lg:w-[58%] order-first lg:order-0 flex flex-col justify-between gap-5 py-1">
                     <header class="flex flex-col gap-1.5">
                       <h2 id={`project-${index}`} class="flex w-fit text-2xl xs:text-3xl md:text-3xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
                         {project.heading}
