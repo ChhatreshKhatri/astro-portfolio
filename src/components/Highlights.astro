@@ -1,0 +1,37 @@
+---
+
+interface HighlightItem {
+  name: string;
+  icon?: string | null;
+  url?: string | null;
+}
+
+interface Props {
+  data: (string | HighlightItem)[];
+  ariaLabel?: string;
+  eagerLoad?: boolean;
+}
+
+const { 
+  data, 
+  ariaLabel = "Highlights",
+  eagerLoad = false
+} = Astro.props;
+---
+
+<ul class="flex flex-wrap items-center gap-2.5 md:gap-3" aria-label={ariaLabel}>
+  {data.map((item, index) => {
+    const name = typeof item === "string" ? item : item.name;
+    const icon = typeof item === "string" ? null : (item.icon || item.url);
+    const shouldEagerLoad = eagerLoad || index === 0;
+    
+    return (
+      <li title={name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-ck1/40 to-ck2/40 hover:from-ck1 hover:to-ck2 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer">
+        <div class="flex justify-center items-center py-1.5 px-3.5 gap-x-2 rounded-xl whitespace-nowrap bg-white dark:bg-darker hover:bg-opacity-95 transition-all duration-300">
+          {icon && <img title={name} src={icon} alt="" class="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:scale-110" loading={shouldEagerLoad ? "eager" : "lazy"} width="24" height="24" aria-hidden="true" />}
+          <span class="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100">{name}</span>
+        </div>
+      </li>
+    );
+  })}
+</ul>

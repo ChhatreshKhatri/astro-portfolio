@@ -1,93 +1,34 @@
 ---
 import RootLayout from "../layouts/RootLayout.astro";
-import LinkButton from "../components/LinkButton.astro";
 import Loading from "../components/Loading.astro";
 import { getProjectsData } from "../services/api";
 import SectionHeading from "../components/Heading.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 
 const data = await getProjectsData();
-const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay-500"];
+
+const itemListSchema = data ? {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": data.projects.map((project: any, index: number) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": project.heading,
+    "description": project.description,
+    "url": project.links?.[0]?.url || Astro.site?.origin || "https://www.chhatreshkhatri.com"
+  }))
+} : undefined;
 ---
 
-<RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects, discover their unique features and access relevant links for more information." keywords="" page="projects">
+<RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects, discover their unique features and access relevant links for more information." keywords="" schemaType="CollectionPage" additionalSchema={itemListSchema}>
   <SectionHeading>My Projects</SectionHeading>
   {
     data ? (
       <div class="w-full flex flex-col gap-10 md:gap-14">
         <!-- Projects List -->
         <div class="flex flex-col gap-12 md:gap-16">
-          {data.projects.map((project, index) => (
-            <section 
-              class={`w-full transition duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-500"}`}
-              aria-labelledby={`project-${index}`}
-              data-index={index}
-            >
-              <div class="relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:border-ck1/40 transition-all duration-300">
-                <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
-                
-                <div class={`flex flex-col lg:flex-row items-center gap-8 lg:gap-10 ${index % 2 === 0 ? "lg:flex-row-reverse" : ""}`}>
-                  <!-- Showcase Image Frame -->
-                  <aside class="w-full lg:w-[42%] order-last lg:order-0 flex justify-center items-center transition duration-500 ease-out delay-200 starting:opacity-0 starting:scale-[0.97]">
-                    <figure class="w-full h-full relative">
-                      <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-60 md:h-72 lg:h-76 relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 shadow-md group/img cursor-pointer bg-gray-100 dark:bg-dark/80">
-                        <img 
-                          title={project.heading} 
-                          src={project.image} 
-                          alt={project.heading} 
-                          class="w-full h-full object-cover object-top transition-all duration-3000 ease-in-out group-hover/img:object-bottom"
-                          loading={index === 0 ? "eager" : "lazy"}
-                          fetchpriority={index === 0 ? "high" : "auto"}
-                          width="1200"
-                          height="800"
-                        />
-                        <div class="absolute inset-0 bg-linear-to-t from-black/10 dark:from-black/20 via-transparent to-transparent pointer-events-none" />
-                      </div>
-                    </figure>
-                  </aside>
-
-                  <!-- Showcase Content -->
-                  <article class="w-full lg:w-[58%] order-first lg:order-0 flex flex-col justify-between gap-5 py-1">
-                    <header class="flex flex-col gap-1.5">
-                      <h2 id={`project-${index}`} class="flex w-fit text-2xl xs:text-3xl md:text-3xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
-                        {project.heading}
-                      </h2>
-                      <p class="text-base md:text-lg font-bold bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent w-fit tracking-wide transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
-                        {project.subHeading}
-                      </p>
-                    </header>
-
-                    <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">
-                      {project.description}
-                    </p>
-
-                    <div class="flex flex-col gap-4 pt-1 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5">
-                      <!-- Links placed above Technologies and tools -->
-                      <nav class="flex flex-wrap items-center gap-3" aria-label={`${project.heading} links`}>
-                        {project.links.map((link, linkIndex) => (
-                          <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={linkIndex % 2} loading={index === 0 ? "eager" : "lazy"} />
-                        ))}
-                      </nav>
-
-                      <div class="flex flex-col gap-2.5 pt-3 border-t border-black/5 dark:border-white/10">
-                        <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400">
-                          Technologies & Tools
-                        </span>
-                        <div class="flex flex-wrap items-center gap-2" role="list" aria-label={`${project.heading} technologies`}>
-                          {project.tags?.map((tag, tagIndex) => (
-                            <div title={tag.name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-hd1/40 to-hd2/40 hover:from-hd1 hover:to-hd2 skill-item transition-all duration-300 shadow-xs cursor-default" role="listitem" data-tag-index={tagIndex}>
-                              <div class="flex justify-center items-center py-1 px-2.5 gap-x-1.5 rounded-xl whitespace-nowrap bg-white dark:bg-darker hover:bg-opacity-95 transition-all duration-300">
-                                <img title={tag.name} src={tag.url} alt="" class="w-4 h-4 md:w-5 md:h-5" loading={index === 0 ? "eager" : "lazy"} width="20" height="20" aria-hidden="true" />
-                                <span class="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100">{tag.name}</span>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </section>
+          {data.projects.map((project: any, index: number) => (
+            <ProjectCard project={project} index={index} />
           ))}
         </div>
       </div>

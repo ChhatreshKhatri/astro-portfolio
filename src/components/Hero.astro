@@ -1,0 +1,118 @@
+---
+import LinkButton from "./LinkButton.astro";
+import Highlights from "./Highlights.astro";
+
+interface Props {
+  data: {
+    intro: string;
+    roles?: string[];
+    content: string;
+    links: { type: string; url: string; icon: string }[];
+    pic: string;
+    highlights?: any;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="hero-section relative group grid grid-cols-1 w-full xl:grid-cols-12 p-6 xs:p-8 md:p-10 gap-8 xl:gap-12 rounded-2xl bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-2xl transition duration-500 ease-out delay-100 starting:opacity-0 starting:translate-y-2.5 items-center hover:border-ck1/40"
+  aria-labelledby="hero-heading">
+  <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+
+  <div class="relative order-2 xl:order-1 xl:col-span-8 flex flex-col justify-center items-center xl:items-start text-center xl:text-left gap-4 md:gap-6 z-10">
+    <div class="w-full flex flex-col items-center xl:items-start gap-3 md:gap-4">
+      <h1
+        id="hero-heading"
+        class="hero-heading flex w-fit text-xl xxs:text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl xxl:text-5xl font-extrabold bg-linear-to-r from-ck1 to-ck2 bg-clip-text text-transparent leading-tight whitespace-nowrap transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
+        {data.intro}
+      </h1>
+
+      <div
+        id="autoTypeContainer"
+        data-roles={JSON.stringify(data.roles || ["Software Engineer", "Full Stack Developer", "Next.js Specialist"])}
+        class="hero-typewriter text-lg xxs:text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl xxl:text-4xl font-bold min-h-[1.5em] leading-relaxed transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
+        <span id="autoType" class="bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent">Software Engineer</span>
+        <span id="cursor" class="inline-block w-1 h-[1em] bg-linear-to-b from-sub1 to-sub2 align-middle animate-pulse ml-1" />
+      </div>
+
+      <p class="hero-description text-base xs:text-lg md:text-xl text-gray-700 dark:text-gray-300 text-justify leading-relaxed transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">{data.content}</p>
+
+      <div class="hero-links flex flex-wrap justify-center xl:justify-start items-center gap-3 pt-2 w-full transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5" aria-label="Social and portfolio links">
+        {data.links.map((link, index) => (
+          <div class="hero-link" data-index={index}>
+            <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={index % 2} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-image order-1 xl:order-2 xl:col-span-4 flex justify-center items-center transition duration-500 ease-out delay-200 starting:opacity-0 starting:scale-[0.95]">
+    <div class="relative w-full flex justify-center items-center group/img py-2 md:py-4">
+      <figure class="relative z-10 w-full h-full flex justify-center items-center">
+        <img
+          title="Chhatresh Khatri"
+          src={data.pic}
+          alt="Chhatresh Khatri"
+          class="w-full max-w-[260px] sm:max-w-[280px] md:max-w-[300px] xl:max-w-[260px] xxl:max-w-[290px] mx-auto rounded-2xl drop-shadow-2xl transition-transform duration-500 group-hover/img:scale-[1.03] object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="808"
+          height="1080"
+        />
+      </figure>
+    </div>
+  </div>
+
+  {data.highlights && (
+    <div class="order-3 xl:order-3 xl:col-span-12 w-full pt-4 md:pt-6 border-t border-black/5 dark:border-white/10 flex flex-col items-center justify-center gap-3 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5">
+      <Highlights data={data.highlights} ariaLabel="Core skills highlights" eagerLoad={true} />
+    </div>
+  )}
+</section>
+
+<script>
+  const autoTypeElement = document.querySelector("#autoType");
+  const container = document.querySelector("#autoTypeContainer") as HTMLElement | null;
+  let words = ["Software Engineer", "Full Stack Developer", "Next.js Specialist", ".NET Core Architect"];
+
+  if (container && container.dataset.roles) {
+    try {
+      words = JSON.parse(container.dataset.roles);
+    } catch (e) {
+      console.error("Error parsing roles", e);
+    }
+  }
+
+  let wordIndex = 0;
+  let charIndex = 0;
+
+  function typeChar() {
+    if (!autoTypeElement) return;
+    if (charIndex < words[wordIndex].length) {
+      autoTypeElement.textContent += words[wordIndex][charIndex++];
+      setTimeout(typeChar, 100);
+    } else {
+      setTimeout(deleteChar, 2000);
+    }
+  }
+
+  function deleteChar() {
+    if (!autoTypeElement) return;
+    if (charIndex > 0) {
+      autoTypeElement.textContent = words[wordIndex].substring(0, --charIndex);
+      setTimeout(deleteChar, 50);
+    } else {
+      wordIndex = (wordIndex + 1) % words.length;
+      setTimeout(typeChar, 120);
+    }
+  }
+
+  if (autoTypeElement) {
+    autoTypeElement.textContent = "";
+    setTimeout(typeChar, 500);
+  }
+</script>
