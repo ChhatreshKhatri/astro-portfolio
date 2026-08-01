@@ -68,7 +68,7 @@ const { data } = Astro.props;
   </div>
 
   {data.highlights && (
-    <div class="order-3 xl:order-3 xl:col-span-12 w-full pt-4 md:pt-6 border-t border-black/5 dark:border-white/10 flex flex-col items-center justify-center gap-3 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5">
+    <div class="order-3 xl:order-3 xl:col-span-12 w-full pt-4 md:pt-6 border-t border-black/5 dark:border-white/10 flex flex-col items-center justify-center gap-3 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5 [&>ul]:justify-center">
       <Highlights data={data.highlights} ariaLabel="Core skills highlights" eagerLoad={true} />
     </div>
   )}
