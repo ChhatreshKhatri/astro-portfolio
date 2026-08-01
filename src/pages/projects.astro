@@ -34,7 +34,7 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
                           title={project.heading} 
                           src={project.image} 
                           alt={project.heading} 
-                          class="w-full h-full object-cover object-top" 
+                          class="w-full h-full object-cover object-top transition-all duration-3000 ease-in-out group-hover/img:object-bottom"
                           loading={index === 0 ? "eager" : "lazy"}
                           fetchpriority={index === 0 ? "high" : "auto"}
                           width="1200"
