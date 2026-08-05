@@ -4,7 +4,7 @@ import type { APIContext } from "astro";
 export async function GET(context: APIContext) {
   return rss({
     title: "Chhatresh Khatri | Portfolio",
-    description: "Chhatresh Khatri Portfolio. Full stack Web Developer passionate about latest trends in the tech industry. Crafting innovation with code.",
+    description: "Chhatresh Khatri Portfolio. Software Engineer and Full Stack Developer passionate about latest trends in the tech industry. Crafting innovation with code.",
     site: context.site!,
     customData: `
 			<language>en</language>
@@ -15,7 +15,7 @@ export async function GET(context: APIContext) {
       {
         title: "Chhatresh Khatri | About",
         link: "/about",
-        description: "Chhatresh Khatri About. Full Stack developer skilled in diverse tech including C/C++, Java, HTML5, CSS3, JavaScript, React.js, Next.js, and more.",
+        description: "Chhatresh Khatri About. Software Engineer and Full Stack Developer skilled in diverse tech including C/C++, Java, HTML5, CSS3, JavaScript, React.js, Next.js, and more.",
         pubDate: new Date("2024-06-17T12:00:00+05:30"),
       },
       {
