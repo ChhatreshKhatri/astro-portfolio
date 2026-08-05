@@ -8,8 +8,9 @@ import ProjectCard from "../components/ProjectCard.astro";
 const data = await getProjectsData();
 
 const itemListSchema = data ? {
-  "@context": "https://schema.org",
   "@type": "ItemList",
+  "@id": `${Astro.site?.origin || "https://www.chhatreshkhatri.com"}/projects#itemlist`,
+  "numberOfItems": data.projects.length,
   "itemListElement": data.projects.map((project: any, index: number) => ({
     "@type": "ListItem",
     "position": index + 1,
