@@ -14,9 +14,12 @@ const itemListSchema = data ? {
   "itemListElement": data.projects.map((project: any, index: number) => ({
     "@type": "ListItem",
     "position": index + 1,
-    "name": project.heading,
-    "description": project.description,
-    "url": project.links?.[0]?.url || Astro.site?.origin || "https://www.chhatreshkhatri.com"
+    "item": {
+      "@type": "WebApplication",
+      "name": project.heading,
+      "description": project.description,
+      "url": project.links?.[0]?.url || Astro.site?.origin || "https://www.chhatreshkhatri.com"
+    }
   }))
 } : undefined;
 ---
