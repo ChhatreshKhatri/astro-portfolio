@@ -36,12 +36,16 @@ import SunIcon from "../assets/icons/SunIcon.astro";
       }
     }
 
-    // Set icons on load
-    document.addEventListener("DOMContentLoaded", () => {
+    // Setup theme button listener
+    document.addEventListener("astro:page-load", () => {
       setTheme(getTheme());
-      document.querySelector('button[aria-label^="Toggle theme"]')?.addEventListener("click", () => {
-        setTheme(getTheme() === "dark" ? "light" : "dark");
-      });
+      const themeBtn = document.querySelector('button[aria-label^="Toggle theme"]');
+      if (themeBtn) {
+        // Use onclick to avoid attaching multiple listeners if this runs multiple times
+        themeBtn.onclick = () => {
+          setTheme(getTheme() === "dark" ? "light" : "dark");
+        };
+      }
     });
 
     // Detect system preference change
