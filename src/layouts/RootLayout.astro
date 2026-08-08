@@ -109,12 +109,12 @@ const graphSchema = generateGraphSchema({
   </body>
 </html>
 <script>
-  const favicon = document.querySelector('link[rel="icon"]');
-  if (favicon) {
-    document.addEventListener("visibilitychange", () => {
+  document.addEventListener("visibilitychange", () => {
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (favicon) {
       favicon.setAttribute("href", 
         `https://cdn.chhatreshkhatri.com/icons/${document.hidden ? "icon-hidden.svg" : "favicon.ico"}`
       );
-    });
-  }
+    }
+  });
 </script>
