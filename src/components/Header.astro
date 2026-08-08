@@ -39,60 +39,62 @@ import NavLinks from "./NavLinks.astro";
 </header>
 
 <script>
-  let navOpen = false;
+  document.addEventListener("astro:page-load", () => {
+    let navOpen = false;
 
-  // Cache DOM elements
-  const topBar = document.getElementById("topBar");
-  const middleBar = document.getElementById("middleBar");
-  const bottomBar = document.getElementById("bottomBar");
-  const navIcons = document.getElementById("navIcons");
-  const navBar = document.getElementById("navBar");
-  const navLinks = document.getElementById("navLinks");
-  const menuButton = document.getElementById("menuButton");
+    // Cache DOM elements
+    const topBar = document.getElementById("topBar");
+    const middleBar = document.getElementById("middleBar");
+    const bottomBar = document.getElementById("bottomBar");
+    const navIcons = document.getElementById("navIcons");
+    const navBar = document.getElementById("navBar");
+    const navLinks = document.getElementById("navLinks");
+    const menuButton = document.getElementById("menuButton");
 
-  // Helper function to toggle classes
-  const toggleClasses = (element: HTMLElement | null, addClasses: string[], removeClasses: string[]) => {
-    if (element) {
-      element.classList.remove(...removeClasses);
-      element.classList.add(...addClasses);
-    }
-  };
+    // Helper function to toggle classes
+    const toggleClasses = (element: HTMLElement | null, addClasses: string[], removeClasses: string[]) => {
+      if (element) {
+        element.classList.remove(...removeClasses);
+        element.classList.add(...addClasses);
+      }
+    };
 
-  // Apply navbar styling based on scroll position
-  const updateNavbarStyle = () => {
-    if (window.scrollY > 0 || navOpen) {
-      toggleClasses(navBar, ["bg-white/75", "dark:bg-darker/80", "shadow-bottom", "backdrop-blur-md"], []);
-      if (window.scrollY > 0) toggleClasses(navBar, ["py-1.5"], ["py-2"]);
-    } else {
-      toggleClasses(navBar, ["py-2"], ["bg-white/75", "dark:bg-darker/80", "shadow-bottom", "py-1.5"]);
-    }
-  };
+    // Apply navbar styling based on scroll position
+    const updateNavbarStyle = () => {
+      if (window.scrollY > 0 || navOpen) {
+        toggleClasses(navBar, ["bg-white/75", "dark:bg-darker/80", "shadow-bottom", "backdrop-blur-md"], []);
+        if (window.scrollY > 0) toggleClasses(navBar, ["py-1.5"], ["py-2"]);
+      } else {
+        toggleClasses(navBar, ["py-2"], ["bg-white/75", "dark:bg-darker/80", "shadow-bottom", "py-1.5"]);
+      }
+    };
 
-  // Check scroll position on page load
-  updateNavbarStyle();
-
-  function toggleNav() {
-    navOpen = !navOpen;
-
-    if (navOpen) {
-      toggleClasses(topBar, ["rotate-45", "translate-y-1"], ["-translate-y-1"]);
-      toggleClasses(middleBar, ["opacity-0"], ["opacity-100"]);
-      toggleClasses(bottomBar, ["-rotate-45", "-translate-y-1"], ["translate-y-1"]);
-      toggleClasses(navLinks, ["flex"], ["hidden"]);
-      toggleClasses(navIcons, ["flex"], ["hidden"]);
-      menuButton?.setAttribute("aria-expanded", "true");
-    } else {
-      toggleClasses(topBar, ["-translate-y-1"], ["rotate-45", "translate-y-1"]);
-      toggleClasses(middleBar, ["opacity-100"], ["opacity-0"]);
-      toggleClasses(bottomBar, ["translate-y-1"], ["-rotate-45", "-translate-y-1"]);
-      toggleClasses(navLinks, ["hidden"], ["flex"]);
-      toggleClasses(navIcons, ["hidden"], ["flex"]);
-      menuButton?.setAttribute("aria-expanded", "false");
-    }
+    // Check scroll position on page load
     updateNavbarStyle();
-  }
 
-  window.addEventListener("scroll", updateNavbarStyle, { passive: true });
+    function toggleNav() {
+      navOpen = !navOpen;
 
-  menuButton?.addEventListener("click", toggleNav);
+      if (navOpen) {
+        toggleClasses(topBar, ["rotate-45", "translate-y-1"], ["-translate-y-1"]);
+        toggleClasses(middleBar, ["opacity-0"], ["opacity-100"]);
+        toggleClasses(bottomBar, ["-rotate-45", "-translate-y-1"], ["translate-y-1"]);
+        toggleClasses(navLinks, ["flex"], ["hidden"]);
+        toggleClasses(navIcons, ["flex"], ["hidden"]);
+        menuButton?.setAttribute("aria-expanded", "true");
+      } else {
+        toggleClasses(topBar, ["-translate-y-1"], ["rotate-45", "translate-y-1"]);
+        toggleClasses(middleBar, ["opacity-100"], ["opacity-0"]);
+        toggleClasses(bottomBar, ["translate-y-1"], ["-rotate-45", "-translate-y-1"]);
+        toggleClasses(navLinks, ["hidden"], ["flex"]);
+        toggleClasses(navIcons, ["hidden"], ["flex"]);
+        menuButton?.setAttribute("aria-expanded", "false");
+      }
+      updateNavbarStyle();
+    }
+
+    window.addEventListener("scroll", updateNavbarStyle, { passive: true });
+
+    menuButton?.addEventListener("click", toggleNav);
+  });
 </script>
