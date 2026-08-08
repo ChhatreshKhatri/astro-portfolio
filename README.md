@@ -12,7 +12,7 @@ This project was built using
 
 - Astro
 - Tailwind CSS
-- VS Code
+- Antigravity
 - TypeScript
 - Cloudflare
 
