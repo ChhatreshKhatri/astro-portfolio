@@ -7,8 +7,8 @@ interface Props {
 const { as: Tag = "h1", class: classProp }: Props = Astro.props;
 ---
     
-<div class={`flex items-center justify-center rounded p-0.5 bg-linear-to-r from-bd1 to-bd2 w-max mx-auto transition duration-400 ease-out starting:opacity-0 starting:-translate-y-2.5 ${classProp ?? ""}`}>
-  <Tag class="flex justify-center items-center font-extrabold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1 px-2 bg-white/90 dark:bg-darked rounded">
+<div class={`flex items-center justify-center rounded-xl p-0.5 bg-linear-to-r from-ck1/40 via-purple-500/20 to-ck2/40 shadow-lg w-max mx-auto transition duration-400 ease-out starting:opacity-0 starting:-translate-y-2.5 ${classProp ?? ""}`}>
+  <Tag class="flex justify-center items-center font-extrabold tracking-wider text-xl xxs:text-2xl md:text-3xl p-1.5 px-4 bg-white dark:bg-darked rounded-[10px] text-gray-900 dark:text-white">
     <slot />
   </Tag>
 </div>
