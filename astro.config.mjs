@@ -7,6 +7,7 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   output: "server",
   site: "https://www.chhatreshkhatri.com",
+  trailingSlash: "never",
   integrations: [sitemap({ lastmod: new Date() })],
   adapter: cloudflare({
     platformProxy: {
