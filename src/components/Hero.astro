@@ -33,7 +33,7 @@ const { data } = Astro.props;
         id="autoTypeContainer"
         data-roles={JSON.stringify(data.roles || ["Software Engineer", "Full Stack Developer", "Next.js Specialist"])}
         class="hero-typewriter text-lg xxs:text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl xxl:text-4xl font-bold min-h-[1.5em] leading-relaxed transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
-        <span id="autoType" class="bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent">Software Engineer</span>
+        <span id="autoType" class="bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent"></span>
         <span id="cursor" class="inline-block w-1 h-[1em] bg-linear-to-b from-sub1 to-sub2 align-middle animate-pulse ml-1" />
       </div>
 
@@ -75,44 +75,39 @@ const { data } = Astro.props;
 </section>
 
 <script>
-  const autoTypeElement = document.querySelector("#autoType");
-  const container = document.querySelector("#autoTypeContainer") as HTMLElement | null;
-  let words = ["Software Engineer", "Full Stack Developer", "Next.js Specialist", ".NET Core Architect"];
+  document.addEventListener("astro:page-load", () => {
+    const autoType = document.querySelector("#autoType");
+    const container = document.querySelector("#autoTypeContainer") as HTMLElement | null;
+    if (!autoType || !container) return;
 
-  if (container && container.dataset.roles) {
-    try {
-      words = JSON.parse(container.dataset.roles);
-    } catch (e) {
-      console.error("Error parsing roles", e);
+    const words: string[] = JSON.parse(container.dataset.roles || "[]");
+    if (!words.length) return;
+
+    let wordIndex = 0;
+    let charIndex = 0;
+
+    function typeChar() {
+      if (!autoType || !autoType.isConnected) return;
+      if (charIndex < words[wordIndex].length) {
+        autoType.textContent += words[wordIndex][charIndex++];
+        setTimeout(typeChar, 100);
+      } else {
+        setTimeout(deleteChar, 2000);
+      }
     }
-  }
 
-  let wordIndex = 0;
-  let charIndex = 0;
-
-  function typeChar() {
-    if (!autoTypeElement) return;
-    if (charIndex < words[wordIndex].length) {
-      autoTypeElement.textContent += words[wordIndex][charIndex++];
-      setTimeout(typeChar, 100);
-    } else {
-      setTimeout(deleteChar, 2000);
+    function deleteChar() {
+      if (!autoType || !autoType.isConnected) return;
+      if (charIndex > 0) {
+        autoType.textContent = words[wordIndex].substring(0, --charIndex);
+        setTimeout(deleteChar, 50);
+      } else {
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(typeChar, 120);
+      }
     }
-  }
 
-  function deleteChar() {
-    if (!autoTypeElement) return;
-    if (charIndex > 0) {
-      autoTypeElement.textContent = words[wordIndex].substring(0, --charIndex);
-      setTimeout(deleteChar, 50);
-    } else {
-      wordIndex = (wordIndex + 1) % words.length;
-      setTimeout(typeChar, 120);
-    }
-  }
-
-  if (autoTypeElement) {
-    autoTypeElement.textContent = "";
+    autoType.textContent = "";
     setTimeout(typeChar, 500);
-  }
+  });
 </script>
