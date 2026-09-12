@@ -4,6 +4,7 @@
   "compatibility_flags": ["global_fetch_strictly_public"],
   "name": "astro-portfolio",
   "main": "@astrojs/cloudflare/entrypoints/server",
+  "workers_dev": false,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS"
