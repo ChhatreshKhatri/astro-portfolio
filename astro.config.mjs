@@ -1,3 +1,4 @@
+// @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
@@ -10,9 +11,7 @@ export default defineConfig({
   trailingSlash: "never",
   integrations: [sitemap({ lastmod: new Date() })],
   adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
+    imageService: "cloudflare",
   }),
   security: {
     checkOrigin: true,
@@ -25,7 +24,6 @@ export default defineConfig({
         hostname: "**.chhatreshkhatri.com",
       },
     ],
-    format: ["webp"],
   },
   vite: {
     plugins: [tailwindcss()],
