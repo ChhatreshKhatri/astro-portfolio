@@ -31,9 +31,9 @@ const { data } = Astro.props;
 
       <div
         id="autoTypeContainer"
-        data-roles={JSON.stringify(data.roles || ["Software Engineer", "Full Stack Developer", "Next.js Specialist"])}
+        data-roles={JSON.stringify(data.roles || ["Software Engineer"])}
         class="hero-typewriter text-lg xxs:text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl xxl:text-4xl font-bold min-h-[1.5em] leading-relaxed transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
-        <span id="autoType" class="bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent"></span>
+        <span id="autoType" class="bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent">Software Engineer</span>
         <span id="cursor" class="inline-block w-1 h-[1em] bg-linear-to-b from-sub1 to-sub2 align-middle animate-pulse ml-1" />
       </div>
 
@@ -84,7 +84,7 @@ const { data } = Astro.props;
     if (!words.length) return;
 
     let wordIndex = 0;
-    let charIndex = 0;
+    let charIndex = words[0].length;
 
     function typeChar() {
       if (!autoType || !autoType.isConnected) return;
@@ -92,7 +92,7 @@ const { data } = Astro.props;
         autoType.textContent += words[wordIndex][charIndex++];
         setTimeout(typeChar, 100);
       } else {
-        setTimeout(deleteChar, 2000);
+        setTimeout(deleteChar, 1000);
       }
     }
 
@@ -107,7 +107,6 @@ const { data } = Astro.props;
       }
     }
 
-    autoType.textContent = "";
-    setTimeout(typeChar, 500);
+    setTimeout(deleteChar, 500);
   });
 </script>
