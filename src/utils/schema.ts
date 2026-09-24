@@ -62,6 +62,7 @@ export const getPageSchema = (options: {
     "isPartOf": {
       "@id": `${siteUrl}/#website`
     },
+    "primaryImageOfPage": "https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.webp",
     "about": schemaType === "ProfilePage" ? {
       "@id": `${siteUrl}/#person`
     } : undefined,

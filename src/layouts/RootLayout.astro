@@ -57,6 +57,7 @@ const graphSchema = generateGraphSchema({
     <link rel="mask-icon" type="image/svg+xml" href="https://cdn.chhatreshkhatri.com/icons/icon.svg" color="#191919" />
     <link rel="manifest" href="/app.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" type="application/xml" title="Image Sitemap" href="/sitemap-images.xml" />
     <link rel="alternate" type="application/rss+xml" title={title + " RSS Feed"} href="/rss.xml" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#191919" />
@@ -85,7 +86,7 @@ const graphSchema = generateGraphSchema({
       </>
     ) : (
       <>
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href={canonicalURL} />
       </>
     )}

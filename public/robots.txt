@@ -3,3 +3,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.chhatreshkhatri.com/sitemap-index.xml
+Sitemap: https://www.chhatreshkhatri.com/sitemap-images.xml
