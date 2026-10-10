@@ -79,14 +79,6 @@ const graphSchema = generateGraphSchema({
       </>
     )}
     
-    <!-- Early Resource Hints for Performance -->
-    <link rel="preconnect" href="https://cdn.chhatreshkhatri.com" crossorigin />
-    <link rel="dns-prefetch" href="https://visits.chhatreshkhatri.com" />
-    <link rel="preload" as="image" type="image/svg+xml" href="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg" />
-    {cleanPath === '/' && (
-      <link rel="preload" as="image" type="image/webp" href="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.webp" fetchpriority="high" />
-    )}
-    
     <!-- Font Preloading - Only preload regular weight for LCP -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/Poppins.woff2" crossorigin="anonymous" />
     

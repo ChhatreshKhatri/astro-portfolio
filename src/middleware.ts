@@ -9,7 +9,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' https://cdn.chhatreshkhatri.com https://visits.chhatreshkhatri.com https://images.credly.com data: blob:",
+    "img-src 'self' https://cdn.chhatreshkhatri.com https://visits.chhatreshkhatri.com data: blob:",
     "font-src 'self' data:",
     "connect-src 'self' https://cdn.chhatreshkhatri.com https://cloudflareinsights.com",
     "frame-ancestors 'none'",
