@@ -6,25 +6,9 @@ import SectionHeading from "../components/Heading.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
 const data = await getProjectsData();
-
-const itemListSchema = data ? {
-  "@type": "ItemList",
-  "@id": `${Astro.site?.origin || "https://www.chhatreshkhatri.com"}/projects#itemlist`,
-  "numberOfItems": data.projects.length,
-  "itemListElement": data.projects.map((project: any, index: number) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "item": {
-      "@type": "WebApplication",
-      "name": project.heading,
-      "description": project.description,
-      "url": project.links?.[0]?.url || Astro.site?.origin || "https://www.chhatreshkhatri.com"
-    }
-  }))
-} : undefined;
 ---
 
-<RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects, discover their unique features and access relevant links for more information." keywords="" schemaType="CollectionPage" additionalSchema={itemListSchema}>
+<RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects, discover their unique features and access relevant links for more information." keywords="">
   <SectionHeading>My Projects</SectionHeading>
   {
     data ? (

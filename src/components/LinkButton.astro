@@ -1,11 +1,5 @@
 ---
-interface Props {
-  name: string;
-  link: string;
-  imageUrl: string;
-  pos: number;
-  loading?: "eager" | "lazy";
-}
+import type { LinkButtonProps as Props } from "../types";
 
 const { name, link, imageUrl, pos, loading = "eager" } = Astro.props;
 ---

@@ -1,9 +1,5 @@
 ---
-interface Props {
-  page: string;
-  link: string;
-  ID: string;
-}
+import type { NavLinksProps as Props } from "../types";
 
 const { page, link, ID } = Astro.props;
 const currentPath = Astro.url.pathname;

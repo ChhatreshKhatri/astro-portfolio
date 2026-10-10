@@ -1,18 +1,7 @@
 ---
 import LinkButton from "./LinkButton.astro";
 import Highlights from "./Highlights.astro";
-
-interface Props {
-  project: {
-    heading: string;
-    subHeading: string;
-    description: string;
-    image: string;
-    links: { type: string; url: string; icon: string }[];
-    tags?: any;
-  };
-  index: number;
-}
+import type { ProjectCardProps as Props } from "../types";
 
 const { project, index } = Astro.props;
 const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay-500"];

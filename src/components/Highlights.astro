@@ -1,16 +1,5 @@
 ---
-
-interface HighlightItem {
-  name: string;
-  icon?: string | null;
-  url?: string | null;
-}
-
-interface Props {
-  data: (string | HighlightItem)[];
-  ariaLabel?: string;
-  eagerLoad?: boolean;
-}
+import type { HighlightsProps as Props } from "../types";
 
 const { 
   data, 

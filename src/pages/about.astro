@@ -1,8 +1,10 @@
 ---
 import RootLayout from "../layouts/RootLayout.astro";
 import Loading from "../components/Loading.astro";
-import { getAboutData, type ExperienceProject } from "../services/api";
 import SectionHeading from "../components/Heading.astro";
+import { getAboutData } from "../services/api";
+import type { ExperienceProject } from "../types";
+
 
 const data = await getAboutData();
 const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay-500"];
@@ -36,40 +38,32 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
                 <article class={`relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-200"}`}>
                   <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
                   
-                  <header class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 dark:border-white/10 pb-4 mb-6 gap-2">
+                  <header class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 dark:border-white/10 pb-4 mb-6 gap-3">
                     <div>
                       <h3 class="text-xl md:text-2xl font-bold mt-1 w-fit" style={exp.color ? `color: ${exp.color};` : undefined}>
                         {exp.company}
                       </h3>
-                      <div class="flex items-center gap-3 flex-wrap">
-                        <h4 class="text-lg md:text-xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent w-fit">{exp.role}</h4>
+                      <div class="flex items-center gap-2.5 flex-wrap mt-1">
+                        <h4 class="text-lg md:text-xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent w-fit">
+                          {exp.role}
+                        </h4>
                         {exp.badge && (
-                          <span class="px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-linear-to-r from-emerald-600 to-teal-500 text-white shadow-xs">
+                          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-linear-to-r from-ck1/15 to-ck2/15 text-ck1 dark:text-ck2 border border-ck1/25 dark:border-ck1/35 shadow-xs">
                             {exp.badge}
                           </span>
                         )}
                       </div>
                     </div>
-                    <div class="flex flex-col md:items-end gap-1 text-sm md:text-base text-gray-700 dark:text-gray-300 font-medium">
-                      <span class="flex w-fit items-center gap-1.5 px-3 py-1 rounded-full bg-linear-to-r from-ck1/10 to-ck2/10 border border-ck1/20 dark:border-ck1/30 font-semibold text-ck1 dark:text-ck2">
-                        🗓️ {exp.period}
+                    <div class="flex flex-col sm:items-end gap-1.5 text-sm md:text-base font-medium">
+                      <span class="flex w-fit items-center px-3.5 py-1 rounded-full bg-linear-to-r from-ck1/10 to-ck2/10 border border-ck1/20 dark:border-ck1/30 font-semibold text-ck1 dark:text-ck2 shadow-xs">
+                        {exp.period}
                       </span>
-                      {exp.location && <span>📍 {exp.location}</span>}
+                      {exp.location && <span class="text-xs md:text-sm text-gray-500 dark:text-gray-400">📍 {exp.location}</span>}
                     </div>
                   </header>
 
-                  {exp.details && (
-                    <ul class="space-y-3 text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed list-disc list-inside marker:text-ck2">
-                      {exp.details.map((detail: string) => (
-                        <li class="pl-1">
-                          <span class="text-gray-700 dark:text-gray-300">{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
                   {exp.projects && (
-                    <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                    <div class="grid gap-4 lg:grid-cols-2">
                       {exp.projects.map((proj: ExperienceProject, index: number, projects: ExperienceProject[]) => {
                         const isLastOdd = projects.length % 2 === 1 && index === projects.length - 1;
 
@@ -113,28 +107,69 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
         {data.achievements && data.achievements.length > 0 && (
           <section class="w-full flex flex-col gap-6 transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
             <SectionHeading as="h2" class="delay-300 starting:scale-[0.98]">Achievements & Awards</SectionHeading>
-            <div class="grid grid-cols-1 gap-6">
-              {data.achievements.map((ach, index) => (
-                <article class={`relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-300"} flex flex-col md:flex-row items-start md:items-center gap-6`}>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {data.achievements.map((ach, index, achievements) => {
+                const isLastOdd = achievements.length % 2 === 1 && index === achievements.length - 1;
+
+                return (
+                  <article class={`relative group rounded-2xl p-6 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-300"} flex flex-col h-full ${isLastOdd ? "md:col-span-2" : ""}`}>
                   <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
                   
-                  <div class="self-center shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-linear-to-tr from-ck1/15 via-purple-500/15 to-ck2/15 border border-ck1/20 dark:border-ck1/30 flex items-center justify-center text-3xl shadow-md group-hover:scale-110 transition-transform duration-300">
-                    🏆
-                  </div>
+                  <div class="flex items-start gap-4 h-full">
+                    {ach.icon && (
+                      <div class="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-linear-to-tr from-ck1/15 via-purple-500/15 to-ck2/15 border border-ck1/20 dark:border-ck1/30 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                        <img 
+                          src={ach.icon} 
+                          alt={`${ach.title} icon`} 
+                          class="w-7 h-7 md:w-8 md:h-8 object-contain drop-shadow" 
+                          loading="lazy"
+                          width="36"
+                          height="36"
+                        />
+                      </div>
+                    )}
 
-                  <div class="flex flex-col gap-1 w-full">
-                    <h3 class="text-xl md:text-2xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent w-fit">
-                      {ach.title}
-                    </h3>
-                    <h4 class="text-base md:text-lg font-bold bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent w-fit">
-                      {ach.award || ach.issuer}
-                    </h4>
-                    <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 mt-2 leading-relaxed">
-                      {ach.description}
-                    </p>
+                    <div class="flex flex-col justify-between gap-3 min-w-0 flex-1 h-full">
+                      <div class="flex flex-col gap-1">
+                        <h3 class="text-base md:text-lg lg:text-xl font-extrabold leading-snug bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent">
+                          {ach.title}
+                        </h3>
+                        {ach.description && (
+                          <h4 class="text-xs md:text-sm lg:text-base font-bold bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent">
+                            {ach.description}
+                          </h4>
+                        )}
+                      </div>
+
+                      {ach.url && (
+                        <div class="pt-3 border-t border-black/10 dark:border-white/10">
+                          <a
+                            href={ach.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${ach.linkText} for ${ach.title} (opens in new tab)`}
+                            class="inline-flex items-center gap-1.5 px-3.5 py-1 text-xs md:text-sm font-semibold rounded-full bg-linear-to-r from-ck1/15 to-ck2/15 hover:from-ck1/25 hover:to-ck2/25 text-ck1 dark:text-ck2 border border-ck1/25 dark:border-ck1/35 hover:scale-105 transition-all duration-300 shadow-xs cursor-pointer group/btn"
+                          >
+                            <span>{ach.linkText}</span>
+                            {ach.linkIcon && (
+                              <img 
+                                src={ach.linkIcon} 
+                                alt="" 
+                                class="w-3.5 h-3.5 md:w-4 md:h-4 object-contain transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" 
+                                loading="lazy"
+                                width="16"
+                                height="16"
+                                aria-hidden="true"
+                              />
+                            )}
+                          </a>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
           </section>
         )}

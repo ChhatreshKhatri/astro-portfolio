@@ -1,17 +1,7 @@
 ---
 import LinkButton from "./LinkButton.astro";
 import Highlights from "./Highlights.astro";
-
-interface Props {
-  data: {
-    intro: string;
-    roles?: string[];
-    content: string;
-    links: { type: string; url: string; icon: string }[];
-    pic: string;
-    highlights?: any;
-  };
-}
+import type { HeroProps as Props } from "../types";
 
 const { data } = Astro.props;
 ---

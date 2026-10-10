@@ -4,22 +4,14 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from 'astro:transitions';
 
-interface Props {
-  title?: string;
-  description?: string;
-  keywords?: string;
-  ogType?: string;
-  schemaType?: string;
-  additionalSchema?: any;
-}
+import type { RootLayoutProps as Props } from "../types";
 
 const { 
   title = "Chhatresh Khatri | Portfolio", 
   description = "Software Engineer and Full Stack Developer building modern web applications.", 
   keywords = "", 
   ogType = "website",
-  schemaType = "WebPage",
-  additionalSchema
+  schemaType = "WebPage"
 } = Astro.props;
 
 // Fallback to production URL if Astro.site isn't configured
@@ -35,10 +27,7 @@ import { generateGraphSchema } from "../utils/schema";
 const graphSchema = generateGraphSchema({
   schemaType,
   canonicalURL,
-  siteUrl,
-  title,
-  description,
-  additionalSchema
+  siteUrl
 });
 ---
 
@@ -57,7 +46,6 @@ const graphSchema = generateGraphSchema({
     <link rel="mask-icon" type="image/svg+xml" href="https://cdn.chhatreshkhatri.com/icons/icon.svg" color="#191919" />
     <link rel="manifest" href="/app.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="sitemap" type="application/xml" title="Image Sitemap" href="/sitemap-images.xml" />
     <link rel="alternate" type="application/rss+xml" title={title + " RSS Feed"} href="/rss.xml" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#191919" />
@@ -95,6 +83,9 @@ const graphSchema = generateGraphSchema({
     <link rel="preconnect" href="https://cdn.chhatreshkhatri.com" crossorigin />
     <link rel="dns-prefetch" href="https://visits.chhatreshkhatri.com" />
     <link rel="preload" as="image" type="image/svg+xml" href="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.svg" />
+    {cleanPath === '/' && (
+      <link rel="preload" as="image" type="image/webp" href="https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.webp" fetchpriority="high" />
+    )}
     
     <!-- Font Preloading - Only preload regular weight for LCP -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/Poppins.woff2" crossorigin="anonymous" />

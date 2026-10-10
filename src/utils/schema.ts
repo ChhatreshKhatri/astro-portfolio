@@ -1,12 +1,10 @@
+import type { GraphSchemaOptions } from "../types";
+
 export const getPersonSchema = (siteUrl: string) => ({
   "@type": "Person",
-  "@id": `${siteUrl}/#person`,
   "name": "Chhatresh Khatri",
-  "givenName": "Chhatresh",
-  "familyName": "Khatri",
   "url": siteUrl,
   "image": "https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.webp",
-  "email": "ck@chhatreshkhatri.com",
   "jobTitle": "Software Engineer",
   "worksFor": {
     "@type": "Organization",
@@ -18,7 +16,20 @@ export const getPersonSchema = (siteUrl: string) => ({
     "JavaScript", "TypeScript", "React", "Next.js", "Astro", "Node.js",
     "Express.js", "HTML", "CSS", "Tailwind CSS", "MongoDB", "MySQL",
     "Firebase", "Git", "C", "C++", "Java", "Linux",
-    "Full Stack Development", "Web Development", "Software Engineering"
+    "Full Stack Development", "Web Development", "Software Engineering",
+    "AWS", "Artificial Intelligence", "Machine Learning", "Generative AI"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "AWS Certified AI Practitioner",
+      "credentialCategory": "Certification",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Amazon Web Services Training and Certification"
+      },
+      "url": "https://www.credly.com/badges/fbdb1e51-753b-4e35-ac6a-c2898e868ff8"
+    }
   ],
   "sameAs": [
     "https://github.com/ChhatreshKhatri",
@@ -29,69 +40,33 @@ export const getPersonSchema = (siteUrl: string) => ({
     "https://www.youtube.com/@chhatreshkhatri",
     "https://leetcode.com/u/chhatreshkhatri/",
     "https://www.geeksforgeeks.org/profile/chhatreshkhatri",
+    "https://www.credly.com/badges/fbdb1e51-753b-4e35-ac6a-c2898e868ff8"
   ]
 });
 
 export const getWebsiteSchema = (siteUrl: string) => ({
   "@type": "WebSite",
-  "@id": `${siteUrl}/#website`,
+  "name": "Chhatresh Khatri",
   "url": siteUrl,
-  "name": "Chhatresh Khatri Portfolio",
-  "description": "Portfolio website of Chhatresh Khatri — Software Engineer and Full Stack Developer.",
-  "publisher": {
-    "@id": `${siteUrl}/#person`
-  },
   "inLanguage": "en"
 });
 
-export const getPageSchema = (options: {
-  schemaType: string;
-  canonicalURL: string;
-  siteUrl: string;
-  title: string;
-  description: string;
-}) => {
-  const { schemaType, canonicalURL, siteUrl, title, description } = options;
-  
-  return {
-    "@type": schemaType,
-    "@id": `${canonicalURL}#webpage`,
-    "url": canonicalURL,
-    "name": title,
-    "description": description,
-    "isPartOf": {
-      "@id": `${siteUrl}/#website`
-    },
-    "primaryImageOfPage": "https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.webp",
-    "about": schemaType === "ProfilePage" ? {
-      "@id": `${siteUrl}/#person`
-    } : undefined,
-    "mainEntity": schemaType === "CollectionPage" ? {
-      "@id": `${canonicalURL}#itemlist`
-    } : schemaType === "ProfilePage" ? getPersonSchema(siteUrl) : undefined
-  };
-};
+export const generateGraphSchema = (options: GraphSchemaOptions) => {
+  const { siteUrl, canonicalURL, schemaType } = options;
+  const person = getPersonSchema(siteUrl);
+  const website = getWebsiteSchema(siteUrl);
 
-export const generateGraphSchema = (options: {
-  schemaType: string;
-  canonicalURL: string;
-  siteUrl: string;
-  title: string;
-  description: string;
-  additionalSchema?: any;
-}) => {
-  const personSchema = getPersonSchema(options.siteUrl);
-  const websiteSchema = getWebsiteSchema(options.siteUrl);
-  const pageSchema = getPageSchema(options);
+  const graph: any[] = [website];
 
-  const graph: any[] = [websiteSchema, pageSchema];
-  
-  if (options.schemaType !== "ProfilePage") {
-    graph.unshift(personSchema);
-  }
-
-  if (options.additionalSchema) {
-    graph.push(options.additionalSchema);
+  if (schemaType === "ProfilePage") {
+    graph.push({
+      "@type": "ProfilePage",
+      "name": "Chhatresh Khatri | About",
+      "url": canonicalURL,
+      "mainEntity": person
+    });
+  } else {
+    graph.push(person);
   }
 
   return {

@@ -1,8 +1,5 @@
 ---
-interface Props {
-  as?: "h1" | "h2" | "div";
-  class?: string;
-}
+import type { HeadingProps as Props } from "../types";
 
 const { as: Tag = "h1", class: classProp }: Props = Astro.props;
 ---
