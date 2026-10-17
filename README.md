@@ -1,136 +1,129 @@
-# Portfolio Website <a href="https://www.chhatreshkhatri.com/" target="_blank">Chhatresh Khatri | Portfolio</a>
+# Portfolio Website — [Chhatresh Khatri](https://www.chhatreshkhatri.com/)
 
 This portfolio website, meticulously crafted using Astro, Tailwind CSS, and TypeScript, embodies a fusion of modern design and robust functionality.
 
-Consistency is ensured across the site with a well-structured navigation menu, subtle animations, and optional dark mode. The website's SEO optimization, performance enhancements, and analytics integration make it a potent tool for showcasing the skills.
+Consistency is ensured across the site with a well-structured navigation menu, subtle micro-animations, and dynamic dark/light mode. The website's SEO optimization, performance enhancements, and analytics integration make it a potent tool for showcasing skills, projects, and achievements.
 
-<br/>
+## 🛠️ Built With
 
-# Built With
+- **[Astro](https://astro.build/)** — High-performance web framework for content-driven websites
+- **[Tailwind CSS](https://tailwindcss.com/)** — Modern utility-first CSS framework (v4)
+- **[TypeScript](https://www.typescriptlang.org/)** — Strict, type-safe development
+- **[Cloudflare Workers](https://workers.cloudflare.com/)** — Edge deployment & SSR adapter
+- **[Wrangler](https://developers.cloudflare.com/workers/wrangler/)** — Cloudflare developer CLI
 
-This project was built using
+## ✨ Features
 
-- Astro
-- Tailwind CSS
-- Antigravity
-- TypeScript
-- Cloudflare
+- 📖 **Multi-Page Layout** — Fast, structured navigation across Home, About, Projects, and Privacy Policy.
+- 🎨 **Modern Design & Styling** — Custom Tailwind CSS theme with rich gradient tokens and fluid typography.
+- 🌓 **Dark & Light Mode** — Seamless theme toggle with persistent user preference and smooth transitions.
+- 📱 **Fully Responsive** — Mobile-first, adaptive layouts optimized for mobile, tablet, and desktop screens.
+- ⚡ **Edge SSR & Caching** — Server-side rendered on Cloudflare Workers edge runtime with smart `cf` caching.
+- 🎯 **SEO & Social Ready** — Dynamic Open Graph and Twitter Card tags, Schema.org JSON-LD structured data, RSS feed, and automated XML sitemap generation.
+- ♿ **Accessible & Semantic** — Built using semantic HTML5, descriptive ARIA attributes, and accessible keyboard navigation.
 
-<br/>
-
-# Features
-
-**📖 Multi-Page Layout**
-
-**🎨 Styled with TailwindCSS easy to customize theme**
-
-**📱 Fully Responsive**
-
-<br/>
-
-# API
+## 🔌 API
 
 This portfolio uses a dedicated API for content and data:
 
-- Repository: https://github.com/ChhatreshKhatri/portfolio-api
+- **Repository**: [portfolio-api](https://github.com/ChhatreshKhatri/portfolio-api)
 - Base URL is configured via `PUBLIC_API_URL` (see Environment Variables below).
 - Endpoints used by this site:
-  - `/home`
-  - `/about`
-  - `/projects`
+  - `/home` — Intro, roles, statistics, highlights, and social links
+  - `/about` — Biography, work experience, achievements, education, and tech stack
+  - `/projects` — Featured projects, descriptions, tags, and demo/repo links
 
-If you are running the API locally, make sure it is available before starting the Astro dev server.
+If running the API locally, make sure it is active before starting the Astro development server.
 
-<br/>
+## 🔐 Environment Variables
 
-# Environment Variables
+Create a `.env` file at the project root (you can copy `.env.example`):
 
-Create a `.env` file at the project root and set:
+```bash
+cp .env.example .env
+```
 
-- `PUBLIC_API_URL` (example: `http://localhost:3000` or your deployed API URL)
-- `PUBLIC_visitsCounter` (ID used by the footer visits counter badge)
+Configure the following variables:
 
-<br/>
+```env
+PUBLIC_API_URL="https://your-api-url.com" # Base URL of the portfolio API (or http://localhost:3000 locally)
+PUBLIC_visitsCounter="unique-counter-id"  # ID used by the footer visits counter badge
+```
 
-# Getting Started
+## 🚀 Getting Started
 
-Clone down this repository. You will need `node.js` and `git` installed globally on your machine.
+Ensure you have **Node.js** (`>=22.22.0`) and **git** installed on your machine.
 
-<br/>
+### 🛠️ Installation and Setup
 
-## 🛠 Installation and Setup Instructions
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ChhatreshKhatri/astro-portfolio.git
+   cd astro-portfolio
+   ```
 
-1. Install dependencies:
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-  `npm install`
+3. **Start local development server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:4321](http://localhost:4321) in your browser.
 
-2. Start local development:
+4. **Create a production build:**
+   ```bash
+   npm run build
+   ```
 
-  `npm run dev`
+5. **Preview the production build locally:**
+   ```bash
+   npm run preview
+   ```
 
-  Open [http://localhost:4321](http://localhost:4321).
+6. **Deploy to Cloudflare Workers:**
+   ```bash
+   npm run deploy
+   ```
 
-3. Create production build:
+7. **Regenerate Cloudflare Worker type definitions:**
+   ```bash
+   npm run generate-types
+   ```
 
-  `npm run build`
+## 📚 Documentation & Resources
 
-4. Preview the built app with Wrangler locally:
+- [Astro Documentation](https://docs.astro.build/en/getting-started/) — Learn about Astro features and routing.
+- [Astro Cloudflare Adapter](https://docs.astro.build/en/guides/integrations-guide/cloudflare/) — Learn about Cloudflare deployment and bindings.
+- [Wrangler Configuration](https://developers.cloudflare.com/workers/wrangler/configuration/) — Official Wrangler configuration documentation.
 
-  `npm run preview`
+## 🖼️ Screenshots
 
-5. Deploy to Cloudflare Workers:
-
-  `npm run deploy`
-
-6. Regenerate Cloudflare Worker type definitions (when needed):
-
-  `npm run cf-typegen`
-
-You can start editing pages in `src/pages`; Astro will auto-reload during development.
-
-## Learn More
-
-To learn more about Astro, take a look at the following resources:
-
-- [Astro Documentation](https://docs.astro.build/en/getting-started/) - learn about Astro features.
-
-You can check out [the Astro GitHub repository](https://github.com/withastro/astro) - your feedback and contributions are welcome!
-
-## Deploy on Cloudflare Workers
-
-This project uses the Astro Cloudflare adapter and Wrangler configuration for deployment to Cloudflare Workers.
-
-- Astro Cloudflare adapter docs: [https://docs.astro.build/en/guides/integrations-guide/cloudflare/](https://docs.astro.build/en/guides/integrations-guide/cloudflare/)
-- Wrangler configuration docs: [https://developers.cloudflare.com/workers/wrangler/configuration/](https://developers.cloudflare.com/workers/wrangler/configuration/)
-<br>
-
-# 🖼️ Screenshots
-
-<div align="center" > 
-  <img src="https://cdn.chhatreshkhatri.com/portfolio/home-dark.jpeg" width="49%">
-  <img src="https://cdn.chhatreshkhatri.com/portfolio/home-light.jpeg" width="49%">
-  <img src="https://cdn.chhatreshkhatri.com/portfolio/about-dark.jpeg" width="49%">
-  <img src="https://cdn.chhatreshkhatri.com/portfolio/about-light.jpeg" width="49%">
-  <img src="https://cdn.chhatreshkhatri.com/portfolio/projects-dark.jpeg" width="49%">
-  <img src="https://cdn.chhatreshkhatri.com/portfolio/projects-light.jpeg" width="49%">
+<div align="center"> 
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/home-dark.jpeg" width="49%" alt="Home Dark Mode">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/home-light.jpeg" width="49%" alt="Home Light Mode">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/about-dark.jpeg" width="49%" alt="About Dark Mode">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/about-light.jpeg" width="49%" alt="About Light Mode">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/projects-dark.jpeg" width="49%" alt="Projects Dark Mode">
+  <img src="https://cdn.chhatreshkhatri.com/portfolio/projects-light.jpeg" width="49%" alt="Projects Light Mode">
 </div>
 
-<br/>
-
-# 🧷 Share My Portfolio
+## 🧷 Share My Portfolio
 
 <div align="center">
 
-Share my portfolio ( https://www.chhatreshkhatri.com/ ) with your friends in just a click
+Share my portfolio ([https://www.chhatreshkhatri.com/](https://www.chhatreshkhatri.com/)) with your friends in just a click:
 
-<a title="Mail" href="mailto:?subject=Chhatresh Khatri | Portfolio&body=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/931465f32268d3f9f1c971ada3615fb8b91f6507/assets/gmail.svg" width="32px"/></a>
-<a title="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/facebook.svg" width="32px"/></a>
-<a title="X (Twitter)" href="https://twitter.com/intent/tweet?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/x.svg" width="32px"/></a>
-<a title="Whatsapp" href="https://api.whatsapp.com/send?text=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/whatsapp.svg" width="32px"/></a>
-<a title="LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/linkedin.svg" width="32px"/></a>
-<a title="Pinterest" href="https://pinterest.com/pin/create/button/?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/pinterest.svg" width="32px"/></a>
-<a title="Reddit" href="https://www.reddit.com/submit?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/reddit.svg" width="32px"/></a>
-<a title="Pocket" href="https://getpocket.com/save?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/getpocket.svg" width="32px"/></a>
-<a title="Tumblr" href="https://www.tumblr.com/share?v=3&u=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/tumblr.svg" width="32px"/></a>
+<a title="Mail" href="mailto:?subject=Chhatresh%20Khatri%20%7C%20Portfolio&body=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/931465f32268d3f9f1c971ada3615fb8b91f6507/assets/gmail.svg" width="32px" alt="Email share"/></a>
+<a title="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/facebook.svg" width="32px" alt="Facebook share"/></a>
+<a title="X (Twitter)" href="https://x.com/intent/tweet?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/x.svg" width="32px" alt="X share"/></a>
+<a title="WhatsApp" href="https://api.whatsapp.com/send?text=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/whatsapp.svg" width="32px" alt="WhatsApp share"/></a>
+<a title="LinkedIn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/linkedin.svg" width="32px" alt="LinkedIn share"/></a>
+<a title="Pinterest" href="https://pinterest.com/pin/create/button/?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/pinterest.svg" width="32px" alt="Pinterest share"/></a>
+<a title="Reddit" href="https://www.reddit.com/submit?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/reddit.svg" width="32px" alt="Reddit share"/></a>
+<a title="Pocket" href="https://getpocket.com/save?url=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/getpocket.svg" width="32px" alt="Pocket share"/></a>
+<a title="Tumblr" href="https://www.tumblr.com/share?v=3&u=https://www.chhatreshkhatri.com/" target="_blank"><img src="https://raw.githubusercontent.com/Chhatreshkhatri/social-links/8ffb973736e05a032047f2c5f6a0945f51c639d2/assets/tumblr.svg" width="32px" alt="Tumblr share"/></a>
 
 </div>

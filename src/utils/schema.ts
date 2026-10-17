@@ -56,7 +56,7 @@ export const generateGraphSchema = (options: GraphSchemaOptions) => {
   const person = getPersonSchema(siteUrl);
   const website = getWebsiteSchema(siteUrl);
 
-  const graph: any[] = [website];
+  const graph: Record<string, unknown>[] = [website];
 
   if (schemaType === "ProfilePage") {
     graph.push({

@@ -4,7 +4,7 @@ import type { HighlightsProps as Props } from "../types";
 const { 
   data, 
   ariaLabel = "Highlights",
-  eagerLoad = false
+  eagerLoad = false,
 } = Astro.props;
 ---
 
@@ -15,9 +15,9 @@ const {
     const shouldEagerLoad = eagerLoad || index === 0;
     
     return (
-      <li title={name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-ck1/40 to-ck2/40 hover:from-ck1 hover:to-ck2 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer">
+      <li title={name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-ck1/40 to-ck2/40 hover:from-ck1 hover:to-ck2 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group">
         <div class="flex justify-center items-center py-1.5 px-3.5 gap-x-2 rounded-xl whitespace-nowrap bg-white dark:bg-darker hover:bg-opacity-95 transition-all duration-300">
-          {icon && <img title={name} src={icon} alt="" class="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:scale-110" loading={shouldEagerLoad ? "eager" : "lazy"} width="24" height="24" aria-hidden="true" />}
+          {icon && ( <img title={name} src={icon} alt="" class="w-3.5 h-3.5 md:w-4 md:h-4 object-contain transition-transform duration-300 group-hover:scale-110" loading={shouldEagerLoad ? "eager" : "lazy"} decoding={shouldEagerLoad ? "async" : "auto"} width="16" height="16" aria-hidden="true" /> )}
           <span class="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100">{name}</span>
         </div>
       </li>

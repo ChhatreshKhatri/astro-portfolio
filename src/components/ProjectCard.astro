@@ -53,8 +53,8 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
         <div class="flex flex-col gap-4 pt-1 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5">
           <!-- Links placed above Technologies and tools -->
           <nav class="flex flex-wrap items-center gap-3" aria-label={`${project.heading} links`}>
-            {project.links.map((link: any, linkIndex: number) => (
-              <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={linkIndex % 2} loading={index === 0 ? "eager" : "lazy"} />
+            {project.links.map((link) => (
+              <LinkButton name={link.type} link={link.url} imageUrl={link.icon} loading={index === 0 ? "eager" : "lazy"} />
             ))}
           </nav>
 

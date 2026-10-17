@@ -15,7 +15,7 @@ const data = await getProjectsData();
       <div class="w-full flex flex-col gap-10 md:gap-14">
         <!-- Projects List -->
         <div class="flex flex-col gap-12 md:gap-16">
-          {data.projects.map((project: any, index: number) => (
+          {data.projects.map((project, index) => (
             <ProjectCard project={project} index={index} />
           ))}
         </div>

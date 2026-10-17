@@ -2,8 +2,8 @@
 import RootLayout from "../layouts/RootLayout.astro";
 import Loading from "../components/Loading.astro";
 import SectionHeading from "../components/Heading.astro";
+import LinkButton from "../components/LinkButton.astro";
 import { getAboutData } from "../services/api";
-import type { ExperienceProject } from "../types";
 
 
 const data = await getAboutData();
@@ -64,17 +64,17 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
 
                   {exp.projects && (
                     <div class="grid gap-4 lg:grid-cols-2">
-                      {exp.projects.map((proj: ExperienceProject, index: number, projects: ExperienceProject[]) => {
+                      {exp.projects.map((proj, index, projects) => {
                         const isLastOdd = projects.length % 2 === 1 && index === projects.length - 1;
 
                         return (
-                          <div class={`rounded-2xl border p-4 md:p-5 bg-white/25 dark:bg-darker/40 border-black/5 dark:border-white/10 ${isLastOdd ? "lg:col-span-2" : ""}`}>
+                          <div class={`rounded-2xl border p-4 md:p-5 bg-white/70 dark:bg-darker/40 border-black/5 dark:border-white/10 ${isLastOdd ? "lg:col-span-2" : ""}`}>
                             <div class="flex flex-col gap-3">
                               <h5 class="flex w-fit text-base md:text-lg font-bold bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent">
                                 {proj.name}
                               </h5>
                               <ul class="space-y-2.5 text-sm md:text-base leading-relaxed list-disc list-inside marker:text-ck2 text-gray-700 dark:text-gray-300">
-                                {proj.details.map((detail: string) => (
+                                {proj.details.map((detail) => (
                                   <li class="pl-1">
                                     <span class="text-gray-700 dark:text-gray-300">{detail}</span>
                                   </li>
@@ -90,7 +90,7 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
                   {exp.skills && (
                     <div class="mt-6 flex flex-wrap gap-2 items-center">
                       <span class="text-sm font-bold text-gray-600 dark:text-gray-400 mr-2">Skills Used:</span>
-                      {exp.skills.map((skill: string) => (
+                      {exp.skills.map((skill) => (
                         <span class="px-3 py-1 text-xs md:text-sm font-semibold rounded-lg bg-linear-to-r from-ck1/15 to-ck2/15 text-ck1 dark:text-ck2 border border-ck1/20 dark:border-ck1/30 transition-all duration-300">
                           {skill}
                         </span>
@@ -142,27 +142,13 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
                       </div>
 
                       {ach.url && (
-                        <div class="pt-3 border-t border-black/10 dark:border-white/10">
-                          <a
-                            href={ach.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${ach.linkText} for ${ach.title} (opens in new tab)`}
-                            class="inline-flex items-center gap-1.5 px-3.5 py-1 text-xs md:text-sm font-semibold rounded-full bg-linear-to-r from-ck1/15 to-ck2/15 hover:from-ck1/25 hover:to-ck2/25 text-ck1 dark:text-ck2 border border-ck1/25 dark:border-ck1/35 hover:scale-105 transition-all duration-300 shadow-xs cursor-pointer group/btn"
-                          >
-                            <span>{ach.linkText}</span>
-                            {ach.linkIcon && (
-                              <img 
-                                src={ach.linkIcon} 
-                                alt="" 
-                                class="w-3.5 h-3.5 md:w-4 md:h-4 object-contain transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" 
-                                loading="lazy"
-                                width="16"
-                                height="16"
-                                aria-hidden="true"
-                              />
-                            )}
-                          </a>
+                        <div class="pt-3 border-t border-black/10 dark:border-white/10 flex">
+                          <LinkButton
+                            name={ach.linkText || "View"}
+                            link={ach.url}
+                            imageUrl={ach.linkIcon}
+                            loading="lazy"
+                          />
                         </div>
                       )}
                     </div>

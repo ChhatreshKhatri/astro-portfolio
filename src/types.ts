@@ -128,8 +128,7 @@ export interface HighlightsProps {
 export interface LinkButtonProps {
   name: string;
   link: string;
-  imageUrl: string;
-  pos: number;
+  imageUrl?: string;
   loading?: "eager" | "lazy";
 }
 

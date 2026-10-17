@@ -1,10 +1,10 @@
 ---
 import type { LinkButtonProps as Props } from "../types";
 
-const { name, link, imageUrl, pos, loading = "eager" } = Astro.props;
+const { name, link, imageUrl, loading = "eager" } = Astro.props;
 ---
 
-<div class={`items-center justify-center p-px rounded-xl bg-linear-to-r ${pos == 1 ? "from-ck2/40 to-ck1/40 hover:from-ck2 hover:to-ck1" : "from-ck1/40 to-ck2/40 hover:from-ck1 hover:to-ck2"} transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group`}>
+<div class="items-center justify-center p-px rounded-xl bg-linear-to-r from-ck1/40 to-ck2/40 hover:from-ck1 hover:to-ck2 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group">
   <a 
     title={name} 
     href={link} 
@@ -13,15 +13,9 @@ const { name, link, imageUrl, pos, loading = "eager" } = Astro.props;
     aria-label={`Visit ${name} (opens in new tab)`}
     class="flex justify-center items-center py-1.5 px-3.5 gap-x-2 rounded-xl whitespace-nowrap bg-white dark:bg-darker hover:bg-opacity-95 transition-all duration-300 cursor-pointer"
   >
-    <img 
-      src={imageUrl} 
-      alt="" 
-      class="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:scale-110" 
-      loading={loading}
-      width="24"
-      height="24"
-      aria-hidden="true"
-    />
     <span class="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100">{name}</span>
+    {imageUrl && (
+      <img src={imageUrl} alt="" class="w-3.5 h-3.5 md:w-4 md:h-4 object-contain transition-transform duration-300 group-hover:scale-110" loading={loading} width="16" height="16" aria-hidden="true" />
+    )}
   </a>
 </div>

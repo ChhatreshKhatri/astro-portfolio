@@ -32,7 +32,7 @@ const { data } = Astro.props;
       <div class="hero-links flex flex-wrap justify-center xl:justify-start items-center gap-3 pt-2 w-full transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5" aria-label="Social and portfolio links">
         {data.links.map((link, index) => (
           <div class="hero-link" data-index={index}>
-            <LinkButton name={link.type} link={link.url} imageUrl={link.icon} pos={index % 2} />
+            <LinkButton name={link.type} link={link.url} imageUrl={link.icon} />
           </div>
         ))}
       </div>

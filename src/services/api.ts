@@ -8,7 +8,7 @@ async function fetchData<T>(endpoint: string): Promise<T | null> {
       headers: {
         Accept: "application/json",
       },
-      ...({ cf: { cacheTtl: 3600, cacheEverything: true } } as any),
+      cf: { cacheTtl: 3600, cacheEverything: true },
     });
 
     if (!response.ok) {
