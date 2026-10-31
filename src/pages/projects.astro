@@ -8,13 +8,17 @@ import ProjectCard from "../components/ProjectCard.astro";
 const data = await getProjectsData();
 ---
 
-<RootLayout title="Chhatresh Khatri | Projects" description="Chhatresh Khatri Projects. Explore a collection of diverse projects, discover their unique features and access relevant links for more information." keywords="">
+<RootLayout 
+  title="Projects Showcase | Chhatresh Khatri" 
+  description="Explore full-stack web applications, open-source tools, and global award-winning projects crafted by Chhatresh Khatri using Next.js, React, TypeScript, and Node.js." 
+  keywords="Chhatresh Khatri Projects, Web Applications, Award Winning Projects, Next.js Showcase, React Apps, Full Stack Projects, Open Source Tools"
+>
   <SectionHeading>My Projects</SectionHeading>
   {
     data ? (
       <div class="w-full flex flex-col gap-10 md:gap-14">
-        <!-- Projects List -->
-        <div class="flex flex-col gap-12 md:gap-16">
+        <!-- Curated Projects Showcase -->
+        <div class="flex flex-col gap-10 md:gap-14">
           {data.projects.map((project, index) => (
             <ProjectCard project={project} index={index} />
           ))}

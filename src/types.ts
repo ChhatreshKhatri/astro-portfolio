@@ -152,7 +152,10 @@ export interface RootLayoutProps {
   description?: string;
   keywords?: string;
   ogType?: string;
+  ogImage?: string;
   schemaType?: string;
+  noindex?: boolean;
+  page?: string;
 }
 
 // Schema Types
@@ -160,4 +163,6 @@ export interface GraphSchemaOptions {
   siteUrl: string;
   canonicalURL: string;
   schemaType?: string;
+  title?: string;
+  description?: string;
 }

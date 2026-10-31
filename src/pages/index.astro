@@ -8,20 +8,27 @@ import { getHomeData } from "../services/api";
 const data = await getHomeData();
 ---
 
-<RootLayout title="Chhatresh Khatri | Portfolio" description="Chhatresh Khatri Portfolio. Software Engineer and Full Stack Developer passionate about latest trends in the tech industry. Crafting innovation with code." keywords="">
+<RootLayout 
+  title="Chhatresh Khatri | Full-Stack Software Engineer" 
+  description="Full-Stack Software Engineer specializing in modern web applications (Next.js, React), scalable backend solutions (Node.js, GCP), and Agentic AI workflows." 
+  keywords="React.js, Next.js, Node.js, TypeScript, Cloudflare, Agentic AI, Full Stack Developer, Web Engineering"
+  schemaType="WebPage"
+>
   <SectionHeading as="div">Welcome to my Portfolio</SectionHeading>
   {
     data ? (
       <div class="w-full flex flex-col gap-8 md:gap-12">
+        <!-- Main Hero Showcase -->
         <Hero data={data} />
 
+        <!-- Key Impact & Statistics -->
         {data.stats && (
           <section class="w-full grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 transition duration-500 ease-out delay-600 starting:opacity-0 starting:translate-y-4" aria-label="Key highlights and statistics">
             {data.stats.map((stat) => (
-              <div class="relative group/stat p-6 rounded-2xl bg-white/40 dark:bg-darker/60 border border-black/5 dark:border-white/10 shadow-lg backdrop-blur-md flex flex-col items-center justify-center text-center hover:shadow-2xl hover:-translate-y-1 hover:border-ck1/40 transition-all duration-300 cursor-pointer">
-                <div class="absolute inset-0 bg-linear-to-r from-ck1/5 to-ck2/5 rounded-2xl opacity-0 group-hover/stat:opacity-100 transition-opacity duration-300" aria-hidden="true" />
-                <span class="text-3xl md:text-4xl lg:text-5xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent mb-1 drop-shadow-xs group-hover/stat:scale-110 transition-transform duration-300">{stat.value}</span>
-                <span class="text-xs md:text-sm font-semibold tracking-wide text-gray-600 dark:text-gray-300 uppercase">{stat.label}</span>
+              <div class="spotlight-card relative group/stat p-6 rounded-2xl bg-white/40 dark:bg-surface-card/60 border border-black/5 dark:border-white/10 shadow-lg backdrop-blur-md flex flex-col items-center justify-center text-center hover:shadow-2xl hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300 cursor-pointer">
+                <div class="absolute inset-0 bg-linear-to-r from-brand-primary/5 to-brand-secondary/5 rounded-2xl opacity-0 group-hover/stat:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true" />
+                <span class="relative z-10 text-3xl md:text-4xl lg:text-5xl font-extrabold bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent mb-1 drop-shadow-xs group-hover/stat:scale-110 transition-transform duration-300">{stat.value}</span>
+                <span class="relative z-10 text-xs md:text-sm font-semibold tracking-wide text-gray-600 dark:text-gray-300 uppercase">{stat.label}</span>
               </div>
             ))}
           </section>

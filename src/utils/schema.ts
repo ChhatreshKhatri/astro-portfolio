@@ -8,16 +8,35 @@ export const getPersonSchema = (siteUrl: string) => ({
   "jobTitle": "Software Engineer",
   "worksFor": {
     "@type": "Organization",
-    "name": "LTM",
+    "name": "LTM Limited",
     "url": "https://www.ltm.com"
   },
-  "description": "Software Engineer with a passion for building modern, user-friendly websites and applications.",
+  "description": "Full-Stack Software Engineer specializing in high-performance web applications (Next.js, React), scalable backend solutions (Node.js, Express, GCP), and Agentic AI workflows.",
   "knowsAbout": [
-    "JavaScript", "TypeScript", "React", "Next.js", "Astro", "Node.js",
-    "Express.js", "HTML", "CSS", "Tailwind CSS", "MongoDB", "MySQL",
-    "Firebase", "Git", "C", "C++", "Java", "Linux",
-    "Full Stack Development", "Web Development", "Software Engineering",
-    "AWS", "Artificial Intelligence", "Machine Learning", "Generative AI"
+    "JavaScript",
+    "TypeScript",
+    "React.js",
+    "Next.js",
+    "Node.js",
+    "Express.js",
+    "Astro",
+    "Tailwind CSS",
+    "Redux Toolkit",
+    "HTML5",
+    "CSS3",
+    "Java",
+    "MySQL",
+    "MongoDB",
+    "Git",
+    "GitHub",
+    "GitHub Actions",
+    "Cloudflare",
+    "Google Cloud (GCP)",
+    "Azure",
+    "Alibaba Cloud",
+    "Agentic AI",
+    "Full Stack Development",
+    "Software Engineering"
   ],
   "hasCredential": [
     {
@@ -52,7 +71,7 @@ export const getWebsiteSchema = (siteUrl: string) => ({
 });
 
 export const generateGraphSchema = (options: GraphSchemaOptions) => {
-  const { siteUrl, canonicalURL, schemaType } = options;
+  const { siteUrl, canonicalURL, schemaType, title } = options;
   const person = getPersonSchema(siteUrl);
   const website = getWebsiteSchema(siteUrl);
 
@@ -61,7 +80,7 @@ export const generateGraphSchema = (options: GraphSchemaOptions) => {
   if (schemaType === "ProfilePage") {
     graph.push({
       "@type": "ProfilePage",
-      "name": "Chhatresh Khatri | About",
+      "name": title || "About Chhatresh Khatri",
       "url": canonicalURL,
       "mainEntity": person
     });

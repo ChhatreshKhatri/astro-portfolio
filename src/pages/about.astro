@@ -1,25 +1,29 @@
 ---
 import RootLayout from "../layouts/RootLayout.astro";
-import Loading from "../components/Loading.astro";
 import SectionHeading from "../components/Heading.astro";
+import Loading from "../components/Loading.astro";
 import LinkButton from "../components/LinkButton.astro";
 import { getAboutData } from "../services/api";
 
-
 const data = await getAboutData();
-const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay-500"];
+const delayClasses = ["delay-200", "delay-300", "delay-400", "delay-500", "delay-600", "delay-700"];
 ---
 
-<RootLayout title="Chhatresh Khatri | About" description="Chhatresh Khatri About. Software Engineer and Full Stack Developer skilled in diverse tech including C/C++, Java, HTML5, CSS3, JavaScript, React.js, Next.js, and more." keywords="" schemaType="ProfilePage">
+<RootLayout 
+  title="About Chhatresh Khatri | Experience, Skills & Credentials" 
+  description="Explore Chhatresh Khatri's engineering background, full stack experience at LTM, AWS AI certification, educational credentials, and technical skills." 
+  keywords="Chhatresh Khatri About, Work Experience, AWS Certified AI Practitioner, Full Stack Skills, LTM, Education, Tech Stack, Software Engineer Bio"
+  schemaType="ProfilePage"
+>
   <SectionHeading>About Me</SectionHeading>
   {
     data ? (
       <div class="w-full flex flex-col gap-10 md:gap-14">
         <section class="about-intro-section w-full transition duration-400 ease-out delay-100 starting:opacity-0 starting:translate-y-2.5" aria-labelledby="about-intro">
-          <div class="relative group rounded-2xl w-full flex flex-col items-center justify-center text-center p-6 md:p-10 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-300">
-            <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
-            <div class="relative flex flex-col items-center justify-center gap-4 w-full">
-              <h2 id="about-intro" class="about-intro-title text-2xl xxs:text-3xl md:text-4xl font-extrabold text-center bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
+          <div class="spotlight-card relative group rounded-2xl w-full flex flex-col items-center justify-center text-center p-6 md:p-10 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300">
+            <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+            <div class="relative z-10 flex flex-col items-center justify-center gap-4 w-full">
+              <h2 id="about-intro" class="about-intro-title text-2xl xxs:text-3xl md:text-4xl font-extrabold text-center bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
                 {data.content.title}
               </h2>
               <p class="about-intro-text text-base md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-justify w-full transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
@@ -35,68 +39,70 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
             <SectionHeading as="h2" class="delay-200 starting:scale-[0.98]">Work Experience</SectionHeading>
             <div class="flex flex-col gap-6">
               {data.experience.map((exp, index) => (
-                <article class={`relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-200"}`}>
-                  <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+                <article class={`spotlight-card relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-200"}`}>
+                  <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
                   
-                  <header class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 dark:border-white/10 pb-4 mb-6 gap-3">
-                    <div>
-                      <h3 class="text-xl md:text-2xl font-bold mt-1 w-fit" style={exp.color ? `color: ${exp.color};` : undefined}>
-                        {exp.company}
-                      </h3>
-                      <div class="flex items-center gap-2.5 flex-wrap mt-1">
-                        <h4 class="text-lg md:text-xl font-extrabold bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent w-fit">
-                          {exp.role}
-                        </h4>
-                        {exp.badge && (
-                          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-linear-to-r from-ck1/15 to-ck2/15 text-ck1 dark:text-ck2 border border-ck1/25 dark:border-ck1/35 shadow-xs">
-                            {exp.badge}
-                          </span>
-                        )}
+                  <div class="relative z-10">
+                    <header class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 dark:border-white/10 pb-4 mb-6 gap-3">
+                      <div>
+                        <h3 class="text-xl md:text-2xl font-bold mt-1 w-fit" style={exp.color ? `color: ${exp.color};` : undefined}>
+                          {exp.company}
+                        </h3>
+                        <div class="flex items-center gap-2.5 flex-wrap mt-1">
+                          <h4 class="text-lg md:text-xl font-extrabold bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent w-fit">
+                            {exp.role}
+                          </h4>
+                          {exp.badge && (
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-linear-to-r from-brand-primary/15 to-brand-secondary/15 text-brand-primary dark:text-brand-secondary border border-brand-primary/25 dark:border-brand-primary/35 shadow-xs">
+                              {exp.badge}
+                            </span>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    <div class="flex flex-col sm:items-end gap-1.5 text-sm md:text-base font-medium">
-                      <span class="flex w-fit items-center px-3.5 py-1 rounded-full bg-linear-to-r from-ck1/10 to-ck2/10 border border-ck1/20 dark:border-ck1/30 font-semibold text-ck1 dark:text-ck2 shadow-xs">
-                        {exp.period}
-                      </span>
-                      {exp.location && <span class="text-xs md:text-sm text-gray-500 dark:text-gray-400">📍 {exp.location}</span>}
-                    </div>
-                  </header>
-
-                  {exp.projects && (
-                    <div class="grid gap-4 lg:grid-cols-2">
-                      {exp.projects.map((proj, index, projects) => {
-                        const isLastOdd = projects.length % 2 === 1 && index === projects.length - 1;
-
-                        return (
-                          <div class={`rounded-2xl border p-4 md:p-5 bg-white/70 dark:bg-darker/40 border-black/5 dark:border-white/10 ${isLastOdd ? "lg:col-span-2" : ""}`}>
-                            <div class="flex flex-col gap-3">
-                              <h5 class="flex w-fit text-base md:text-lg font-bold bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent">
-                                {proj.name}
-                              </h5>
-                              <ul class="space-y-2.5 text-sm md:text-base leading-relaxed list-disc list-inside marker:text-ck2 text-gray-700 dark:text-gray-300">
-                                {proj.details.map((detail) => (
-                                  <li class="pl-1">
-                                    <span class="text-gray-700 dark:text-gray-300">{detail}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  {exp.skills && (
-                    <div class="mt-6 flex flex-wrap gap-2 items-center">
-                      <span class="text-sm font-bold text-gray-600 dark:text-gray-400 mr-2">Skills Used:</span>
-                      {exp.skills.map((skill) => (
-                        <span class="px-3 py-1 text-xs md:text-sm font-semibold rounded-lg bg-linear-to-r from-ck1/15 to-ck2/15 text-ck1 dark:text-ck2 border border-ck1/20 dark:border-ck1/30 transition-all duration-300">
-                          {skill}
+                      <div class="flex flex-col sm:items-end gap-1.5 text-sm md:text-base font-medium">
+                        <span class="flex w-fit items-center px-3.5 py-1 rounded-full bg-linear-to-r from-brand-primary/10 to-brand-secondary/10 border border-brand-primary/20 dark:border-brand-primary/30 font-semibold text-brand-primary dark:text-brand-secondary shadow-xs">
+                          {exp.period}
                         </span>
-                      ))}
-                    </div>
-                  )}
+                        {exp.location && <span class="text-xs md:text-sm text-gray-500 dark:text-gray-400">📍 {exp.location}</span>}
+                      </div>
+                    </header>
+
+                    {exp.projects && (
+                      <div class="grid gap-4 lg:grid-cols-2">
+                        {exp.projects.map((proj, index, projects) => {
+                          const isLastOdd = projects.length % 2 === 1 && index === projects.length - 1;
+
+                          return (
+                            <div class={`rounded-2xl border p-4 md:p-5 bg-white/70 dark:bg-surface-card/40 border-black/5 dark:border-white/10 ${isLastOdd ? "lg:col-span-2" : ""}`}>
+                              <div class="flex flex-col gap-3">
+                                <h5 class="flex w-fit text-base md:text-lg font-bold bg-linear-to-r from-subheading-start to-subheading-end bg-clip-text text-transparent">
+                                  {proj.name}
+                                </h5>
+                                <ul class="space-y-2.5 text-sm md:text-base leading-relaxed list-disc list-inside marker:text-brand-secondary text-gray-700 dark:text-gray-300">
+                                  {proj.details.map((detail) => (
+                                    <li class="pl-1">
+                                      <span class="text-gray-700 dark:text-gray-300">{detail}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {exp.skills && (
+                      <div class="mt-6 flex flex-wrap gap-2 items-center">
+                        <span class="text-sm font-bold text-gray-600 dark:text-gray-400 mr-2">Skills Used:</span>
+                        {exp.skills.map((skill) => (
+                          <span class="px-3 py-1 text-xs md:text-sm font-semibold rounded-lg bg-linear-to-r from-brand-primary/15 to-brand-secondary/15 text-brand-primary dark:text-brand-secondary border border-brand-primary/20 dark:border-brand-primary/30 transition-all duration-300">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </article>
               ))}
             </div>
@@ -112,48 +118,48 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
                 const isLastOdd = achievements.length % 2 === 1 && index === achievements.length - 1;
 
                 return (
-                  <article class={`relative group rounded-2xl p-6 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-300"} flex flex-col h-full ${isLastOdd ? "md:col-span-2" : ""}`}>
-                  <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
-                  
-                  <div class="flex items-start gap-4 h-full">
-                    {ach.icon && (
-                      <div class="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-linear-to-tr from-ck1/15 via-purple-500/15 to-ck2/15 border border-ck1/20 dark:border-ck1/30 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                        <img 
-                          src={ach.icon} 
-                          alt={`${ach.title} icon`} 
-                          class="w-7 h-7 md:w-8 md:h-8 object-contain drop-shadow" 
-                          loading="lazy"
-                          width="36"
-                          height="36"
-                        />
-                      </div>
-                    )}
-
-                    <div class="flex flex-col justify-between gap-3 min-w-0 flex-1 h-full">
-                      <div class="flex flex-col gap-1">
-                        <h3 class="text-base md:text-lg lg:text-xl font-extrabold leading-snug bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent">
-                          {ach.title}
-                        </h3>
-                        {ach.description && (
-                          <h4 class="text-xs md:text-sm lg:text-base font-bold bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent">
-                            {ach.description}
-                          </h4>
-                        )}
-                      </div>
-
-                      {ach.url && (
-                        <div class="pt-3 border-t border-black/10 dark:border-white/10 flex">
-                          <LinkButton
-                            name={ach.linkText || "View"}
-                            link={ach.url}
-                            imageUrl={ach.linkIcon}
+                  <article class={`spotlight-card relative group rounded-2xl p-6 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-300"} flex flex-col h-full ${isLastOdd ? "md:col-span-2" : ""}`}>
+                    <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+                    
+                    <div class="relative z-10 flex items-start gap-4 h-full">
+                      {ach.icon && (
+                        <div class="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-linear-to-tr from-brand-primary/15 via-purple-500/15 to-brand-secondary/15 border border-brand-primary/20 dark:border-brand-primary/30 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                          <img 
+                            src={ach.icon} 
+                            alt={`${ach.title} icon`} 
+                            class="w-7 h-7 md:w-8 md:h-8 object-contain drop-shadow" 
                             loading="lazy"
+                            width="36"
+                            height="36"
                           />
                         </div>
                       )}
+
+                      <div class="flex flex-col justify-between gap-3 min-w-0 flex-1 h-full">
+                        <div class="flex flex-col gap-1">
+                          <h3 class="text-base md:text-lg lg:text-xl font-extrabold leading-snug bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent">
+                            {ach.title}
+                          </h3>
+                          {ach.description && (
+                            <h4 class="text-xs md:text-sm lg:text-base font-bold bg-linear-to-r from-subheading-start to-subheading-end bg-clip-text text-transparent">
+                              {ach.description}
+                            </h4>
+                          )}
+                        </div>
+
+                        {ach.url && (
+                          <div class="pt-3 border-t border-black/10 dark:border-white/10 flex">
+                            <LinkButton
+                              name={ach.linkText || "View"}
+                              link={ach.url}
+                              imageUrl={ach.linkIcon}
+                              loading="lazy"
+                            />
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </article>
+                  </article>
                 );
               })}
             </div>
@@ -166,30 +172,30 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
             <SectionHeading as="h2" class="delay-400 starting:scale-[0.98]">Education</SectionHeading>
             <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-6">
               {data.education.map((edu, index) => (
-                <article class={`relative group rounded-2xl p-6 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-500 ease-out starting:opacity-0 ${delayClasses[index] || "delay-400"} flex flex-col h-full`}>
-                  <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+                <article class={`spotlight-card relative group rounded-2xl p-6 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-500 ease-out starting:opacity-0 ${delayClasses[index] || "delay-400"} flex flex-col h-full`}>
+                  <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
                   
-                  <div class="flex flex-col gap-2">
+                  <div class="relative z-10 flex flex-col gap-2 h-full">
                     <div class="flex justify-between items-start gap-2">
-                      <h3 class="text-lg md:text-xl font-extrabold leading-tight bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent w-fit">{edu.degree}</h3>
+                      <h3 class="text-lg md:text-xl font-extrabold leading-tight bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent w-fit">{edu.degree}</h3>
                     </div>
                     
-                    <h4 class="text-base md:text-lg font-bold leading-tight bg-linear-to-r from-sub1 to-sub2 bg-clip-text text-transparent w-fit">
+                    <h4 class="text-base md:text-lg font-bold leading-tight bg-linear-to-r from-subheading-start to-subheading-end bg-clip-text text-transparent w-fit">
                       {edu.institution}
                     </h4>
-                  </div>
 
-                  <div class="mt-auto pt-6 flex items-center justify-between gap-4 text-xs md:text-sm text-gray-700 dark:text-gray-300 font-medium">
-                    <div class="flex items-center gap-1.5 min-w-0">
-                      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-linear-to-r from-ck1/10 to-ck2/10 border border-ck1/20 dark:border-ck1/30 font-semibold text-ck1 dark:text-ck2">
-                        🗓️ {edu.period}
-                      </span>
-                    </div>
-                    {edu.location && (
-                      <div class="flex items-center gap-1.5 min-w-0 text-right">
-                        <span class="truncate">📍 {edu.location}</span>
+                    <div class="mt-auto pt-6 flex items-center justify-between gap-4 text-xs md:text-sm text-gray-700 dark:text-gray-300 font-medium">
+                      <div class="flex items-center gap-1.5 min-w-0">
+                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-linear-to-r from-brand-primary/10 to-brand-secondary/10 border border-brand-primary/20 dark:border-brand-primary/30 font-semibold text-brand-primary dark:text-brand-secondary">
+                          🗓️ {edu.period}
+                        </span>
                       </div>
-                    )}
+                      {edu.location && (
+                        <div class="flex items-center gap-1.5 min-w-0 text-right">
+                          <span class="truncate">📍 {edu.location}</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </article>
               ))}
@@ -202,16 +208,16 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
           <SectionHeading as="h2" class="delay-500 starting:scale-[0.98]">Technology Stack</SectionHeading>
           {data.sections.map((section, sectionIndex) => (
             <div class={`w-full transition duration-500 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[sectionIndex] || "delay-500"}`}>
-              <section class="skills-section relative group rounded-2xl w-full p-6 md:p-8 bg-white/40 dark:bg-darker/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-ck1/40 transition-all duration-300" data-section-index={sectionIndex} aria-labelledby={`skills-section-${sectionIndex}`}>
-                <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-ck1/10 via-purple-500/5 to-ck2/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
-                <div class="relative flex flex-col gap-6">
-                  <h3 id={`skills-section-${sectionIndex}`} class="skills-section-title flex justify-center items-center text-xl xxs:text-2xl md:text-3xl font-bold text-center bg-linear-to-r from-hd1 to-hd2 bg-clip-text text-transparent">
+              <section class="skills-section spotlight-card relative group rounded-2xl w-full p-6 md:p-8 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300" data-section-index={sectionIndex} aria-labelledby={`skills-section-${sectionIndex}`}>
+                <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
+                <div class="relative z-10 flex flex-col gap-6">
+                  <h3 id={`skills-section-${sectionIndex}`} class="skills-section-title flex justify-center items-center text-xl xxs:text-2xl md:text-3xl font-bold text-center bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent">
                     {section.title}
                   </h3>
                   <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4 skill-container" role="list" aria-label={`${section.title} skills`}>
                     {section.skills.map((skill, skillIndex) => (
-                      <div title={skill.name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-hd1/40 to-hd2/40 hover:from-hd1 hover:to-hd2 skill-item transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer" role="listitem" data-index={skillIndex}>
-                        <div class="flex justify-center items-center py-2 px-3.5 gap-x-2.5 rounded-xl whitespace-nowrap bg-white dark:bg-darker hover:bg-opacity-95 transition-all duration-300">
+                      <div title={skill.name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-heading-start/40 to-heading-end/40 hover:from-heading-start hover:to-heading-end skill-item transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer" role="listitem" data-index={skillIndex}>
+                        <div class="flex justify-center items-center py-2 px-3.5 gap-x-2.5 rounded-xl whitespace-nowrap bg-white dark:bg-surface-card hover:bg-opacity-95 transition-all duration-300">
                           <img src={skill.icon} alt={`${skill.name} technology icon`} class="w-6 h-6 xs:w-7 xs:h-7 transition-transform duration-300 group-hover:scale-110" loading={sectionIndex === 0 ? "eager" : "lazy"} decoding={sectionIndex === 0 ? "async" : "auto"} width="28" height="28" />
                           <p class="relative text-base xs:text-lg font-semibold whitespace-nowrap text-gray-800 dark:text-gray-100">{skill.name}</p>
                         </div>

@@ -4,8 +4,8 @@
   "description": "Chhatresh Khatri Portfolio. Software Engineer passionate about latest trends in the tech industry. Crafting innovation with code.",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#0c0c0c",
-  "background_color": "#0c0c0c",
+  "theme_color": "#0f1117",
+  "background_color": "#0f1117",
   "icons": [
     {
       "src": "https://cdn.chhatreshkhatri.com/icons/icon.svg",

@@ -4,14 +4,14 @@ import type { LinkButtonProps as Props } from "../types";
 const { name, link, imageUrl, loading = "eager" } = Astro.props;
 ---
 
-<div class="items-center justify-center p-px rounded-xl bg-linear-to-r from-ck1/40 to-ck2/40 hover:from-ck1 hover:to-ck2 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group">
+<div class="items-center justify-center p-px rounded-xl bg-linear-to-r from-brand-primary/40 to-brand-secondary/40 hover:from-brand-primary hover:to-brand-secondary transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group">
   <a 
     title={name} 
     href={link} 
     target="_blank" 
     rel="noopener noreferrer" 
     aria-label={`Visit ${name} (opens in new tab)`}
-    class="flex justify-center items-center py-1.5 px-3.5 gap-x-2 rounded-xl whitespace-nowrap bg-white dark:bg-darker hover:bg-opacity-95 transition-all duration-300 cursor-pointer"
+    class="flex justify-center items-center py-1.5 px-3.5 gap-x-2 rounded-xl whitespace-nowrap bg-white dark:bg-surface-card hover:bg-opacity-95 transition-all duration-300 cursor-pointer"
   >
     <span class="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100">{name}</span>
     {imageUrl && (

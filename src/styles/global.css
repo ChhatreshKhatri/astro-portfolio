@@ -11,36 +11,32 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Fonts */
-  --font-display: "Poppins", sans-serif;
+  /* Typography Tokens */
+  --font-display: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "Geist Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 
-  /* Colors */
-  --color-dark: #191919;
-  --color-light: #f3f3ff;
-  --color-darker: #101010;
-  --color-lighter: #e9e9ff;
-  --color-blue1: #4158d0;
-  --color-yellow1: #ffcc70;
-  --color-blue2: #1952c0;
-  --color-green2: #20c68a;
-  --color-darked: #0c0c0c;
-  --color-buttonBg: #dde6ff;
-  --color-navbarBg: #c7e1fc;
-  --color-ck1: #3048c6;
-  --color-ck2: #30c68a;
-  --color-hd1: #2563EB;
-  --color-hd2: #06B6D4;
-  --color-sub2: #38bdf8;
-  --color-sub1: #818cf8;
-  --color-bd1: #64748b;
-  --color-bd2: #38bdf8;
+  /* Semantic Brand & Accent Tokens */
+  --color-brand-primary: #3b82f6;       /* Vibrant Tech Blue */
+  --color-brand-secondary: #10b981;     /* Emerald Success */
+  --color-heading-start: #2563eb;       /* Electric Royal Blue (same in light & dark) */
+  --color-heading-end: #06b6d4;         /* Vibrant Tech Cyan (same in light & dark) */
+  --color-subheading-start: #818cf8;    /* Radiant Indigo (same in light & dark) */
+  --color-subheading-end: #38bdf8;      /* Luminous Sky Cyan (same in light & dark) */
+
+  /* Semantic Surface & Background Tokens */
+  --color-surface-base: #0f1117;        /* Deep obsidian dark */
+  --color-surface-card: #08090d;        /* Dark card base */
+  --color-surface-elevated: #040508;    /* Elevated pure black */
+  --color-surface-light: #f8fafc;       /* Crisp light background */
+  --color-surface-lighter: #ffffff;     /* Pure white surface */
+
 
   /* Font sizes */
   --text-4xl: 35px;
   --text-5xl: 45px;
   --text-6xl: 55px;
 
-  /* Breakpoints */
+  /* Responsive Breakpoints */
   --breakpoint-xxs: 375px;
   --breakpoint-xs: 480px;
   --breakpoint-sm: 640px;
@@ -49,10 +45,82 @@
   --breakpoint-xl: 1200px;
   --breakpoint-xxl: 1440px;
 
-  /* Other styles */
-  --shadow-top: 0px -4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-bottom: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  /* Shadows */
+  --shadow-top: 0px -4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-bottom: 0px 4px 6px rgba(0, 0, 0, 0.05);
   --drop-shadow-text: 0.75px 0.75px 0.75px #222222;
-  --drop-shadow-2xl: 0 0 15px #000000;
-  --drop-shadow-3xl: 0 0 20px #000000;
+  --drop-shadow-2xl: 0 0 15px rgba(0, 0, 0, 0.5);
+  --drop-shadow-3xl: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+
+
+/* Atmospheric Asymmetric Corner Glows */
+.aurora-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Top-Left: Sky Cyan & Indigo glow behind name and hero heading */
+.aurora-glow-1 {
+  position: absolute;
+  top: -40px;
+  left: -80px;
+  width: 680px;
+  height: 540px;
+  background: radial-gradient(circle at 40% 40%, rgba(56, 189, 248, 0.13) 0%, rgba(129, 140, 248, 0.06) 45%, transparent 70%);
+  filter: blur(100px);
+  border-radius: 9999px;
+}
+
+/* Bottom-Right: Emerald & Tech Blue accent glow */
+.aurora-glow-2 {
+  position: absolute;
+  bottom: -60px;
+  right: -80px;
+  width: 640px;
+  height: 520px;
+  background: radial-gradient(circle at 60% 60%, rgba(16, 185, 129, 0.11) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%);
+  filter: blur(100px);
+  border-radius: 9999px;
+}
+
+/* Dynamic Cursor-Tracking Spotlight Effect for Cards */
+.spotlight-card {
+  position: relative;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    520px circle at var(--mouse-x) var(--mouse-y),
+    rgba(56, 189, 248, 0.2),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Hide default browser scrollbar while preserving full scrolling functionality */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }

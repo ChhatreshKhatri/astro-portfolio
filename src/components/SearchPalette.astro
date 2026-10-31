@@ -1,0 +1,310 @@
+---
+// SearchPalette.astro - Global quick search modal
+import SearchIcon from "../assets/icons/SearchIcon.astro";
+---
+
+<div id="searchPaletteBackdrop" class="fixed inset-0 z-50 hidden items-start justify-center pt-16 sm:pt-24 px-4 bg-black/60 backdrop-blur-md transition-opacity duration-200" aria-modal="true" role="dialog">
+  <div id="searchPaletteCard" class="relative w-full max-w-xl rounded-2xl bg-white/90 dark:bg-surface-card/95 border border-black/10 dark:border-white/10 shadow-2xl backdrop-blur-2xl overflow-hidden flex flex-col max-h-[75vh] animate-in fade-in zoom-in-95 duration-150">
+    <!-- Header with search input -->
+    <div class="flex items-center gap-3 px-4 py-3.5 border-b border-black/10 dark:border-white/10">
+      <SearchIcon class="w-5 h-5 text-gray-500 shrink-0" />
+      <input 
+        id="searchInput" 
+        type="text" 
+        placeholder="Type to search (projects, pages, actions)..." 
+        class="w-full bg-transparent text-sm sm:text-base outline-none text-gray-900 dark:text-gray-100 placeholder:text-gray-400"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <kbd class="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[11px] font-mono font-semibold rounded bg-black/5 dark:bg-white/10 text-gray-500 dark:text-gray-400 border border-black/10 dark:border-white/10">ESC</kbd>
+    </div>
+
+    <!-- Commands & Search Results List -->
+    <div id="searchList" class="flex flex-col overflow-y-auto scrollbar-none p-2 gap-y-1 text-sm">
+      <!-- Section: Navigation -->
+      <div class="search-group-label px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">Pages</div>
+      
+      <a href="/" class="search-item flex items-center justify-between px-3 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 hover:text-brand-primary transition-colors cursor-pointer" data-keywords="home welcome intro">
+        <div class="flex items-center gap-3">
+          <span class="text-base">🏠</span>
+          <span class="font-medium">Home</span>
+        </div>
+        <span class="text-xs text-gray-400">Navigation</span>
+      </a>
+
+      <a href="/about" class="search-item flex items-center justify-between px-3 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 hover:text-brand-primary transition-colors cursor-pointer" data-keywords="about me experience skills education bio">
+        <div class="flex items-center gap-3">
+          <span class="text-base">👤</span>
+          <span class="font-medium">About Me & Experience</span>
+        </div>
+        <span class="text-xs text-gray-400">Navigation</span>
+      </a>
+
+      <a href="/projects" class="search-item flex items-center justify-between px-3 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 hover:text-brand-primary transition-colors cursor-pointer" data-keywords="projects showcase work apps code">
+        <div class="flex items-center gap-3">
+          <span class="text-base">💼</span>
+          <span class="font-medium">Projects Showcase</span>
+        </div>
+        <span class="text-xs text-gray-400">Navigation</span>
+      </a>
+
+      <!-- Section: Quick Actions -->
+      <div class="search-group-label px-3 pt-3 pb-1 text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">Quick Actions</div>
+
+      <button id="searchCopyEmail" class="search-item w-full flex items-center justify-between px-3 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 hover:text-brand-primary transition-colors cursor-pointer text-left" data-keywords="copy email contact ck@chhatreshkhatri.com mail">
+        <div class="flex items-center gap-3">
+          <span class="text-base">📋</span>
+          <span class="font-medium">Copy Email (ck@chhatreshkhatri.com)</span>
+        </div>
+        <span id="searchCopyEmailStatus" class="text-xs text-emerald-500 font-semibold hidden">Copied!</span>
+      </button>
+
+      <a href="https://drive.google.com/file/d/1i_gAK3PxDoMok4g5XEh0KTaD7Dm-JRR_/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="search-item flex items-center justify-between px-3 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 hover:text-brand-primary transition-colors cursor-pointer" data-keywords="resume cv download pdf hire">
+        <div class="flex items-center gap-3">
+          <span class="text-base">📄</span>
+          <span class="font-medium">View / Download Resume</span>
+        </div>
+        <span class="text-xs text-gray-400">External</span>
+      </a>
+
+      <button id="searchToggleTheme" class="search-item w-full flex items-center justify-between px-3 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 hover:text-brand-primary transition-colors cursor-pointer text-left" data-keywords="theme mode dark light toggle switch">
+        <div class="flex items-center gap-3">
+          <span class="text-base">🌓</span>
+          <span class="font-medium">Toggle Dark / Light Mode</span>
+        </div>
+        <span class="text-xs text-gray-400">Preference</span>
+      </button>
+
+      <!-- Section: Featured Projects -->
+      <div class="search-group-label px-3 pt-3 pb-1 text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">Featured Projects</div>
+
+      <a href="/projects#project-0" class="search-item flex items-center justify-between px-3 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 hover:text-brand-primary transition-colors cursor-pointer" data-keywords="farmconnect livestock .net nextjs agricultural">
+        <div class="flex items-center gap-3">
+          <span class="text-base">🌾</span>
+          <div>
+            <div class="font-medium">FarmConnect</div>
+            <div class="text-[11px] text-gray-400">.NET Core + Next.js 15 Platform</div>
+          </div>
+        </div>
+        <span class="text-xs text-brand-secondary font-semibold">Project</span>
+      </a>
+
+      <a href="/projects#project-1" class="search-item flex items-center justify-between px-3 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 hover:text-brand-primary transition-colors cursor-pointer" data-keywords="dlouck cloudflare r2 storage asset management">
+        <div class="flex items-center gap-3">
+          <span class="text-base">☁️</span>
+          <div>
+            <div class="font-medium">DLouck</div>
+            <div class="text-[11px] text-gray-400">Cloudflare R2 Asset Platform</div>
+          </div>
+        </div>
+        <span class="text-xs text-brand-secondary font-semibold">Project</span>
+      </a>
+
+      <a href="/projects#project-2" class="search-item flex items-center justify-between px-3 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 hover:text-brand-primary transition-colors cursor-pointer" data-keywords="visits counter real-time svg badge">
+        <div class="flex items-center gap-3">
+          <span class="text-base">📊</span>
+          <div>
+            <div class="font-medium">Visits Counter</div>
+            <div class="text-[11px] text-gray-400">Dynamic SVG Badges API</div>
+          </div>
+        </div>
+        <span class="text-xs text-brand-secondary font-semibold">Tool</span>
+      </a>
+
+      <a href="/projects#project-3" class="search-item flex items-center justify-between px-3 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 hover:text-brand-primary transition-colors cursor-pointer" data-keywords="ramaa creations alibaba cloud award jewellery">
+        <div class="flex items-center gap-3">
+          <span class="text-base">🏆</span>
+          <div>
+            <div class="font-medium">Ramaa Creations</div>
+            <div class="text-[11px] text-gray-400">Alibaba Cloud 2nd Place Global Winner</div>
+          </div>
+        </div>
+        <span class="text-xs text-amber-500 font-semibold">Award Winner</span>
+      </a>
+
+      <!-- No results fallback -->
+      <div id="searchNoResults" class="hidden px-4 py-8 text-center text-gray-400">
+        <p class="text-sm">No matching items or projects found.</p>
+      </div>
+    </div>
+
+    <!-- Footer info -->
+    <div class="px-4 py-2 bg-black/5 dark:bg-white/5 border-t border-black/10 dark:border-white/10 flex items-center justify-between text-[11px] text-gray-400">
+      <span>Navigate with <kbd class="font-mono">↑</kbd> <kbd class="font-mono">↓</kbd></span>
+      <span>Press <kbd class="font-mono">ESC</kbd> to exit</span>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Toast Notification -->
+<div id="searchToast" class="fixed bottom-6 right-6 z-50 hidden items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-900/90 text-white dark:bg-white/90 dark:text-gray-900 shadow-2xl backdrop-blur-md text-xs font-semibold animate-in slide-in-from-bottom-5 duration-200">
+  <span class="text-emerald-400">✓</span>
+  <span id="searchToastMessage">Email copied to clipboard!</span>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const backdrop = document.getElementById("searchPaletteBackdrop");
+    const input = document.getElementById("searchInput") as HTMLInputElement | null;
+    const items = document.querySelectorAll<HTMLElement>(".search-item");
+    const noResults = document.getElementById("searchNoResults");
+    const groupLabels = document.querySelectorAll<HTMLElement>(".search-group-label");
+    const copyEmailBtn = document.getElementById("searchCopyEmail");
+    const toggleThemeBtn = document.getElementById("searchToggleTheme");
+    const toast = document.getElementById("searchToast");
+    const toastMsg = document.getElementById("searchToastMessage");
+
+    let isOpen = false;
+    let selectedIndex = 0;
+
+    const getVisibleItems = () => Array.from(items).filter((item) => item.style.display !== "none");
+
+    const updateSelection = (index: number) => {
+      const visible = getVisibleItems();
+      items.forEach((item) => {
+        item.classList.remove("bg-brand-primary/15", "dark:bg-brand-primary/25", "ring-1", "ring-brand-primary/40", "text-brand-primary");
+      });
+
+      if (visible.length === 0) {
+        selectedIndex = -1;
+        return;
+      }
+
+      selectedIndex = Math.max(0, Math.min(index, visible.length - 1));
+      const activeItem = visible[selectedIndex];
+      if (activeItem) {
+        activeItem.classList.add("bg-brand-primary/15", "dark:bg-brand-primary/25", "ring-1", "ring-brand-primary/40", "text-brand-primary");
+        activeItem.scrollIntoView({ block: "nearest" });
+      }
+    };
+
+    const showToast = (message: string) => {
+      if (!toast || !toastMsg) return;
+      toastMsg.textContent = message;
+      toast.classList.remove("hidden");
+      toast.classList.add("flex");
+      setTimeout(() => {
+        toast.classList.add("hidden");
+        toast.classList.remove("flex");
+      }, 2500);
+    };
+
+    const openPalette = () => {
+      if (!backdrop) return;
+      isOpen = true;
+      backdrop.classList.remove("hidden");
+      backdrop.classList.add("flex");
+      input?.focus();
+      if (input) input.value = "";
+      filterItems("");
+    };
+
+    const closePalette = () => {
+      if (!backdrop) return;
+      isOpen = false;
+      backdrop.classList.add("hidden");
+      backdrop.classList.remove("flex");
+    };
+
+    const filterItems = (query: string) => {
+      const q = query.toLowerCase().trim();
+      let matchCount = 0;
+
+      items.forEach((item) => {
+        const text = (item.textContent || "").toLowerCase();
+        const keywords = (item.dataset.keywords || "").toLowerCase();
+        const matches = !q || text.includes(q) || keywords.includes(q);
+        item.style.display = matches ? "flex" : "none";
+        if (matches) matchCount++;
+      });
+
+      // Show/hide section labels
+      groupLabels.forEach((label) => {
+        label.style.display = q ? "none" : "block";
+      });
+
+      if (noResults) {
+        noResults.style.display = matchCount === 0 ? "block" : "none";
+      }
+
+      // Reset selection to top result
+      updateSelection(0);
+    };
+
+    // Keyboard navigation & shortcuts
+    window.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        if (isOpen) closePalette();
+        else openPalette();
+        return;
+      }
+
+      if (!isOpen) return;
+
+      if (e.key === "Escape") {
+        closePalette();
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const visible = getVisibleItems();
+        if (visible.length > 0) {
+          selectedIndex = (selectedIndex + 1) % visible.length;
+          updateSelection(selectedIndex);
+        }
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        const visible = getVisibleItems();
+        if (visible.length > 0) {
+          selectedIndex = (selectedIndex - 1 + visible.length) % visible.length;
+          updateSelection(selectedIndex);
+        }
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        const visible = getVisibleItems();
+        if (selectedIndex >= 0 && selectedIndex < visible.length) {
+          visible[selectedIndex].click();
+        }
+      }
+    });
+
+    // Close when clicking outside card
+    backdrop?.addEventListener("click", (e) => {
+      if (e.target === backdrop) closePalette();
+    });
+
+    // Input filter event
+    input?.addEventListener("input", (e) => {
+      filterItems((e.target as HTMLInputElement).value);
+    });
+
+    // Close when clicking any link
+    items.forEach((item) => {
+      if (item.tagName === "A") {
+        item.addEventListener("click", closePalette);
+      }
+    });
+
+    // Copy email action
+    copyEmailBtn?.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText("ck@chhatreshkhatri.com");
+        showToast("Email copied to clipboard (ck@chhatreshkhatri.com)!");
+        closePalette();
+      } catch (err) {
+        console.error("Clipboard error:", err);
+      }
+    });
+
+    // Toggle theme action
+    toggleThemeBtn?.addEventListener("click", () => {
+      const themeBtn = document.querySelector('button[aria-label^="Toggle theme"]') as HTMLElement | null;
+      themeBtn?.click();
+      closePalette();
+    });
+
+    // Expose openSearchPalette and openCommandPalette (backward compatibility)
+    (window as any).openSearchPalette = openPalette;
+    (window as any).openCommandPalette = openPalette;
+  });
+</script>
+
