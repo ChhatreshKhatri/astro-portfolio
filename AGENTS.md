@@ -24,7 +24,7 @@
 
 - **Card Layout Hierarchy**:
   - Context & Header: Title, Subtitle.
-  - Highlights Box: Narrative overview and Problem / Solution / Outcome bullets wrapped in a subtle card container (`bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl`).
+  - Highlights Box: Narrative overview and Problem / Solution / Outcome bullets wrapped in a subtle card container (`bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-xs rounded-xl`).
   - Action CTAs: `Live Link` and `GitHub Repo` buttons immediately follow the highlights box.
   - Technologies & Tools: Categorized badges placed directly below the action buttons.
 - **Navigation & Anchors**: Use clean, human-readable semantic slugs for project anchors (`#farmconnect`, `#dlouck`, `#visits-counter`, `#ramaa-creations`).
