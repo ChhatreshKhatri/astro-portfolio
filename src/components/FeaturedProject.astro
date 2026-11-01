@@ -73,7 +73,7 @@ const displayDomain = liveLink ? liveLink.url.replace(/^https?:\/\//, "").replac
     {project.tags && project.tags.length > 0 && (
       <div class="flex flex-wrap gap-1.5 pt-2 border-t border-black/5 dark:border-white/10" aria-label={`${project.heading} technologies`}>
         {project.tags.slice(0, 4).map((tag) => (
-          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-black/5 dark:bg-white/5 text-gray-700 dark:text-gray-300 border border-black/5 dark:border-white/10 hover:border-brand-primary/30 dark:hover:border-brand-primary/30 hover:bg-black/[0.08] dark:hover:bg-white/[0.08] hover:scale-105 transition-all duration-300 ease-out cursor-default">
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-black/5 dark:bg-white/5 text-gray-700 dark:text-gray-300 border border-black/5 dark:border-white/10 hover:border-brand-primary/30 dark:hover:border-brand-primary/30 hover:bg-black/8 dark:hover:bg-white/8 hover:scale-105 transition-all duration-300 ease-out cursor-default">
             {tag.url && <img src={tag.url} alt="" class="w-3 h-3 object-contain transition-transform duration-200 group-hover:scale-110" width="12" height="12" loading="lazy" aria-hidden="true" />}
             <span>{tag.name}</span>
           </span>

@@ -2,7 +2,7 @@
 
 ## Architecture & Single Source of Truth
 
-- **Frontend**: `astro-portfolio` (Astro 5, TypeScript, Tailwind CSS v4).
+- **Frontend**: `astro-portfolio` (Astro 7, TypeScript, Tailwind CSS v4).
 - **Backend**: `portfolio-api` (Cloudflare Worker runtime serving JSON endpoints).
 - **Single Source of Truth**: All dynamic content (Hero, Stats, Selected Work, Enterprise Highlights, Capabilities, Experience, Projects) must originate from `portfolio-api/src/*.json` (`home.json`, `about.json`, `projects.json`).
 - **No Hardcoded Fallbacks**: Never inject static fallback constants or text strings in frontend components. If API data is unavailable, maintain the loading state or omit optional blocks gracefully.
@@ -14,7 +14,7 @@
   - Start in background: `astro dev --background`
   - Manage: `astro dev status`, `astro dev logs`, `astro dev stop`
 - **Backend Dev Server**:
-  - Run within `portfolio-api`: `npx wrangler dev --port 8788 --ip 127.0.0.1`
+  - Run within `portfolio-api`: `npm run dev`
 - **Testing & Verification**:
   - Backend tests: `npm test` (`vitest run` inside `portfolio-api`)
   - Type checks: `npx astro check` (maintain zero errors, warnings, and hints)

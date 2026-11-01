@@ -1,39 +1,47 @@
 # Portfolio Website — [Chhatresh Khatri](https://www.chhatreshkhatri.com/)
 
-This portfolio website, meticulously crafted using Astro, Tailwind CSS, and TypeScript, embodies a fusion of modern design and robust functionality.
+[![Astro](https://img.shields.io/badge/Astro-7.x-BC52EE.svg?logo=astro&logoColor=white)](https://astro.build/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC.svg?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-SSR-F38020.svg?logo=cloudflareworkers&logoColor=white)](https://workers.cloudflare.com/)
 
-Consistency is ensured across the site with a well-structured navigation menu, subtle micro-animations, and dynamic dark/light mode. The website's SEO optimization, performance enhancements, and analytics integration make it a potent tool for showcasing skills, projects, and achievements.
+This portfolio website, meticulously crafted using Astro 7, Tailwind CSS v4, and TypeScript, embodies a fusion of modern design, edge performance, and robust architecture.
+
+Consistency is ensured across the site with a well-structured navigation menu, subtle micro-animations capped strictly at 300ms, and dynamic dark/light mode with synchronized cross-fading. The website's SEO optimization, edge caching, and analytics integration make it a potent tool for showcasing full-stack skills, cloud platforms, and enterprise experience.
 
 ## 🛠️ Built With
 
-- **[Astro](https://astro.build/)** — High-performance web framework for content-driven websites
-- **[Tailwind CSS](https://tailwindcss.com/)** — Modern utility-first CSS framework (v4)
-- **[TypeScript](https://www.typescriptlang.org/)** — Strict, type-safe development
-- **[Cloudflare Workers](https://workers.cloudflare.com/)** — Edge deployment & SSR adapter
-- **[Wrangler](https://developers.cloudflare.com/workers/wrangler/)** — Cloudflare developer CLI
+- **[Astro](https://astro.build/)** — High-performance web framework with Content Collections and SSR capabilities
+- **[Tailwind CSS](https://tailwindcss.com/)** — Modern utility-first CSS framework (v4) with OKLCH gradient palettes
+- **[TypeScript](https://www.typescriptlang.org/)** — Strict, type-safe development across components and API data contracts
+- **[Cloudflare Workers](https://workers.cloudflare.com/)** — Edge deployment & SSR adapter with global cache headers
+- **[Wrangler](https://developers.cloudflare.com/workers/wrangler/)** — Cloudflare developer CLI for local emulation and deployment
 
 ## ✨ Features
 
 - 📖 **Multi-Page Layout** — Fast, structured navigation across Home, About, Projects, and Privacy Policy.
-- 🎨 **Modern Design & Styling** — Custom Tailwind CSS theme with rich gradient tokens and fluid typography.
-- 🌓 **Dark & Light Mode** — Seamless theme toggle with persistent user preference and smooth transitions.
-- 📱 **Fully Responsive** — Mobile-first, adaptive layouts optimized for mobile, tablet, and desktop screens.
-- ⚡ **Edge SSR & Caching** — Server-side rendered on Cloudflare Workers edge runtime with smart `cf` caching.
-- 🎯 **SEO & Social Ready** — Dynamic Open Graph and Twitter Card tags, Schema.org JSON-LD structured data, RSS feed, and automated XML sitemap generation.
-- ♿ **Accessible & Semantic** — Built using semantic HTML5, descriptive ARIA attributes, and accessible keyboard navigation.
+- 🎨 **Modern Design & Styling** — Custom Tailwind CSS v4 theme with glassmorphism cards and fluid typography.
+- 🌓 **Synchronized Theme Toggle** — Seamless Dark/Light mode cross-fade with persistent user preference in `localStorage`.
+- ⚡ **Fluid Micro-Animations** — Immediate `@starting-style` entry transitions strictly capped at 300ms with event-delegated spotlight cursor tracking.
+- 📱 **Fully Responsive** — Mobile-first, adaptive layouts optimized for mobile, tablet, and desktop viewports.
+- ⚡ **Edge SSR & Caching** — Server-side rendered on Cloudflare Workers edge runtime with smart `Cache-Control` headers.
+- 🎯 **Single Source of Truth** — Clean dynamic rendering directly sourced from Cloudflare Worker JSON endpoints with zero hardcoded fallbacks.
+- 🔍 **Interactive Search Palette** — Quick fuzzy search modal with keyboard navigation (`Cmd/Ctrl + K`).
+- 🏷️ **SEO & Social Ready** — Dynamic Open Graph and Twitter Card tags, Schema.org JSON-LD structured data, RSS feed, and automated XML sitemap generation.
+- ♿ **Accessible & Semantic** — Built using semantic HTML5, descriptive ARIA attributes, and reduced-motion accessibility support.
 
 ## 🔌 API
 
-This portfolio uses a dedicated API for content and data:
+This portfolio consumes a dedicated serverless Cloudflare Workers API for dynamic data:
 
 - **Repository**: [portfolio-api](https://github.com/ChhatreshKhatri/portfolio-api)
 - Base URL is configured via `PUBLIC_API_URL` (see Environment Variables below).
-- Endpoints used by this site:
-  - `/home` — Intro, roles, statistics, highlights, and social links
-  - `/about` — Biography, work experience, achievements, education, and tech stack
-  - `/projects` — Featured projects, descriptions, tags, and demo/repo links
+- Endpoints consumed by this site:
+  - `/home` — Hero intro, typewriter roles, statistics, featured projects, enterprise highlight, and core capabilities
+  - `/about` — Biography, work experience, decoupled honors & recognition, education credentials, and tech stack
+  - `/projects` — Comprehensive project catalog, problem/solution highlights, technologies, and live/repo links
 
-If running the API locally, make sure it is active before starting the Astro development server.
+If running the API locally, start the worker server before launching Astro.
 
 ## 🔐 Environment Variables
 
@@ -46,7 +54,7 @@ cp .env.example .env
 Configure the following variables:
 
 ```env
-PUBLIC_API_URL="https://your-api-url.com" # Base URL of the portfolio API (or http://localhost:3000 locally)
+PUBLIC_API_URL="https://your-api-url.com" # Base URL of the portfolio API (or http://127.0.0.1:8787 locally)
 PUBLIC_visitsCounter="unique-counter-id"  # ID used by the footer visits counter badge
 ```
 
@@ -73,22 +81,27 @@ Ensure you have **Node.js** (`>=22.22.0`) and **git** installed on your machine.
    ```
    Open [http://localhost:4321](http://localhost:4321) in your browser.
 
-4. **Create a production build:**
+4. **Run type checks & diagnostics:**
+   ```bash
+   npx astro check
+   ```
+
+5. **Create a production build:**
    ```bash
    npm run build
    ```
 
-5. **Preview the production build locally:**
+6. **Preview the production build locally:**
    ```bash
    npm run preview
    ```
 
-6. **Deploy to Cloudflare Workers:**
+7. **Deploy to Cloudflare Workers:**
    ```bash
    npm run deploy
    ```
 
-7. **Regenerate Cloudflare Worker type definitions:**
+8. **Regenerate Cloudflare Worker type definitions:**
    ```bash
    npm run generate-types
    ```
