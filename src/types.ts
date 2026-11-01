@@ -21,6 +21,33 @@ export interface HomeHighlight {
   icon: string;
 }
 
+export interface HomeCapability {
+  icon: string;
+  title: string;
+  description: string;
+  tags?: string[];
+}
+
+export interface EnterpriseImpact {
+  company: string;
+  role: string;
+  color?: string;
+  period: string;
+  badge?: string;
+  linkText?: string;
+  linkUrl?: string;
+  projects?: ExperienceProject[];
+}
+
+export interface EnterpriseHighlight {
+  badge: string;
+  title: string;
+  description: string;
+  linkText: string;
+  linkUrl: string;
+  highlights?: string[];
+}
+
 export interface HomeData {
   intro: string;
   content: string;
@@ -29,6 +56,10 @@ export interface HomeData {
   stats?: HomeStat[];
   highlights?: (string | HomeHighlight)[];
   links: LinkItem[];
+  enterpriseHighlight?: EnterpriseHighlight;
+  enterpriseImpact?: EnterpriseImpact;
+  capabilities?: HomeCapability[];
+  featuredProjects?: ProjectItem[];
 }
 
 export interface ExperienceProject {
@@ -96,6 +127,10 @@ export interface ProjectItem {
   image: string;
   links: LinkItem[];
   tags?: ProjectTag[];
+  category?: string;
+  featured?: boolean;
+  architecture?: string;
+  highlightsList?: string[];
 }
 
 export interface ProjectsData {
@@ -107,6 +142,7 @@ export interface ProjectsData {
 export interface HeadingProps {
   as?: "h1" | "h2" | "div";
   class?: string;
+  id?: string;
 }
 
 export interface HeroProps {

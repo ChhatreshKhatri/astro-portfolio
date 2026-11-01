@@ -5,40 +5,68 @@ import type { ProjectCardProps as Props } from "../types";
 
 const { project, index } = Astro.props;
 const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay-500"];
+
+const liveUrl = project.links?.find((l) => l.type.toLowerCase().includes("live") || l.type.toLowerCase().includes("blog"))?.url;
+const projectSlug = project.heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+const displayDomain = liveUrl ? liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "") : `${project.heading.toLowerCase().replace(/\s+/g, "")}.chhatreshkhatri.com`;
 ---
 
 <article 
-  class={`project-item w-full transition-all duration-400 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-500"}`}
-  aria-labelledby={`project-${index}`}
+  id={projectSlug}
+  class={`project-item w-full scroll-mt-24 transition-all duration-400 ease-out starting:opacity-0 starting:translate-y-3 ${delayClasses[index] || "delay-500"}`}
+  aria-labelledby={`heading-${projectSlug}`}
   data-index={index}
+  data-slug={projectSlug}
 >
   <div class="spotlight-card relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:border-brand-primary/40 transition-all duration-300">
     <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true" />
     
     <div class={`relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-10 ${index % 2 === 0 ? "lg:flex-row-reverse" : ""}`}>
-      <!-- Showcase Image Frame -->
-      <div class="w-full lg:w-[42%] order-last lg:order-0 flex justify-center items-center transition duration-500 ease-out delay-200 starting:opacity-0 starting:scale-[0.97]">
+      <!-- Showcase Visual Browser Window -->
+      <div class="w-full lg:w-[45%] order-last lg:order-0 flex justify-center items-center transition duration-500 ease-out delay-200 starting:opacity-0 starting:scale-[0.97]">
         <figure class="w-full h-full relative">
-          <div aria-label={`Screenshot of ${project.heading} project`} class="w-full h-60 md:h-72 lg:h-76 relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 shadow-md group/img cursor-pointer bg-gray-100 dark:bg-surface-base/80">
-            <img 
-              title={project.heading} 
-              src={project.image} 
-              alt={project.heading} 
-              class="w-full h-full object-cover object-top transition-all duration-3000 ease-in-out group-hover/img:object-bottom"
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchpriority={index === 0 ? "high" : "auto"}
-              width="1200"
-              height="800"
-            />
-            <div class="absolute inset-0 bg-linear-to-t from-black/10 dark:from-black/20 via-transparent to-transparent pointer-events-none" />
+          <div aria-label={`Screenshot of ${project.heading} project`} class="w-full relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 shadow-lg group/img cursor-pointer bg-gray-100 dark:bg-surface-base/80 flex flex-col">
+            <!-- Browser Mockup Chrome Header -->
+            <div class="flex items-center justify-between gap-2 px-3.5 py-2 bg-black/5 dark:bg-white/5 border-b border-black/10 dark:border-white/10 select-none min-w-0">
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+              </div>
+              <a 
+                href={liveUrl || `/projects#${projectSlug}`}
+                target={liveUrl ? "_blank" : undefined}
+                rel={liveUrl ? "noopener noreferrer" : undefined}
+                title={`Visit ${project.heading}`}
+                class="flex items-center text-[11px] font-mono text-gray-500 dark:text-gray-400 hover:text-brand-primary dark:hover:text-brand-secondary transition-colors truncate min-w-0 px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 cursor-pointer"
+              >
+                {displayDomain}
+              </a>
+              <div class="w-7 shrink-0"></div>
+            </div>
+
+            <!-- Screenshot Viewport -->
+            <div class="h-56 xs:h-64 md:h-72 lg:h-76 w-full relative overflow-hidden bg-gray-900/5 dark:bg-black/20">
+              <img 
+                title={project.heading} 
+                src={project.image} 
+                alt={project.heading} 
+                class="w-full h-full object-cover object-top transition-all duration-3000 ease-in-out group-hover/img:object-bottom"
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchpriority={index === 0 ? "high" : "auto"}
+                width="1200"
+                height="800"
+              />
+              <div class="absolute inset-0 bg-linear-to-t from-black/10 dark:from-black/20 via-transparent to-transparent pointer-events-none" />
+            </div>
           </div>
         </figure>
       </div>
 
       <!-- Showcase Content -->
-      <div class="w-full lg:w-[58%] order-first lg:order-0 flex flex-col justify-between gap-5 py-1">
-        <header class="flex flex-col gap-2">
-          <h2 id={`project-${index}`} class="flex w-fit text-2xl xs:text-3xl md:text-3xl font-extrabold bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
+      <div class="w-full lg:w-[55%] order-first lg:order-0 flex flex-col justify-between gap-4 py-1">
+        <header class="flex flex-col gap-1.5">
+          <h2 id={`heading-${projectSlug}`} class="flex w-fit text-2xl xs:text-3xl md:text-3xl font-extrabold bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
             {project.heading}
           </h2>
           
@@ -47,30 +75,52 @@ const delayClasses = ["delay-100", "delay-200", "delay-300", "delay-400", "delay
           </h3>
         </header>
 
-        <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">
-          {project.description}
-        </p>
+        <!-- Combined Overview & Technical Highlights Box -->
+        <div class="flex flex-col gap-3 p-3.5 sm:p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">
+          <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed text-left">
+            {project.description}
+          </p>
 
-        <div class="flex flex-col gap-4 pt-1 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5">
-          <!-- Links placed above Technologies and tools -->
-          <nav class="flex flex-wrap items-center gap-3" aria-label={`${project.heading} links`}>
-            {project.links.map((link) => (
-              <LinkButton name={link.type} link={link.url} imageUrl={link.icon} loading={index === 0 ? "eager" : "lazy"} />
-            ))}
-          </nav>
+          {project.highlightsList && project.highlightsList.length > 0 && (
+            <ul class="space-y-1.5 text-xs md:text-sm text-gray-700 dark:text-gray-300 pt-2 border-t border-black/5 dark:border-white/10">
+              {project.highlightsList.map((hl) => {
+                const parts = hl.split(/^([A-Za-z]+:)\s*(.*)$/);
+                return (
+                  <li class="flex items-start gap-2">
+                    <span class="text-brand-primary dark:text-brand-secondary shrink-0 font-bold select-none">›</span>
+                    {parts.length > 2 ? (
+                      <span>
+                        <strong class="font-semibold text-gray-900 dark:text-gray-100">{parts[1]}</strong> {parts[2]}
+                      </span>
+                    ) : (
+                      <span>{hl}</span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
 
-          <div class="flex flex-col gap-2.5 pt-3 border-t border-black/5 dark:border-white/10">
-            <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400">
-              Technologies & Tools
-            </span>
-            {project.tags && (
-              <Highlights
-                data={project.tags}
-                ariaLabel={`${project.heading} technologies`}
-                eagerLoad={index === 0}
-              />
-            )}
-          </div>
+        <!-- Action Buttons -->
+        <nav class="flex flex-wrap items-center gap-3 pt-1 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5" aria-label={`${project.heading} links`}>
+          {project.links.map((link) => (
+            <LinkButton name={link.type} link={link.url} imageUrl={link.icon} loading={index === 0 ? "eager" : "lazy"} />
+          ))}
+        </nav>
+
+        <!-- Technologies & Tools -->
+        <div class="flex flex-col gap-2 pt-1 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5">
+          <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400">
+            Technologies & Tools
+          </span>
+          {project.tags && (
+            <Highlights
+              data={project.tags}
+              ariaLabel={`${project.heading} technologies`}
+              eagerLoad={index === 0}
+            />
+          )}
         </div>
       </div>
     </div>

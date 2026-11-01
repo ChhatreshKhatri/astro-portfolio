@@ -26,7 +26,7 @@ const delayClasses = ["delay-200", "delay-300", "delay-400", "delay-500", "delay
               <h2 id="about-intro" class="about-intro-title text-2xl xxs:text-3xl md:text-4xl font-extrabold text-center bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
                 {data.content.title}
               </h2>
-              <p class="about-intro-text text-base md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-justify w-full transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
+              <p class="about-intro-text text-base md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-left w-full transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
                 {data.content.text}
               </p>
             </div>
@@ -126,7 +126,7 @@ const delayClasses = ["delay-200", "delay-300", "delay-400", "delay-500", "delay
                         <div class="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-linear-to-tr from-brand-primary/15 via-purple-500/15 to-brand-secondary/15 border border-brand-primary/20 dark:border-brand-primary/30 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
                           <img 
                             src={ach.icon} 
-                            alt={`${ach.title} icon`} 
+                            alt="" aria-hidden="true" 
                             class="w-7 h-7 md:w-8 md:h-8 object-contain drop-shadow" 
                             loading="lazy"
                             width="36"
@@ -218,7 +218,7 @@ const delayClasses = ["delay-200", "delay-300", "delay-400", "delay-500", "delay
                     {section.skills.map((skill, skillIndex) => (
                       <div title={skill.name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-heading-start/40 to-heading-end/40 hover:from-heading-start hover:to-heading-end skill-item transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer" role="listitem" data-index={skillIndex}>
                         <div class="flex justify-center items-center py-2 px-3.5 gap-x-2.5 rounded-xl whitespace-nowrap bg-white dark:bg-surface-card hover:bg-opacity-95 transition-all duration-300">
-                          <img src={skill.icon} alt={`${skill.name} technology icon`} class="w-6 h-6 xs:w-7 xs:h-7 transition-transform duration-300 group-hover:scale-110" loading={sectionIndex === 0 ? "eager" : "lazy"} decoding={sectionIndex === 0 ? "async" : "auto"} width="28" height="28" />
+                          <img src={skill.icon} alt="" aria-hidden="true" class="w-6 h-6 xs:w-7 xs:h-7 transition-transform duration-300 group-hover:scale-110" loading={sectionIndex === 0 ? "eager" : "lazy"} decoding={sectionIndex === 0 ? "async" : "auto"} width="28" height="28" />
                           <p class="relative text-base xs:text-lg font-semibold whitespace-nowrap text-gray-800 dark:text-gray-100">{skill.name}</p>
                         </div>
                       </div>

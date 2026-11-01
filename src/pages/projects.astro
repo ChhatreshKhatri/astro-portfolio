@@ -6,23 +6,25 @@ import SectionHeading from "../components/Heading.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
 const data = await getProjectsData();
+const projects = data?.projects || [];
 ---
 
 <RootLayout 
   title="Projects Showcase | Chhatresh Khatri" 
-  description="Explore full-stack web applications, open-source tools, and global award-winning projects crafted by Chhatresh Khatri using Next.js, React, TypeScript, and Node.js." 
-  keywords="Chhatresh Khatri Projects, Web Applications, Award Winning Projects, Next.js Showcase, React Apps, Full Stack Projects, Open Source Tools"
+  description="Explore full-stack web applications, cloud platforms, and global award-winning projects crafted by Chhatresh Khatri using Next.js, .NET Core, React, TypeScript, and Node.js." 
+  keywords="Chhatresh Khatri Projects, Web Applications, Award Winning Projects, Next.js Showcase, React Apps, Full Stack Projects, Open Source Tools, .NET Core"
 >
   <SectionHeading>My Projects</SectionHeading>
   {
     data ? (
-      <div class="w-full flex flex-col gap-10 md:gap-14">
-        <!-- Curated Projects Showcase -->
-        <div class="flex flex-col gap-10 md:gap-14">
-          {data.projects.map((project, index) => (
-            <ProjectCard project={project} index={index} />
-          ))}
-        </div>
+      <div class="w-full flex flex-col gap-12 md:gap-16">
+        {projects.length > 0 && (
+          <section class="flex flex-col gap-10 md:gap-14" aria-label="Projects showcase">
+            {projects.map((project, index) => (
+              <ProjectCard project={project} index={index} />
+            ))}
+          </section>
+        )}
       </div>
     ) : (
       <Loading label="Loading projects" />

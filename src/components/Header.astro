@@ -103,25 +103,53 @@ import SearchIcon from "../assets/icons/SearchIcon.astro";
       }
     };
 
-    function toggleNav() {
-      navOpen = !navOpen;
+    function closeNav() {
+      if (!navOpen) return;
+      navOpen = false;
+      toggleClasses(topBar, ["-translate-y-1"], ["rotate-45", "translate-y-1"]);
+      toggleClasses(middleBar, ["opacity-100"], ["opacity-0"]);
+      toggleClasses(bottomBar, ["translate-y-1"], ["-rotate-45", "-translate-y-1"]);
+      toggleClasses(mobileMenu, ["hidden"], ["flex"]);
+      menuButton?.setAttribute("aria-expanded", "false");
+    }
 
+    function toggleNav() {
       if (navOpen) {
+        closeNav();
+      } else {
+        navOpen = true;
         toggleClasses(topBar, ["rotate-45", "translate-y-1"], ["-translate-y-1"]);
         toggleClasses(middleBar, ["opacity-0"], ["opacity-100"]);
         toggleClasses(bottomBar, ["-rotate-45", "-translate-y-1"], ["translate-y-1"]);
         toggleClasses(mobileMenu, ["flex"], ["hidden"]);
         menuButton?.setAttribute("aria-expanded", "true");
-      } else {
-        toggleClasses(topBar, ["-translate-y-1"], ["rotate-45", "translate-y-1"]);
-        toggleClasses(middleBar, ["opacity-100"], ["opacity-0"]);
-        toggleClasses(bottomBar, ["translate-y-1"], ["-rotate-45", "-translate-y-1"]);
-        toggleClasses(mobileMenu, ["hidden"], ["flex"]);
-        menuButton?.setAttribute("aria-expanded", "false");
       }
     }
 
-    menuButton?.addEventListener("click", toggleNav);
+    menuButton?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleNav();
+    });
+
+    // Close when clicking outside of navBar
+    document.addEventListener("click", (e: MouseEvent) => {
+      const navBar = document.getElementById("navBar");
+      if (navOpen && navBar && !navBar.contains(e.target as Node)) {
+        closeNav();
+      }
+    });
+
+    // Close on Escape key press
+    document.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Escape" && navOpen) {
+        closeNav();
+      }
+    });
+
+    // Close on mobile link click
+    mobileMenu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeNav);
+    });
 
     const openSearch = () => {
       if (typeof (window as any).openSearchPalette === "function") {

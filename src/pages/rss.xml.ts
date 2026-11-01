@@ -3,8 +3,8 @@ import type { APIContext } from "astro";
 
 export async function GET(context: APIContext) {
   return rss({
-    title: "Chhatresh Khatri | Portfolio",
-    description: "Chhatresh Khatri Portfolio. Software Engineer and Full Stack Developer passionate about latest trends in the tech industry. Crafting innovation with code.",
+    title: "Chhatresh Khatri | Full-Stack Software Engineer & AI Product Builder",
+    description: "Chhatresh Khatri Portfolio. Full-Stack Software Engineer specializing in modern web applications (Next.js, React, TypeScript), resilient backend systems (.NET Core, Node.js), and intelligent AI product engineering.",
     site: context.site!,
     customData: `
 			<language>en</language>
@@ -15,19 +15,19 @@ export async function GET(context: APIContext) {
       {
         title: "Chhatresh Khatri | About",
         link: "/about",
-        description: "Chhatresh Khatri About. Software Engineer and Full Stack Developer skilled in diverse tech including C/C++, Java, HTML5, CSS3, JavaScript, React.js, Next.js, and more.",
+        description: "Chhatresh Khatri About. Professional software engineering experience, AWS Certified AI Practitioner credentials, education, and technical stack.",
         pubDate: new Date("2024-06-17T12:00:00+05:30"),
       },
       {
         title: "Chhatresh Khatri | Projects",
         link: "/projects",
-        description: "Chhatresh Khatri Projects. Explore a collection of diverse projects, discover their unique features and access relevant links for more information.",
+        description: "Chhatresh Khatri Projects. Curated engineering showcase of full-stack platforms, Cloudflare R2 storage systems, and award-winning deployments.",
         pubDate: new Date("2024-06-17T12:05:00+05:30"),
       },
       {
         title: "Chhatresh Khatri | Privacy Policy",
         link: "/privacy-policy",
-        description: "Privacy Policy for chhatreshkhatri.com Website and Its Subdomains.",
+        description: "Privacy Policy and data practices for chhatreshkhatri.com and its official subdomains.",
         pubDate: new Date("2024-06-17T12:10:00+05:30"),
       },
     ],

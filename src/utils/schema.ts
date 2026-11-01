@@ -5,13 +5,13 @@ export const getPersonSchema = (siteUrl: string) => ({
   "name": "Chhatresh Khatri",
   "url": siteUrl,
   "image": "https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.webp",
-  "jobTitle": "Software Engineer",
+  "jobTitle": "Full-Stack Software Engineer & AI Product Builder",
   "worksFor": {
     "@type": "Organization",
     "name": "LTM Limited",
     "url": "https://www.ltm.com"
   },
-  "description": "Full-Stack Software Engineer specializing in high-performance web applications (Next.js, React), scalable backend solutions (Node.js, Express, GCP), and Agentic AI workflows.",
+  "description": "Full-Stack Software Engineer specializing in high-performance web applications (Next.js, React, TypeScript), resilient backend systems (.NET Core, Node.js, SQL, Cloudflare), and intelligent AI product engineering.",
   "knowsAbout": [
     "JavaScript",
     "TypeScript",
@@ -19,6 +19,8 @@ export const getPersonSchema = (siteUrl: string) => ({
     "Next.js",
     "Node.js",
     "Express.js",
+    ".NET Core",
+    "SQL Server",
     "Astro",
     "Tailwind CSS",
     "Redux Toolkit",
