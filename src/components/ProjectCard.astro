@@ -23,7 +23,7 @@ const displayDomain = liveUrl ? liveUrl.replace(/^https?:\/\//, "").replace(/\/$
     
     <div class={`relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-10 ${index % 2 === 0 ? "lg:flex-row-reverse" : ""}`}>
       <!-- Showcase Visual Browser Window -->
-      <div class="w-full lg:w-[45%] order-last lg:order-0 flex justify-center items-center transition duration-500 ease-out delay-200 starting:opacity-0 starting:scale-[0.97]">
+      <div class="w-full lg:w-[45%] order-last lg:order-0 flex justify-center items-center transition-[opacity,transform] duration-500 ease-out delay-200 starting:opacity-0 starting:scale-[0.97]">
         <figure class="w-full h-full relative">
           <div aria-label={`Screenshot of ${project.heading} project`} class="w-full relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 shadow-lg group/img cursor-pointer bg-gray-100 dark:bg-surface-base/80 flex flex-col">
             <!-- Browser Mockup Chrome Header -->
@@ -66,17 +66,17 @@ const displayDomain = liveUrl ? liveUrl.replace(/^https?:\/\//, "").replace(/\/$
       <!-- Showcase Content -->
       <div class="w-full lg:w-[55%] order-first lg:order-0 flex flex-col justify-between gap-4 py-1">
         <header class="flex flex-col gap-1.5">
-          <h2 id={`heading-${projectSlug}`} class="flex w-fit text-2xl xs:text-3xl md:text-3xl font-extrabold bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent transition duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
+          <h2 id={`heading-${projectSlug}`} class="flex w-fit text-2xl xs:text-3xl md:text-3xl font-extrabold bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent transition-[opacity,transform] duration-400 ease-out delay-200 starting:opacity-0 starting:translate-y-2.5">
             {project.heading}
           </h2>
           
-          <h3 class="text-base md:text-lg font-bold bg-linear-to-r from-subheading-start to-subheading-end bg-clip-text text-transparent w-fit tracking-wide transition duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
+          <h3 class="text-base md:text-lg font-bold bg-linear-to-r from-subheading-start to-subheading-end bg-clip-text text-transparent w-fit tracking-wide transition-[opacity,transform] duration-400 ease-out delay-300 starting:opacity-0 starting:translate-y-2.5">
             {project.subHeading}
           </h3>
         </header>
 
         <!-- Combined Overview & Technical Highlights Box -->
-        <div class="flex flex-col gap-3 p-3.5 sm:p-4 rounded-xl bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-xs transition duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">
+        <div class="flex flex-col gap-3 p-3.5 sm:p-4 rounded-xl bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-xs transition-[opacity,transform] duration-400 ease-out delay-400 starting:opacity-0 starting:translate-y-2.5">
           <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed text-left">
             {project.description}
           </p>
@@ -103,14 +103,14 @@ const displayDomain = liveUrl ? liveUrl.replace(/^https?:\/\//, "").replace(/\/$
         </div>
 
         <!-- Action Buttons -->
-        <nav class="flex flex-wrap items-center gap-3 pt-1 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5" aria-label={`${project.heading} links`}>
+        <nav class="flex flex-wrap items-center gap-3 pt-1 transition-[opacity,transform] duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5" aria-label={`${project.heading} links`}>
           {project.links.map((link) => (
             <LinkButton name={link.type} link={link.url} imageUrl={link.icon} loading={index === 0 ? "eager" : "lazy"} />
           ))}
         </nav>
 
         <!-- Technologies & Tools -->
-        <div class="flex flex-col gap-2 pt-1 transition duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5">
+        <div class="flex flex-col gap-2 pt-1 transition-[opacity,transform] duration-400 ease-out delay-500 starting:opacity-0 starting:translate-y-2.5">
           <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400">
             Technologies & Tools
           </span>
