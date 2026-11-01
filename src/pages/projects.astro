@@ -19,7 +19,7 @@ const projects = data?.projects || [];
     data ? (
       <div class="w-full flex flex-col gap-12 md:gap-16">
         {projects.length > 0 && (
-          <section class="flex flex-col gap-10 md:gap-14" aria-label="Projects showcase">
+          <section class="flex flex-col gap-10 md:gap-14 transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5" aria-label="Projects showcase">
             {projects.map((project, index) => (
               <ProjectCard project={project} index={index} />
             ))}

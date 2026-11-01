@@ -62,6 +62,12 @@ export interface HomeData {
   featuredProjects?: ProjectItem[];
 }
 
+export interface RoleAwards {
+  title: string;
+  description?: string;
+  items: string[];
+}
+
 export interface ExperienceProject {
   name: string;
   details: string[];
@@ -76,6 +82,7 @@ export interface ExperienceItem {
   location?: string;
   details?: string[];
   skills?: string[];
+  awards?: RoleAwards;
   projects?: ExperienceProject[];
 }
 

@@ -7,14 +7,14 @@ import RootLayout from "../layouts/RootLayout.astro";
   description="The page you are looking for does not exist or has been moved." 
   noindex={true}
 >
-  <div class="flex flex-col items-center justify-center min-h-[60vh] gap-6">
-    <div class="spotlight-card relative group rounded-2xl p-8 md:p-12 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:border-brand-primary/40 transition-all duration-300">
-      <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100 -z-10" aria-hidden="true"></div>
+  <div class="flex flex-col items-center justify-center min-h-[60vh] gap-6 transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5">
+    <div class="spotlight-card relative group rounded-2xl p-8 md:p-12 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out">
+      <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true"></div>
       
       <div class="relative z-10 flex flex-col items-center justify-center gap-4 text-center">
         <h1 class="text-6xl md:text-8xl font-extrabold bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent">404</h1>
         <h2 class="text-2xl md:text-3xl font-bold bg-linear-to-r from-subheading-start to-subheading-end bg-clip-text text-transparent">Page Not Found</h2>
-        <p class="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-md">The page you're looking for doesn't exist or has been moved.</p>
+        <p class="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-md transition-colors duration-300">The page you're looking for doesn't exist or has been moved.</p>
         
         <div class="flex items-center justify-center p-px rounded-xl bg-linear-to-r from-brand-primary/40 to-brand-secondary/40 hover:from-brand-primary hover:to-brand-secondary mt-4 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group">
           <a href="/" class="flex justify-center items-center py-2 px-6 rounded-xl text-base font-semibold text-gray-800 dark:text-gray-100 bg-white dark:bg-surface-card hover:bg-opacity-95 transition-all duration-300 cursor-pointer">
