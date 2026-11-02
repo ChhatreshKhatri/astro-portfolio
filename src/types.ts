@@ -96,6 +96,7 @@ export interface EducationItem {
 
 export interface AchievementItem {
   title: string;
+  award?: string;
   description?: string;
   icon?: string;
   url?: string;

@@ -2,7 +2,6 @@
 import RootLayout from "../layouts/RootLayout.astro";
 import SectionHeading from "../components/Heading.astro";
 import Loading from "../components/Loading.astro";
-import LinkButton from "../components/LinkButton.astro";
 import { getAboutData } from "../services/api";
 
 const data = await getAboutData();
@@ -17,15 +16,15 @@ const data = await getAboutData();
   <SectionHeading>About Me</SectionHeading>
   {
     data ? (
-      <div class="w-full flex flex-col gap-10 md:gap-14">
-        <section class="about-intro-section w-full transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5" aria-labelledby="about-intro">
-          <div class="spotlight-card relative group rounded-2xl w-full flex flex-col items-center justify-center text-center p-6 md:p-10 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out">
+      <div class="w-full flex flex-col gap-8 md:gap-10 lg:gap-12">
+        <section class="about-intro-section w-full transition duration-300 ease-out starting:opacity-0" aria-labelledby="about-intro">
+          <div class="spotlight-card relative group rounded-2xl w-full flex flex-col items-center justify-center text-center p-6 md:p-8 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out">
             <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true" />
-            <div class="relative z-10 flex flex-col items-center justify-center gap-4 w-full">
+            <div class="relative z-10 flex flex-col items-center justify-center gap-3.5 w-full">
               <h2 id="about-intro" class="about-intro-title text-2xl xxs:text-3xl md:text-4xl font-extrabold text-center bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent transition-colors duration-300 ease-out">
                 {data.content.title}
               </h2>
-              <p class="about-intro-text text-base md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-left w-full transition-colors duration-300 ease-out">
+              <p class="about-intro-text text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-left w-full transition-colors duration-300 ease-out">
                 {data.content.text}
               </p>
             </div>
@@ -34,9 +33,9 @@ const data = await getAboutData();
 
         <!-- Experience Section -->
         {data.experience && data.experience.length > 0 && (
-          <section class="w-full flex flex-col gap-6 transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5">
-            <SectionHeading as="h2" class="starting:scale-[0.98]">Work Experience</SectionHeading>
-            <div class="flex flex-col gap-6">
+          <section class="w-full flex flex-col gap-4 md:gap-5 transition duration-300 ease-out starting:opacity-0">
+            <SectionHeading as="h2">Work Experience</SectionHeading>
+            <div class="flex flex-col gap-4 md:gap-5">
               {data.experience.map((exp) => (
                 <article class={`spotlight-card relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out`}>
                   <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true" />
@@ -98,7 +97,7 @@ const data = await getAboutData();
                         </h5>
                         <ul class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                           {exp.awards.items.map((award) => (
-                            <li class="flex items-center justify-center p-2.5 px-3 rounded-lg bg-white/80 dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-2xs hover:border-brand-primary/30 dark:hover:border-brand-primary/30 hover:bg-black/2 dark:hover:bg-white/8 hover:scale-105 transition-all duration-300 text-center cursor-default">
+                            <li class="flex items-center justify-center p-2.5 px-3 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-2xs hover:border-brand-primary/30 dark:hover:border-brand-primary/30 hover:bg-black/8 dark:hover:bg-white/8 transition-all duration-300 text-center cursor-default">
                               <span class="text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-200 text-center leading-snug transition-colors duration-300 ease-out">{award}</span>
                             </li>
                           ))}
@@ -125,51 +124,53 @@ const data = await getAboutData();
 
         <!-- Achievements Section -->
         {data.achievements && data.achievements.length > 0 && (
-          <section class="w-full flex flex-col gap-6 transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5">
-            <SectionHeading as="h2" class="starting:scale-[0.98]">Achievements & Awards</SectionHeading>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section class="w-full flex flex-col gap-4 md:gap-5 transition duration-300 ease-out starting:opacity-0" aria-labelledby="achievements-heading">
+            <SectionHeading as="h2" id="achievements-heading">Honors & Certifications</SectionHeading>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
               {data.achievements.map((ach, index, achievements) => {
                 const isLastOdd = achievements.length % 2 === 1 && index === achievements.length - 1;
 
                 return (
-                  <article class={`spotlight-card relative group rounded-2xl p-6 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300 ease-out flex flex-col h-full ${isLastOdd ? "md:col-span-2" : ""}`}>
+                  <article class={`spotlight-card relative group p-5 sm:p-6 rounded-2xl bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out flex flex-col justify-between ${isLastOdd ? "md:col-span-2" : ""}`}>
                     <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true" />
                     
-                    <div class="relative z-10 flex items-start gap-4 h-full">
+                    <div class="flex items-start gap-4">
                       {ach.icon && (
-                        <div class="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-linear-to-tr from-brand-primary/15 via-purple-500/15 to-brand-secondary/15 border border-brand-primary/20 dark:border-brand-primary/30 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-linear-to-tr from-brand-primary/15 via-purple-500/15 to-brand-secondary/15 border border-brand-primary/20 dark:border-brand-primary/30 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
                           <img 
                             src={ach.icon} 
                             alt="" aria-hidden="true" 
-                            class="w-7 h-7 md:w-8 md:h-8 object-contain drop-shadow" 
-                            loading="lazy"
-                            width="36"
-                            height="36"
+                            class="w-7 h-7 object-contain drop-shadow" 
+                            loading="lazy" 
+                            width="28" 
+                            height="28" 
                           />
                         </div>
                       )}
-
-                      <div class="flex flex-col justify-between gap-3 min-w-0 flex-1 h-full">
-                        <div class="flex flex-col gap-1">
-                          <h3 class="text-base md:text-lg lg:text-xl font-extrabold leading-snug bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent">
-                            {ach.title}
-                          </h3>
-                          {ach.description && (
-                            <h4 class="text-xs md:text-sm lg:text-base font-bold bg-linear-to-r from-subheading-start to-subheading-end bg-clip-text text-transparent">
-                              {ach.description}
-                            </h4>
+                      <div class="flex flex-col gap-1 flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-2">
+                          <span class="text-xs font-bold uppercase tracking-wider text-brand-primary dark:text-brand-secondary">
+                            {ach.award || "Honor"}
+                          </span>
+                          {ach.url && (
+                            <a 
+                              href={ach.url} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              class="text-xs font-semibold text-gray-500 hover:text-brand-primary dark:hover:text-brand-secondary transition-colors flex items-center gap-0.5 group/link"
+                            >
+                              <span>{ach.linkText || "Verify"}</span>
+                              <span aria-hidden="true" class="transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">↗</span>
+                            </a>
                           )}
                         </div>
-
-                        {ach.url && (
-                          <div class="pt-3 border-t border-black/10 dark:border-white/10 flex">
-                            <LinkButton
-                              name={ach.linkText || "View"}
-                              link={ach.url}
-                              imageUrl={ach.linkIcon}
-                              loading="lazy"
-                            />
-                          </div>
+                        <h3 class="text-base sm:text-lg font-bold bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent leading-snug">
+                          {ach.title}
+                        </h3>
+                        {ach.description && (
+                          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                            {ach.description}
+                          </p>
                         )}
                       </div>
                     </div>
@@ -182,9 +183,9 @@ const data = await getAboutData();
 
         <!-- Education Section -->
         {data.education && data.education.length > 0 && (
-          <section class="w-full flex flex-col gap-6 transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5">
-            <SectionHeading as="h2" class="starting:scale-[0.98]">Education</SectionHeading>
-            <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-6">
+          <section class="w-full flex flex-col gap-4 md:gap-5 transition duration-300 ease-out starting:opacity-0">
+            <SectionHeading as="h2">Education</SectionHeading>
+            <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
               {data.education.map((edu) => (
                 <article class={`spotlight-card relative group rounded-2xl p-6 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300 ease-out flex flex-col h-full`}>
                   <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true" />
@@ -218,30 +219,32 @@ const data = await getAboutData();
         )}
 
         <!-- Technology Stack Section -->
-        <section class="w-full flex flex-col gap-8 transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5">
-          <SectionHeading as="h2" class="starting:scale-[0.98]">Technology Stack</SectionHeading>
-          {data.sections.map((section, sectionIndex) => (
-            <div class="w-full">
-              <section class="skills-section spotlight-card relative group rounded-2xl w-full p-6 md:p-8 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out" data-section-index={sectionIndex} aria-labelledby={`skills-section-${sectionIndex}`}>
-                <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true" />
-                <div class="relative z-10 flex flex-col gap-6">
-                  <h3 id={`skills-section-${sectionIndex}`} class="skills-section-title flex justify-center items-center text-xl xxs:text-2xl md:text-3xl font-bold text-center bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent">
-                    {section.title}
-                  </h3>
-                  <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4 skill-container" role="list" aria-label={`${section.title} skills`}>
-                    {section.skills.map((skill, skillIndex) => (
-                      <div title={skill.name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-heading-start/40 to-heading-end/40 hover:from-heading-start hover:to-heading-end skill-item transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group/skill" role="listitem" data-index={skillIndex}>
-                        <div class="flex justify-center items-center py-2 px-3.5 gap-x-2.5 rounded-xl whitespace-nowrap bg-white dark:bg-surface-card hover:bg-opacity-95 transition-all duration-300">
-                          <img src={skill.icon} alt="" aria-hidden="true" class="w-6 h-6 xs:w-7 xs:h-7 transition-transform duration-300 group-hover/skill:scale-110" loading={sectionIndex === 0 ? "eager" : "lazy"} decoding={sectionIndex === 0 ? "async" : "auto"} width="28" height="28" />
-                          <p class="relative text-base xs:text-lg font-semibold whitespace-nowrap text-gray-800 dark:text-gray-100">{skill.name}</p>
+        <section class="w-full flex flex-col gap-4 md:gap-5 transition duration-300 ease-out starting:opacity-0">
+          <SectionHeading as="h2">Technology Stack</SectionHeading>
+          <div class="flex flex-col gap-4 md:gap-5">
+            {data.sections.map((section, sectionIndex) => (
+              <div class="w-full">
+                <section class="skills-section spotlight-card relative group rounded-2xl w-full p-6 md:p-8 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out" data-section-index={sectionIndex} aria-labelledby={`skills-section-${sectionIndex}`}>
+                  <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true" />
+                  <div class="relative z-10 flex flex-col gap-6">
+                    <h3 id={`skills-section-${sectionIndex}`} class="skills-section-title flex justify-center items-center text-xl xxs:text-2xl md:text-3xl font-bold text-center bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent">
+                      {section.title}
+                    </h3>
+                    <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4 skill-container" role="list" aria-label={`${section.title} skills`}>
+                      {section.skills.map((skill, skillIndex) => (
+                        <div title={skill.name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-heading-start/40 to-heading-end/40 hover:from-heading-start hover:to-heading-end skill-item transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group/skill" role="listitem" data-index={skillIndex}>
+                          <div class="flex justify-center items-center py-2 px-3.5 gap-x-2.5 rounded-xl whitespace-nowrap bg-white dark:bg-surface-card hover:bg-opacity-95 transition-all duration-300">
+                            <img src={skill.icon} alt="" aria-hidden="true" class="w-6 h-6 xs:w-7 xs:h-7 transition-transform duration-300 group-hover/skill:scale-110" loading={sectionIndex === 0 ? "eager" : "lazy"} decoding={sectionIndex === 0 ? "async" : "auto"} width="28" height="28" />
+                            <p class="relative text-base xs:text-lg font-semibold whitespace-nowrap text-gray-800 dark:text-gray-100">{skill.name}</p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </section>
-            </div>
-          ))}
+                </section>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
     ) : (

@@ -21,15 +21,15 @@ const capabilities = homeData?.capabilities || [];
   <SectionHeading as="div">Welcome to my Portfolio</SectionHeading>
   {
     homeData ? (
-      <div class="w-full flex flex-col gap-12 md:gap-16">
+      <div class="w-full flex flex-col gap-8 md:gap-10 lg:gap-12">
         <!-- Main Hero Showcase -->
         <Hero data={homeData} />
 
         <!-- Key Impact & Statistics -->
         {homeData.stats && homeData.stats.length > 0 && (
-          <section class="w-full grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5" aria-label="Key highlights and statistics">
+          <section class="w-full grid grid-cols-2 lg:grid-cols-4 gap-3.5 md:gap-5 transition duration-300 ease-out starting:opacity-0" aria-label="Key highlights and statistics">
             {homeData.stats.map((stat) => (
-              <div class="spotlight-card relative group/stat p-6 rounded-2xl bg-white/40 dark:bg-surface-card/60 border border-black/5 dark:border-white/10 shadow-xl backdrop-blur-md flex flex-col items-center justify-center text-center hover:shadow-2xl hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300 ease-out cursor-pointer">
+              <div class="spotlight-card relative group/stat p-5 sm:p-6 rounded-2xl bg-white/40 dark:bg-surface-card/60 border border-black/5 dark:border-white/10 shadow-xl backdrop-blur-md flex flex-col items-center justify-center text-center hover:shadow-2xl hover:-translate-y-1 hover:border-brand-primary/40 transition-all duration-300 ease-out cursor-pointer">
                 <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover/stat:opacity-100 -z-10" aria-hidden="true" />
                 <span class="relative z-10 text-3xl md:text-4xl lg:text-5xl font-extrabold bg-linear-to-r from-heading-start to-heading-end bg-clip-text text-transparent mb-1 drop-shadow-xs group-hover/stat:scale-110 transition-transform duration-300">{stat.value}</span>
                 <span class="relative z-10 text-xs md:text-sm font-semibold tracking-wide text-gray-600 dark:text-gray-300 uppercase transition-colors duration-300 ease-out">{stat.label}</span>
@@ -40,19 +40,17 @@ const capabilities = homeData?.capabilities || [];
 
         <!-- Visual Featured Projects Showcase (Centered Header - Preview Grid) -->
         {featuredProjects.length > 0 && (
-          <section class="w-full flex flex-col gap-8 transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5" aria-labelledby="featured-projects-heading">
-            <div class="flex justify-center items-center text-center pb-2">
-              <SectionHeading as="h2" id="featured-projects-heading" class="starting:scale-[0.98]">Selected Work</SectionHeading>
-            </div>
+          <section class="w-full flex flex-col gap-4 md:gap-5 transition duration-300 ease-out starting:opacity-0" aria-labelledby="featured-projects-heading">
+            <SectionHeading as="h2" id="featured-projects-heading">Selected Work</SectionHeading>
 
             <!-- Visual 3-Column Preview Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
               {featuredProjects.map((project, index) => (
                 <FeaturedProject project={project} index={index} />
               ))}
             </div>
 
-            <div class="flex justify-center pt-2">
+            <div class="flex justify-center">
               <div class="items-center justify-center p-px rounded-xl bg-linear-to-r from-brand-primary/40 to-brand-secondary/40 hover:from-brand-primary hover:to-brand-secondary transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group/explore">
                 <a 
                   href="/projects" 
@@ -68,7 +66,7 @@ const capabilities = homeData?.capabilities || [];
 
         <!-- Enterprise Credibility Highlight Banner (Clean & Simple) -->
         {enterpriseHighlight && (
-          <section class="w-full spotlight-card relative group rounded-2xl p-6 sm:p-8 md:p-10 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out starting:opacity-0 starting:translate-y-2.5" aria-label="Enterprise engineering highlights">
+          <section class="w-full spotlight-card relative group rounded-2xl p-6 md:p-8 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out starting:opacity-0" aria-label="Enterprise engineering highlights">
             <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true" />
             
             <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 w-full">
@@ -114,12 +112,10 @@ const capabilities = homeData?.capabilities || [];
 
         <!-- Core Capabilities Showcase -->
         {capabilities.length > 0 && (
-          <section class="w-full flex flex-col gap-6 transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5" aria-labelledby="capabilities-heading">
-            <div class="flex justify-center items-center text-center pb-2">
-              <SectionHeading as="h2" id="capabilities-heading" class="starting:scale-[0.98]">Core Capabilities</SectionHeading>
-            </div>
+          <section class="w-full flex flex-col gap-4 md:gap-5 transition duration-300 ease-out starting:opacity-0" aria-labelledby="capabilities-heading">
+            <SectionHeading as="h2" id="capabilities-heading">Core Capabilities</SectionHeading>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
               {capabilities.map((cap) => (
                 <div class="spotlight-card relative group p-6 rounded-2xl bg-white/40 dark:bg-surface-card/60 border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-brand-primary/40 backdrop-blur-md flex flex-col gap-3 transition-all duration-300 ease-out">
                   <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true" />

@@ -28,7 +28,7 @@
 
 - **Card Layout Hierarchy**:
   - Context & Header: Title, Subtitle.
-  - Highlights Box: Narrative overview and Problem / Solution / Outcome bullets wrapped in a subtle card container (`bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-xs rounded-xl`).
+  - Highlights Box: Narrative overview and Problem / Solution / Outcome bullets wrapped in a subtle card container (`bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:border-brand-primary/30 dark:hover:border-brand-primary/30 hover:bg-black/8 dark:hover:bg-white/8 shadow-xs rounded-xl`).
   - Action CTAs: `Live Link` and `GitHub Repo` buttons immediately follow the highlights box.
   - Technologies & Tools: Categorized badges placed directly below the action buttons.
 - **Navigation & Anchors**: Use clean, human-readable semantic slugs for project anchors (`#farmconnect`, `#dlouck`, `#visits-counter`, `#ramaa-creations`).
@@ -38,9 +38,8 @@
 
 - **Entrance Animations (`@starting-style`)**:
   - Maximum duration strictly capped at 300ms across all pages and components.
-  - Sections: `transition duration-300 ease-out starting:opacity-0 starting:translate-y-2.5` (no artificial delays).
-  - Section Headings: `SectionHeading class="starting:scale-[0.98]"`.
-  - Cards: `transition-all duration-300 ease-out starting:opacity-0 starting:translate-y-2.5` (immediate fluid transition).
+  - Sections & Headings: `transition duration-300 ease-out starting:opacity-0` (pure in-place fluid fade, no vertical displacement/bumps, no artificial delays).
+  - Cards: `transition-all duration-300 ease-out starting:opacity-0` (immediate fluid transition).
 - **Spotlight Cards & Hover Elevations**:
   - All interactive spotlight cards across Home, About, Projects, and Privacy Policy must share: `spotlight-card relative group rounded-2xl bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out`.
   - Glow overlays: `absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10`.

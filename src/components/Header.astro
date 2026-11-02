@@ -60,11 +60,11 @@ import SearchIcon from "../assets/icons/SearchIcon.astro";
           id="menuButton" 
           aria-label="Toggle navigation menu" 
           aria-expanded="false" 
-          class="flex flex-col justify-center items-center lg:hidden cursor-pointer p-1.5 xs:p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors shrink-0 touch-manipulation"
+          class="relative flex justify-center items-center lg:hidden cursor-pointer w-8 h-8 xs:w-8.5 xs:h-8.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors shrink-0 touch-manipulation"
         >
-          <span id="topBar" class="bg-linear-to-r from-heading-start to-heading-end transition-all duration-200 ease-out h-0.5 w-4.5 xs:w-5 rounded-sm -translate-y-1"></span>
-          <span id="middleBar" class="bg-linear-to-r from-heading-start to-heading-end transition-all duration-200 ease-out h-0.5 w-4.5 xs:w-5 rounded-sm my-0.5 opacity-100"></span>
-          <span id="bottomBar" class="bg-linear-to-r from-heading-start to-heading-end transition-all duration-200 ease-out h-0.5 w-4.5 xs:w-5 rounded-sm translate-y-1"></span>
+          <span id="topBar" class="absolute bg-linear-to-r from-heading-start to-heading-end transition-all duration-300 ease-out h-0.5 w-4.5 xs:w-5 rounded-full -translate-y-1.5"></span>
+          <span id="middleBar" class="absolute bg-linear-to-r from-heading-start to-heading-end transition-all duration-300 ease-out h-0.5 w-4.5 xs:w-5 rounded-full opacity-100"></span>
+          <span id="bottomBar" class="absolute bg-linear-to-r from-heading-start to-heading-end transition-all duration-300 ease-out h-0.5 w-4.5 xs:w-5 rounded-full translate-y-1.5"></span>
         </button>
       </div>
     </div>
@@ -106,9 +106,9 @@ import SearchIcon from "../assets/icons/SearchIcon.astro";
     function closeNav() {
       if (!navOpen) return;
       navOpen = false;
-      toggleClasses(topBar, ["-translate-y-1"], ["rotate-45", "translate-y-1"]);
+      toggleClasses(topBar, ["-translate-y-1.5"], ["rotate-45", "translate-y-0"]);
       toggleClasses(middleBar, ["opacity-100"], ["opacity-0"]);
-      toggleClasses(bottomBar, ["translate-y-1"], ["-rotate-45", "-translate-y-1"]);
+      toggleClasses(bottomBar, ["translate-y-1.5"], ["-rotate-45", "translate-y-0"]);
       toggleClasses(mobileMenu, ["hidden"], ["flex"]);
       menuButton?.setAttribute("aria-expanded", "false");
     }
@@ -118,9 +118,9 @@ import SearchIcon from "../assets/icons/SearchIcon.astro";
         closeNav();
       } else {
         navOpen = true;
-        toggleClasses(topBar, ["rotate-45", "translate-y-1"], ["-translate-y-1"]);
+        toggleClasses(topBar, ["rotate-45", "translate-y-0"], ["-translate-y-1.5"]);
         toggleClasses(middleBar, ["opacity-0"], ["opacity-100"]);
-        toggleClasses(bottomBar, ["-rotate-45", "-translate-y-1"], ["translate-y-1"]);
+        toggleClasses(bottomBar, ["-rotate-45", "translate-y-0"], ["translate-y-1.5"]);
         toggleClasses(mobileMenu, ["flex"], ["hidden"]);
         menuButton?.setAttribute("aria-expanded", "true");
       }
