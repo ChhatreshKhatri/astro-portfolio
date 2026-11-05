@@ -57,6 +57,10 @@ const mergedKeywords = Array.from(new Set([
 
 <html lang="en" class="scroll-smooth">
   <head>
+    <!-- High-Performance Mobile Resource Hints & Preloads -->
+    <link rel="preconnect" href="https://cdn.chhatreshkhatri.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.chhatreshkhatri.com" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/Poppins.woff2" crossorigin="anonymous" />
     <ClientRouter />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -101,9 +105,6 @@ const mergedKeywords = Array.from(new Set([
         <link rel="canonical" href={canonicalURL} />
       </>
     )}
-    
-    <!-- Font Preloading - Only preload regular weight for LCP -->
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/Poppins.woff2" crossorigin="anonymous" />
     
     <script is:inline type="application/ld+json" set:html={JSON.stringify(graphSchema)} />
   </head>

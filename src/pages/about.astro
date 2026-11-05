@@ -17,7 +17,7 @@ const data = await getAboutData();
   {
     data ? (
       <div class="w-full flex flex-col gap-8 md:gap-10 lg:gap-12">
-        <section class="about-intro-section w-full transition duration-300 ease-out starting:opacity-0" aria-labelledby="about-intro">
+        <section class="about-intro-section w-full transition duration-300 ease-out" aria-labelledby="about-intro">
           <div class="spotlight-card relative group rounded-2xl w-full flex flex-col items-center justify-center text-center p-6 md:p-8 bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out">
             <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true" />
             <div class="relative z-10 flex flex-col items-center justify-center gap-3.5 w-full">
@@ -234,7 +234,7 @@ const data = await getAboutData();
                       {section.skills.map((skill, skillIndex) => (
                         <div title={skill.name} class="items-center justify-center p-px rounded-xl bg-linear-to-r from-heading-start/40 to-heading-end/40 hover:from-heading-start hover:to-heading-end skill-item transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-xs cursor-pointer group/skill" role="listitem" data-index={skillIndex}>
                           <div class="flex justify-center items-center py-2 px-3.5 gap-x-2.5 rounded-xl whitespace-nowrap bg-white dark:bg-surface-card hover:bg-opacity-95 transition-all duration-300">
-                            <img src={skill.icon} alt="" aria-hidden="true" class="w-6 h-6 xs:w-7 xs:h-7 transition-transform duration-300 group-hover/skill:scale-110" loading={sectionIndex === 0 ? "eager" : "lazy"} decoding={sectionIndex === 0 ? "async" : "auto"} width="28" height="28" />
+                            <img src={skill.icon} alt="" aria-hidden="true" class="w-6 h-6 xs:w-7 xs:h-7 transition-transform duration-300 group-hover/skill:scale-110" loading="lazy" decoding="async" width="28" height="28" />
                             <p class="relative text-base xs:text-lg font-semibold whitespace-nowrap text-gray-800 dark:text-gray-100">{skill.name}</p>
                           </div>
                         </div>

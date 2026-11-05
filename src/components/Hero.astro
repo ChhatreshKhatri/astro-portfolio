@@ -5,10 +5,11 @@ import type { HeroProps as Props, LinkItem } from "../types";
 
 const { data } = Astro.props;
 const displayLinks: LinkItem[] = data.links || [];
+const firstRole = data.roles?.[0] || "Full-Stack Software Engineer";
 ---
 
 <section
-  class="hero-section spotlight-card relative group grid grid-cols-1 w-full xl:grid-cols-12 p-6 sm:p-8 md:p-8 gap-6 xl:gap-8 rounded-2xl bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-2xl transition-all duration-300 ease-out starting:opacity-0 items-center hover:border-brand-primary/40"
+  class="hero-section spotlight-card relative group grid grid-cols-1 w-full xl:grid-cols-12 p-6 sm:p-8 md:p-8 gap-6 xl:gap-8 rounded-2xl bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-2xl transition-all duration-300 ease-out items-center hover:border-brand-primary/40"
   aria-labelledby="hero-heading">
   <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-brand-primary/10 via-purple-500/5 to-brand-secondary/10 opacity-60 transition-opacity duration-300 group-hover:opacity-100 -z-10" aria-hidden="true" />
 
@@ -24,7 +25,7 @@ const displayLinks: LinkItem[] = data.links || [];
         id="autoTypeContainer"
         data-roles={JSON.stringify(data.roles || ["Full-Stack Software Engineer"])}
         class="hero-typewriter flex items-center justify-center xl:justify-start text-lg sm:text-xl md:text-2xl font-bold min-h-[1.5em] leading-normal transition-colors duration-300 ease-out">
-        <span id="autoType" class="bg-linear-to-r from-subheading-start to-subheading-end bg-clip-text text-transparent"></span>
+        <span id="autoType" class="bg-linear-to-r from-subheading-start to-subheading-end bg-clip-text text-transparent">{firstRole}</span>
         <span id="cursor" class="inline-block w-0.5 h-[1.1em] bg-linear-to-b from-subheading-start to-subheading-end align-middle animate-pulse ml-1" />
       </div>
 
@@ -88,8 +89,8 @@ const displayLinks: LinkItem[] = data.links || [];
     }
 
     let wordIndex = 0;
-    let charIndex = 0;
-    autoType.textContent = "";
+    let charIndex = words[0]?.length || 0;
+    autoType.textContent = words[0];
 
     function typeChar() {
       if (!autoType || !autoType.isConnected) return;
@@ -112,7 +113,8 @@ const displayLinks: LinkItem[] = data.links || [];
       }
     }
 
-    // Start typing immediately after smooth hero entrance
-    autoTypeTimer = window.setTimeout(typeChar, 300);
+    // First role is pre-rendered in SSR HTML for immediate 100% visual completeness (Speed Index).
+    // Hold the complete first word for 2.5s before beginning the delete cycle.
+    autoTypeTimer = window.setTimeout(deleteChar, 2500);
   });
 </script>
