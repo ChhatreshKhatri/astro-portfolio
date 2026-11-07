@@ -26,7 +26,7 @@ const displayDomain = liveUrl ? liveUrl.replace(/^https?:\/\//, "").replace(/\/$
         <figure class="w-full h-full relative">
           <div aria-label={`Screenshot of ${project.heading} project`} class="w-full relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 shadow-lg group/img cursor-pointer bg-gray-100 dark:bg-surface-base/80 flex flex-col transition-colors duration-300 ease-out">
             <!-- Browser Mockup Chrome Header -->
-            <div class="flex items-center justify-between gap-2 px-3.5 py-2 bg-black/5 dark:bg-white/5 border-b border-black/10 dark:border-white/10 select-none min-w-0 transition-colors duration-300 ease-out">
+            <div class="flex items-center justify-between gap-2 px-3.5 py-2 bg-white/70 dark:bg-surface-card/40 border-b border-black/10 dark:border-white/10 select-none min-w-0 transition-colors duration-300 ease-out">
               <div class="flex items-center gap-1.5 shrink-0">
                 <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
@@ -75,7 +75,7 @@ const displayDomain = liveUrl ? liveUrl.replace(/^https?:\/\//, "").replace(/\/$
         </header>
 
         <!-- Combined Overview & Technical Highlights Box -->
-        <div class="flex flex-col gap-3 p-3.5 sm:p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-xs hover:border-brand-primary/30 dark:hover:border-brand-primary/30 hover:bg-black/8 dark:hover:bg-white/8 transition-all duration-300 ease-out">
+        <div class="flex flex-col gap-3 rounded-2xl border p-4 md:p-5 bg-white/70 dark:bg-surface-card/40 border-black/5 dark:border-white/10 hover:border-black/15 dark:hover:border-white/20 transition-all duration-300 ease-out">
           <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed text-left transition-colors duration-300 ease-out">
             {project.description}
           </p>

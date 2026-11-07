@@ -23,6 +23,7 @@ Consistency is ensured across the site with a well-structured navigation menu, s
 - 🎨 **Modern Design & Styling** — Custom Tailwind CSS v4 theme with glassmorphism cards and fluid typography.
 - 🌓 **Synchronized Theme Toggle** — Seamless Dark/Light mode cross-fade with persistent user preference in `localStorage`.
 - ⚡ **Fluid Micro-Animations** — Immediate `@starting-style` entry transitions strictly capped at 300ms with event-delegated spotlight cursor tracking.
+- 🚀 **High-Performance Core Web Vitals** — Instant above-the-fold paint, server-rendered typewriter with delayed backspacing, and prioritized early resource preloading.
 - 📱 **Fully Responsive** — Mobile-first, adaptive layouts optimized for mobile, tablet, and desktop viewports.
 - ⚡ **Edge SSR & Caching** — Server-side rendered on Cloudflare Workers edge runtime with smart `Cache-Control` headers.
 - 🎯 **Single Source of Truth** — Clean dynamic rendering directly sourced from Cloudflare Worker JSON endpoints with zero hardcoded fallbacks.

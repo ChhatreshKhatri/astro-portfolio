@@ -28,17 +28,31 @@
 
 - **Card Layout Hierarchy**:
   - Context & Header: Title, Subtitle.
-  - Highlights Box: Narrative overview and Problem / Solution / Outcome bullets wrapped in a subtle card container (`bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:border-brand-primary/30 dark:hover:border-brand-primary/30 hover:bg-black/8 dark:hover:bg-white/8 shadow-xs rounded-xl`).
+  - Highlights Box: Narrative overview and Problem / Solution / Outcome bullets wrapped in a subtle card container (`rounded-2xl border p-4 md:p-5 bg-white/70 dark:bg-surface-card/40 border-black/5 dark:border-white/10 hover:border-black/15 dark:hover:border-white/20 transition-all duration-300 ease-out`).
   - Action CTAs: `Live Link` and `GitHub Repo` buttons immediately follow the highlights box.
   - Technologies & Tools: Categorized badges placed directly below the action buttons.
 - **Navigation & Anchors**: Use clean, human-readable semantic slugs for project anchors (`#farmconnect`, `#dlouck`, `#visits-counter`, `#ramaa-creations`).
 - **Accessibility & Motion**: Respect `prefers-reduced-motion` for animated typography, spotlight cards, and transitions.
 
+## Core Web Vitals & Performance Standards
+
+- **Zero-Delay Above-the-Fold LCP**:
+  - `SectionHeading` and initial above-the-fold containers (Hero section, About intro) must NEVER use `starting:opacity-0` or entrance fade transitions. Chrome's LCP metric ignores elements with `opacity: 0`, which introduces artificial 2+ second Element Render Delays.
+  - Above-the-fold content must paint at `opacity: 1` immediately on frame 1.
+- **Hero Typewriter SSR Pre-Rendering**:
+  - `#autoType` must always render the first role server-side directly in the SSR HTML (`<span>{firstRole}</span>`).
+  - The client script must NEVER wipe text to an empty string on mount. It must pause on the full initial role for 2.5s before smoothly beginning the delete/type cycle (`deleteChar`). This achieves instant 100% Visual Completeness for Speed Index.
+- **Critical Resource Preloading**:
+  - Early connection hints (`preconnect` and `dns-prefetch` for `https://cdn.chhatreshkhatri.com`) and font preloading (`Poppins.woff2`) must stay at the very top of `<head>` in `RootLayout.astro`.
+  - Non-LCP images should not be preloaded in `<head>` to avoid competing with render-blocking CSS and fonts on bandwidth-constrained mobile networks.
+- **Offscreen Asset Prioritization**:
+  - Below-the-fold images, icons, and skill badges must always use `loading="lazy"` and `decoding="async"` to preserve network bandwidth for initial paint.
+
 ## Transition & Motion Standards
 
 - **Entrance Animations (`@starting-style`)**:
   - Maximum duration strictly capped at 300ms across all pages and components.
-  - Sections & Headings: `transition duration-300 ease-out starting:opacity-0` (pure in-place fluid fade, no vertical displacement/bumps, no artificial delays).
+  - Below-the-Fold Sections: `transition duration-300 ease-out starting:opacity-0` (pure in-place fluid fade, no vertical displacement/bumps, no artificial delays).
   - Cards: `transition-all duration-300 ease-out starting:opacity-0` (immediate fluid transition).
 - **Spotlight Cards & Hover Elevations**:
   - All interactive spotlight cards across Home, About, Projects, and Privacy Policy must share: `spotlight-card relative group rounded-2xl bg-white/40 dark:bg-surface-card/60 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300 ease-out`.
@@ -51,3 +65,15 @@
 - **Grid Layout Balance & Awards Separation**:
   - `projects` is strictly a standalone 2-column grid. When project count is odd (e.g., 3 projects), the last project naturally expands to `lg:col-span-2` (`isLastOdd`) to eliminate dead space.
   - `awards` (`Honors & Recognition`) is NEVER mixed inside the projects grid. It is rendered separately directly beneath the projects grid as a full-width container (`mt-4 rounded-2xl ...`) with its own balanced `grid-cols-2 sm:grid-cols-4` badge layout.
+
+## Engineer Profile & Technical Voice Context
+
+- **Candidate**: Chhatresh Khatri
+- **Role**: Full-Stack Software Engineer & AI Product Builder
+- **Experience**: 3+ years of professional enterprise experience building scalable web applications, cloud-native backend systems, enterprise automation, and AI-driven products.
+- **Voice & Tone**: Direct, technical, clear, and outcome-oriented. Avoid inflated buzzwords (*ninja, rockstar, guru*).
+- **Core Pillars**:
+  - Frontend: Next.js 15+, React, TypeScript, Astro, Tailwind CSS v4, Web Performance & Core Web Vitals.
+  - Backend & Distributed Systems: .NET Core Web API, C#, Node.js, Express, Cloudflare Workers, RESTful APIs.
+  - Cloud & Data: Google Cloud Platform (BigQuery), Microsoft Azure, Cloudflare Edge, SQL Server, PostgreSQL.
+  - AI & Automation: Model Context Protocol (MCP), Agentic Workflows, LLM API Integration, enterprise workflow automation.
