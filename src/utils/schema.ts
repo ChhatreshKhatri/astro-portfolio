@@ -57,7 +57,7 @@ export const getPersonSchema = (siteUrl: string) => ({
       "credentialCategory": "Certification",
       "recognizedBy": {
         "@type": "Organization",
-        "name": "Microsoft"
+        "name": "Microsoft Training and Certification"
       },
       "url": "https://learn.microsoft.com/en-us/users/chhatreshkhatri-5518/credentials/50779a82dd8cd466"
     }
