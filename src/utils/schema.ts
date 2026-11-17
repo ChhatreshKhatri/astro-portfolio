@@ -50,6 +50,16 @@ export const getPersonSchema = (siteUrl: string) => ({
         "name": "Amazon Web Services Training and Certification"
       },
       "url": "https://www.credly.com/badges/fbdb1e51-753b-4e35-ac6a-c2898e868ff8"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Microsoft Certified: Azure AI Fundamentals",
+      "credentialCategory": "Certification",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Microsoft"
+      },
+      "url": "https://learn.microsoft.com/en-us/users/chhatreshkhatri-5518/credentials/50779a82dd8cd466"
     }
   ],
   "sameAs": [
@@ -61,7 +71,8 @@ export const getPersonSchema = (siteUrl: string) => ({
     "https://www.youtube.com/@chhatreshkhatri",
     "https://leetcode.com/u/chhatreshkhatri/",
     "https://www.geeksforgeeks.org/profile/chhatreshkhatri",
-    "https://www.credly.com/badges/fbdb1e51-753b-4e35-ac6a-c2898e868ff8"
+    "https://www.credly.com/badges/fbdb1e51-753b-4e35-ac6a-c2898e868ff8",
+    "https://learn.microsoft.com/en-us/users/chhatreshkhatri-5518/credentials/50779a82dd8cd466"
   ]
 });
 

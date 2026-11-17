@@ -15,7 +15,7 @@ export async function GET(context: APIContext) {
       {
         title: "About | Experience, Skills & Credentials",
         link: "/about",
-        description: "Chhatresh Khatri About. Professional software engineering experience, AWS Certified AI Practitioner credentials, education, and technical stack.",
+        description: "Chhatresh Khatri About. Professional software engineering experience, AWS & Microsoft Azure AI credentials, education, and technical stack.",
         pubDate: new Date("2024-06-17T12:00:00+05:30"),
       },
       {

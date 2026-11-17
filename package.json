@@ -18,17 +18,23 @@
     "esbuild": true
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^14.4.3",
+    "@astrojs/cloudflare": "^14.4.8",
     "@astrojs/rss": "^4.0.19",
-    "@astrojs/sitemap": "^3.7.4",
-    "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.4.4",
-    "tailwindcss": "^4.3.3"
+    "@astrojs/sitemap": "^3.7.5",
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^7.4.12",
+    "tailwindcss": "^4.3.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@types/node": "^26.6.6",
     "typescript": "^6.0.3",
-    "wrangler": "^4.156.0"
+    "wrangler": "^4.163.0"
+  },
+  "overrides": {
+    "@astrojs/compiler-binding": "0.5.2",
+    "@astrojs/compiler-binding-win32-x64-msvc": "0.5.2",
+    "satteri": "0.10.5",
+    "@bruits/satteri-win32-x64-msvc": "0.10.5"
   }
 }
