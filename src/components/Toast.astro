@@ -1,0 +1,95 @@
+---
+// Toast.astro - Global, reusable toast notification
+// Built strictly with Tailwind CSS v4 design tokens and website aesthetics
+interface Props {
+  id?: string;
+  duration?: number;
+  class?: string;
+}
+
+const { 
+  id = "globalToast", 
+  duration = 2400, 
+  class: className = "" 
+} = Astro.props;
+---
+
+<aside 
+  id={id} 
+  role="status" 
+  aria-live="polite" 
+  data-duration={duration}
+  class={`fixed bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 z-60 flex items-center gap-2.5 px-4.5 sm:px-5 py-2.5 rounded-full bg-white/95 dark:bg-surface-card/95 text-gray-900 dark:text-gray-100 border border-black/10 dark:border-white/15 shadow-xl shadow-black/10 dark:shadow-2xl dark:shadow-black/70 backdrop-blur-xl text-xs sm:text-sm font-semibold transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-4 scale-95 select-none ${className}`}
+>
+  <span 
+    id={`${id}Icon`} 
+    class="text-emerald-600 dark:text-emerald-400 text-sm sm:text-base font-bold shrink-0 select-none transition-colors duration-300 ease-out" 
+    aria-hidden="true"
+  >
+    ✓
+  </span>
+  <span id={`${id}Message`} class="whitespace-nowrap transition-colors duration-300 ease-out">
+    <slot>Notification</slot>
+  </span>
+</aside>
+
+<script>
+  let toastTimer: number | undefined;
+
+  export type ShowToastOptions = {
+    message?: string;
+    icon?: string;
+    duration?: number;
+    id?: string;
+  };
+
+  function showToast(
+    messageOrOptions?: string | ShowToastOptions,
+    customDuration?: number,
+    toastId = "globalToast"
+  ) {
+    let message: string | undefined;
+    let duration = customDuration;
+    let targetId = toastId;
+
+    if (typeof messageOrOptions === "object" && messageOrOptions !== null) {
+      message = messageOrOptions.message;
+      duration = messageOrOptions.duration ?? customDuration;
+      targetId = messageOrOptions.id || toastId;
+    } else if (typeof messageOrOptions === "string") {
+      const elById = document.getElementById(messageOrOptions);
+      if (elById && elById.getAttribute("role") === "status") {
+        // Legacy call pattern: showToast("globalToast", 2400)
+        targetId = messageOrOptions;
+      } else {
+        // Standard call pattern: showToast("Email copied to clipboard!", 2400)
+        message = messageOrOptions;
+      }
+    }
+
+    const toast = document.getElementById(targetId);
+    if (!toast) return;
+
+    if (message) {
+      const msgEl = document.getElementById(`${targetId}Message`);
+      if (msgEl) {
+        msgEl.textContent = message;
+      }
+    }
+
+    if (toastTimer) clearTimeout(toastTimer);
+
+    const activeDuration = duration ?? parseInt(toast.dataset.duration || "2400", 10);
+
+    toast.classList.remove("opacity-0", "translate-y-4", "scale-95");
+    toast.classList.add("opacity-100", "translate-y-0", "scale-100");
+
+    toastTimer = window.setTimeout(() => {
+      toast.classList.remove("opacity-100", "translate-y-0", "scale-100");
+      toast.classList.add("opacity-0", "translate-y-4", "scale-95");
+    }, activeDuration);
+  }
+
+  // Expose global showToast helper
+  window.showToast = showToast;
+</script>

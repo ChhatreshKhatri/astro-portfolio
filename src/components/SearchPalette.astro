@@ -136,12 +136,6 @@ import SearchIcon from "../assets/icons/SearchIcon.astro";
   </div>
 </div>
 
-<!-- Floating Toast Notification -->
-<div id="searchToast" class="fixed bottom-6 right-6 z-50 hidden items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-900/90 text-white dark:bg-white/90 dark:text-gray-900 shadow-2xl backdrop-blur-md text-xs font-semibold animate-in slide-in-from-bottom-5 duration-200">
-  <span class="text-emerald-400">✓</span>
-  <span id="searchToastMessage">Email copied to clipboard!</span>
-</div>
-
 <script>
   document.addEventListener("astro:page-load", () => {
     const backdrop = document.getElementById("searchPaletteBackdrop");
@@ -151,8 +145,6 @@ import SearchIcon from "../assets/icons/SearchIcon.astro";
     const groupLabels = document.querySelectorAll<HTMLElement>(".search-group-label");
     const copyEmailBtn = document.getElementById("searchCopyEmail");
     const toggleThemeBtn = document.getElementById("searchToggleTheme");
-    const toast = document.getElementById("searchToast");
-    const toastMsg = document.getElementById("searchToastMessage");
 
     let isOpen = false;
     let selectedIndex = 0;
@@ -179,14 +171,9 @@ import SearchIcon from "../assets/icons/SearchIcon.astro";
     };
 
     const showToast = (message: string) => {
-      if (!toast || !toastMsg) return;
-      toastMsg.textContent = message;
-      toast.classList.remove("hidden");
-      toast.classList.add("flex");
-      setTimeout(() => {
-        toast.classList.add("hidden");
-        toast.classList.remove("flex");
-      }, 2500);
+      if (typeof window.showToast === "function") {
+        window.showToast(message);
+      }
     };
 
     const openPalette = () => {
@@ -288,7 +275,7 @@ import SearchIcon from "../assets/icons/SearchIcon.astro";
     copyEmailBtn?.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText("ck@chhatreshkhatri.com");
-        showToast("Email copied to clipboard (ck@chhatreshkhatri.com)!");
+        showToast("Email copied to clipboard!");
         closePalette();
       } catch (err) {
         console.error("Clipboard error:", err);
@@ -303,8 +290,8 @@ import SearchIcon from "../assets/icons/SearchIcon.astro";
     });
 
     // Expose openSearchPalette and openCommandPalette (backward compatibility)
-    (window as any).openSearchPalette = openPalette;
-    (window as any).openCommandPalette = openPalette;
+    window.openSearchPalette = openPalette;
+    window.openCommandPalette = openPalette;
   });
 </script>
 

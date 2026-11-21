@@ -16,3 +16,9 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+interface Window {
+  showToast?: (message?: string, duration?: number, toastId?: string) => void;
+  openSearchPalette?: () => void;
+  openCommandPalette?: () => void;
+}
