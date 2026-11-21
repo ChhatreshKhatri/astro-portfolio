@@ -11,7 +11,7 @@ Consistency is ensured across the site with a well-structured navigation menu, s
 
 ## 🛠️ Built With
 
-- **[Astro](https://astro.build/)** — High-performance web framework with Content Collections and SSR capabilities
+- **[Astro](https://astro.build/)** — High-performance web framework with edge SSR adapter and component-driven architecture
 - **[Tailwind CSS](https://tailwindcss.com/)** — Modern utility-first CSS framework (v4) with OKLCH gradient palettes
 - **[TypeScript](https://www.typescriptlang.org/)** — Strict, type-safe development across components and API data contracts
 - **[Cloudflare Workers](https://workers.cloudflare.com/)** — Edge deployment & SSR adapter with global cache headers
