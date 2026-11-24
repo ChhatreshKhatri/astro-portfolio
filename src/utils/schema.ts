@@ -2,6 +2,7 @@ import type { GraphSchemaOptions } from "../types";
 
 export const getPersonSchema = (siteUrl: string) => ({
   "@type": "Person",
+  "@id": new URL("/#person", siteUrl).href,
   "name": "Chhatresh Khatri",
   "url": siteUrl,
   "image": "https://cdn.chhatreshkhatri.com/images/ChhatreshKhatri.webp",
@@ -78,28 +79,43 @@ export const getPersonSchema = (siteUrl: string) => ({
 
 export const getWebsiteSchema = (siteUrl: string) => ({
   "@type": "WebSite",
+  "@id": new URL("/#website", siteUrl).href,
   "name": "Chhatresh Khatri",
   "url": siteUrl,
   "inLanguage": "en"
 });
 
 export const generateGraphSchema = (options: GraphSchemaOptions) => {
-  const { siteUrl, canonicalURL, schemaType, title } = options;
+  const { siteUrl, canonicalURL, schemaType, title, description } = options;
+  const websiteId = new URL("/#website", siteUrl).href;
+  const personId = new URL("/#person", siteUrl).href;
+  const isProfilePage = schemaType === "ProfilePage";
+  const isHomepage = canonicalURL === new URL("/", siteUrl).href;
   const person = getPersonSchema(siteUrl);
   const website = getWebsiteSchema(siteUrl);
 
   const graph: Record<string, unknown>[] = [website];
 
-  if (schemaType === "ProfilePage") {
-    graph.push({
-      "@type": "ProfilePage",
-      "name": title || "About Chhatresh Khatri",
-      "url": canonicalURL,
-      "mainEntity": person
-    });
-  } else {
+  if (isProfilePage || isHomepage) {
     graph.push(person);
   }
+
+  const page: Record<string, unknown> = {
+    "@type": isProfilePage ? "ProfilePage" : "WebPage",
+    "@id": `${canonicalURL}#webpage`,
+    "url": canonicalURL,
+    "name": title,
+    "description": description,
+    "isPartOf": { "@id": websiteId }
+  };
+
+  if (isProfilePage) {
+    page.mainEntity = { "@id": personId };
+  } else if (isHomepage) {
+    page.about = { "@id": personId };
+  }
+
+  graph.push(page);
 
   return {
     "@context": "https://schema.org",
