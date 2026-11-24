@@ -75,5 +75,5 @@
 - **Core Pillars**:
   - Frontend: Next.js 15+, React, TypeScript, Astro, Tailwind CSS v4, Web Performance & Core Web Vitals.
   - Backend & Distributed Systems: .NET Core Web API, C#, Node.js, Express, Cloudflare Workers, RESTful APIs.
-  - Cloud & Data: Google Cloud Platform (BigQuery), Microsoft Azure, Cloudflare Edge, SQL Server, PostgreSQL.
+  - Cloud & Data: Google Cloud Platform (BigQuery), Microsoft Azure, Cloudflare, SQL Server, PostgreSQL.
   - AI & Automation: Model Context Protocol (MCP), Agentic Workflows, LLM API Integration, enterprise workflow automation.
