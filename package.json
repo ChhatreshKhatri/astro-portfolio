@@ -29,12 +29,6 @@
     "@astrojs/check": "^0.9.12",
     "@types/node": "^26.6.6",
     "typescript": "^6.0.3",
-    "wrangler": "^4.166.0"
-  },
-  "overrides": {
-    "@astrojs/compiler-binding": "0.5.2",
-    "@astrojs/compiler-binding-win32-x64-msvc": "0.5.2",
-    "satteri": "0.10.5",
-    "@bruits/satteri-win32-x64-msvc": "0.10.5"
+    "wrangler": "^4.168.0"
   }
 }
